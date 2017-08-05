@@ -206,16 +206,21 @@ function guardarUsuario()
         $asunto            = "Usuario creado";
         $mensaje           = '<!DOCTYPE html>
         <html>
+        <head>
+        <meta content="text/html; charset=utf-8">
+        </head>
         <body style="background-color: #ededed;font-family:Helvetica;">
             <table style="width:100%;vertical-align: middle;">
                 <tr><td colspan="3" style="height:75px;text-align: center;background-color: #ffffff;border-bottom: 3px solid #ddd;"><img src="http://i.imgur.com/0lrt35i.png" style="height:75px;;padding:5px;"></td></tr>
                 <tr><td style="width:10%"></td>
                     <td style="padding:15px 0">
-                        <p> Señor(a) ' . $nombre . ' , úst\u00E9d ha sido registrado en SSTplus y se le ha creado una cuenta para que ingrese.</p>
+                        <p> Señor(a) ' . $nombre . ' , usted ha sido registrado en SSTplus y se le ha creado una cuenta para que ingrese.</p>
                         <p><strong>Usuario= </strong>' . $values['correoElectronico'] . '</p>
                         <p><strong>Contraseña= </strong>' . $password . '</p>
                         <p>Para comenzar a usar su cuenta de usuario, haga clic en el siguiente
                         enlace:<br>
+                        </p>
+                        <p>
                         <a href="' . $rutaActivaUsuario . '"> Activar usuario SSTplus</a>
                         </p>
 
@@ -261,7 +266,7 @@ function enviarCorreoUsuario($email, $nombre, $mensaje, $asunto)
     $mail->setFrom('gerencia@nuevastic.com', 'Equipo soporte'); //Direccion de correo remitente
     $mail->addAddress($email, $nombre); // Agregar el destinatario
     $mail->isHTML(true); // Habilitar contenido HTML
-
+    $mail->CharSet = 'UTF-8';
     $mail->Subject = $asunto;
     $mail->Body    = "<b>" . $mensaje . "</b>";
 

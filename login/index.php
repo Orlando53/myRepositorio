@@ -25,7 +25,7 @@ if (session::existsAttribute("LOGEADO") == true) {
                 Inicio de Sesión
             </title>
             <script>
-                var url = "http://" + location.hostname + "/sstplus/sstplus/";
+                var url = "http://" + location.hostname + "/sstplus/";
             </script>
             <link href="../css/bootstrap.min.css" rel="stylesheet">
                 <link href="../css/nvst.css" rel="stylesheet">

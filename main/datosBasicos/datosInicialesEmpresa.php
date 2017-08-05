@@ -103,7 +103,7 @@ function enviarCorreo()
     $mail->setFrom('gerencia@nuevastic.com', 'Servicio al Cliente SSTPlus'); //Direccion de correo remitente
     $mail->addAddress($destinatario, $nombre); // Agregar el destinatario
     $mail->isHTML(true); // Habilitar contenido HTML
-
+    $mail->CharSet = 'UTF-8';
     $mail->Subject = 'Bienvenido a SSTPlus';
     $mail->Body    = "<b>$mensaje</b>";
 

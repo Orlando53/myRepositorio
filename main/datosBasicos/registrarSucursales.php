@@ -158,12 +158,98 @@ if (!session::existsAttribute("LOGEADO")) {
 				</form>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Salir</button>
 		        <button type="button" class="nvt-btn nvt-btn-primary" id="btn-guardarSucursal">Guardar Datos</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
+
+				<!-- Modal Actualizar -->
+		<div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Actualizar Sucursal</h4>
+		      </div>
+		      <div class="modal-body">
+		      <!--Modal Body-->
+		        <form id="frmActualizarSucursal"  method="post">
+					<div class="nvt-input-group half">
+						<input type="hidden" name="idSucursal" id="idSucursal" class="">
+						<input type="text" name="PrefijoAct" id="PrefijoAct" class="validate[required]">
+						<span class="bar"></span>
+						<label for="PrefijoAct">Prefijo</label>
+					</div>
+					<div class="nvt-input-group half">
+						<input type="text" name="nombreAct" id="nombreAct" class="validate[required]">
+						<span class="bar"></span>
+						<label for="nombreAct">Nombre</label>
+					</div>
+					<div class="nvt-input-group third">
+                        <select name="tipoIdentificacionAct" id="tipoIdentificacionAct" class="selectpicker validate[required]" title="Selecciona Uno">
+                   <!--          <option >Nit</option>
+                            <option >Cédula de Ciudadanía</option>
+                            <option >Cédula de Extrangería</option> -->
+                        </select>
+                        <label for="tipoIdentificacionAct">Tipo de Identificación</label>
+                    </div>
+                    <div class="nvt-input-group third">
+                        <input type="text" name="numeroIdentificacionAct" id="numeroIdentificacionAct" class="validate[required, custom[integer],min[1]]">
+                        <span class="bar"></span>
+                        <label for="numeroIdentificacionAct">Numero de Identificación</label>
+                    </div>
+					<div class="nvt-input-group third" style="text-align: center;">
+                        <h5>Logo</h5>
+                        <div class="file-input">
+                            <img src="#" id="logoImg">
+                            <label for="logoAct">cambiar</label>
+                            <input type="file" name="logoAct" class="imgFile validate[required]" id="logoAct" accept="image/jpg,image/png">
+                        </div>
+                        <input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
+                    </div>
+                    <div class="nvt-input-group third">
+                        <input type="number"  name="numTelefonoAct" id="numTelefonoAct" class="validate[required, custom[phone]]" />
+                        <span class="bar"></span>
+                        <label for="numTelefonoAct">Telefono</label>
+                    </div><div class="nvt-input-group third">
+                        <input type="text" name="direccionAct" id="direccionAct" class="validate[required]" readonly/>
+                        <span class="bar"></span>
+                        <label for="direccionAct">Dirección</label>
+                    </div>
+                    <div class="nvt-input-group third">
+                        <input type="email" name="emailAct" id="emailAct" class="validate[required, custom[email]]">
+                        <span class="bar"></span>
+                        <label for="emailAct">Correo Electrónico</label>
+                    </div>
+					<div class="nvt-input-group half">
+						<select id="selDPTOAct" name="selDPTOAct[]" class="selectpicker validate[required]" title="Seleccione">
+							<option>Huila</option>
+						</select>
+						<label for="selDPTOAct">Departamento</label>
+					</div>
+					<div class="nvt-input-group half">
+						<select id="selMPIOAct" name="selMPIOAct[]" class="selectpicker validate[required]" title="Seleccione">
+							<option>Neiva</option>
+						</select>
+						<label for="selMPIOAct">Municipio</label>
+					</div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Salir</button>
+		        <button type="button" class="nvt-btn nvt-btn-primary" id="btn-actualizarSucursal">Actualizar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+
+
+
+
 		<div class="modal fade" id="modalDireccion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

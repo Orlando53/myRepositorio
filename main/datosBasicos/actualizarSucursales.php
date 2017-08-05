@@ -22,12 +22,11 @@ if (!session::existsAttribute("LOGEADO")) {
 $id_empresa  = $_SESSION['IDEMPRESA'];
 $id_sucursal = $_REQUEST['id_sucursal'];
 
-$respuesta = new stdClass();
-
-$columnas  = "id_empresa, prefijo, razon_social, id_tipo_documento, numero_documento, url_logo, telefono, direccion, email, cod_dpto, co_municipio";
+$columnas  = "id_empresa, id_sucursal, prefijo, razon_social, id_tipo_documento, numero_documento, url_logo, telefono, direccion, email, cod_dpto, co_municipio";
 $tabla     = "gen_sucursales";
 $condicion = "id_empresa = :v1 AND id_sucursal = :v2";
 $valores   = array(":v1" => $id_empresa, ":v2" => $id_sucursal);
 
 $rs_act = $conn->consultar($columnas, $tabla, $condicion, $valores);
+
 echo json_encode($rs_act);

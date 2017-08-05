@@ -39,7 +39,7 @@ if (!session::existsAttribute("LOGEADO")) {
             <div class="col-md-1 goback"><a href="../index.php"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
             <div class="col-md-10 floater">
                                         <h2>
-                                            Envio de correo electrónico y encuesta sociodemografica
+                                            Envio de correo electrónico
                                         </h2>
                                         <div class="nvt-input-group third">
                                             <input id="search" name="Nombre" type="search">
@@ -51,9 +51,7 @@ if (!session::existsAttribute("LOGEADO")) {
                                             </input>
                                         </div>
                                         <div class="nvt-button-group two-third right-align">
-                                                <input type="button" class="nvt-btn nvt-btn-primary" id="btn_insertar" value="Insertar">
-                                                    <input class="nvt-btn nvt-btn-primary" type="button" id="btn_eliminar" value="Eliminar">
-                                                        <input class="nvt-btn nvt-btn-primary" id="btn_modificar" type="button" value="Modificar">
+                                                        <input class="nvt-btn nvt-btn-primary" id="btn_modificar" type="button" value="Reenviar correo">
                                                             <input class="nvt-btn nvt-btn-primary" type="button" value="Exportar">
                                                                 <a id="btn_terminar" href="#"><img src="../../media/icon/check.png" class="form-check" id="imgCheck"></a>
                                                             </input>
@@ -82,21 +80,18 @@ if (!session::existsAttribute("LOGEADO")) {
                                                     Apellidos
                                                 </th>
                                                 <th>
-                                                    Fecha de Registro
-                                                </th>
-                                                <th>
                                                     Cargo
                                                 </th>
                                                 <th>
-                                                    Area
+                                                    Correo electrónico
                                                 </th>
                                                 <th>
-                                                    Estado
+                                                    Encuesta
                                                 </th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                <?php include 'listaUsuarios.php';?>
+                                                <?php include 'listaRespuestas.php';?>
                                             </tbody>
                                         </table>
 

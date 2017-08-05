@@ -39,7 +39,7 @@ function generarLinkTemporal($idusuario, $username, $conn)
     $rs_nuevo = $conn->agregar($tabla, $columnas, $campos, $valores);
 
     if ($rs_nuevo) {
-        $enlace = $_SERVER["SERVER_NAME"] . '/sstplus/sstplus/seguridad/restablecer.php?idusuario=' . sha1($idusuario) . '&token=' . $token;
+        $enlace = $_SERVER["SERVER_NAME"] . '/sstplus/seguridad/restablecer.php?idusuario=' . sha1($idusuario) . '&token=' . $token;
         return $enlace;
     } else {
         return false;
@@ -91,12 +91,12 @@ function enviarEmail($nombre, $email, $link)
     $mail->setFrom('gerencia@nuevastic.com', 'Equipo soporte'); //Direccion de correo remitente
     $mail->addAddress($destinatario, $nombre); // Agregar el destinatario
     $mail->isHTML(true); // Habilitar contenido HTML
-
+    $mail->CharSet = 'UTF-8';
     $mail->Subject = 'Restablecer contraseña';
     $mail->Body    = "<b>$mensaje</b>";
 
     if (!$mail->send()) {
-        return 0;
+        echo 0;
         //     echo '<div class="alert alert-danger alert-dismissable fade in" id="error">
         // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         // <span aria-hidden="true">&times;</span>
@@ -104,7 +104,7 @@ function enviarEmail($nombre, $email, $link)
         // <strong>Error!</strong> El mensaje no pudo ser enviado Mailer Error: ' . $mail->ErrorInfo . '.
         // </div>';
     } else {
-        return 1;
+        echo 1;
         //     echo '<div class="alert alert-success alert-dismissable fade in" id="success">
         // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         // <span aria-hidden="true">&times;</span>
@@ -127,13 +127,12 @@ if ($email != "") {
     $rs_consulta = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
 
     if (count($rs_consulta) > 0) {
-        $nombre = $rs_consulta[0]["nombre"];
-
+        $nombre       = $rs_consulta[0]["nombre"];
         $linkTemporal = generarLinkTemporal($rs_consulta[0]["id_usuario"], $rs_consulta[0]["usuario"], $conn);
         if ($linkTemporal) {
             enviarEmail($nombre, $email, $linkTemporal);
         } else {
-            return 2;
+            echo 2;
             //   echo $respuesta->mensaje = '<div class="alert alert-danger alert-dismissable fade in" id="error">
             // <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             // <span aria-hidden="true">&times;</span>
@@ -143,18 +142,18 @@ if ($email != "") {
         }
 
     } else {
-        return 3;
+        echo 3;
         //     echo $respuesta->mensaje = '<div class="alert alert-danger alert-dismissable fade in" id="error">
         //                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         //                         <span aria-hidden="true">&times;</span>
         //                         </button>
         //                         <strong>Error!</strong> No existe una cuenta asociada al correo electrónico ingresado.
         //                         </div>';
-        // }
+        //}
 
     }
 } else {
-    return 4;
+    echo 4;
     // echo $respuesta->mensaje = '<div class="alert alert-danger alert-dismissable fade in" id="error">
     //                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     //                         <span aria-hidden="true">&times;</span>

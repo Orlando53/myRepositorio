@@ -205,23 +205,55 @@ $('#btnModificar').click(function() {
             },
             success: function(data) {
                 var sucursal = data[0];
-                // $('#txtNombreAct').val(cargo.cargo);
-                // $('#id_cargo').val(cargo.id_cargo);
-                // if (cargo.id_jefe_inmediato == 0) {
-                //     $("#selJefeAct").jCombo("../../util/cargarCargosCombo.php?estado=1", {
-                //         first_optval: "0",
-                //         initial_text: "Ninguno",
-                //         selected_value: cargo.id_cargo
-                //     });
-                // } else {
-                //     $("#selJefeAct").jCombo("../../util/cargarCargosCombo.php?estado=1", {
-                //         first_optval: "0",
-                //         initial_text: "Ninguno",
-                //         selected_value: cargo.id_jefe_inmediato
-                //     });
-                // }
-                // $('#txtDescripcionAct').val(cargo.descripcion);
-                // $('#actualizarModal').modal('show');
+                $('#PrefijoAct').val(sucursal.prefijo);
+                $('#idSucursal').val(sucursal.id_sucursal);
+                $('#nombreAct').val(sucursal.razon_social);
+                $("#tipoIdentificacionAct").jCombo("../../util/definiciones.php?id=1", {
+                    first_optval: "0",
+                    initial_text: "Ninguno",
+                    selected_value: sucursal.id_tipo_documento
+                });
+                $('#numeroIdentificacionAct').val(sucursal.numero_documento);
+                $('#logoAct').val(sucursal.url_logo);
+                $('#numTelefonoAct').val(sucursal.telefono);
+                $('#direccionAct').val(sucursal.direccion);
+                $('#emailAct').val(sucursal.email);
+                $("#selDPTOAct").jCombo("../../util/deptos.php?id=1", {
+                    first_optval: "0",
+                    initial_text: "Ninguno",
+                    selected_value: sucursal.cod_dpto
+                });
+                $("#selMPIOAct").jCombo("../../util/ciudades.php?id=1", {
+                    first_optval: "0",
+                    initial_text: "Ninguno",
+                    selected_value: sucursal.co_municipio
+                });
+                $('#actualizarModal').modal('show');
+            }
+        });
+    }
+});
+$('#btn-actualizarSucursal').click(function() {
+    if ($("#frmActualizarSucursal").validationEngine("validate")) {
+        var url = "confirmarActualizacionSucursal.php";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#frmActualizarSucursal").serialize(),
+            beforeSend: function() {
+                dialogLoading('show');
+            },
+            complete: function() {
+                dialogLoading('close');
+            },
+            success: function(data) {
+                if (data == 1) {
+                    alertify.alert("Bien! Sucursal actualizada", function() {
+                        window.location = "../datosBasicos/registrarCargos.php";
+                    });
+                }
+                //$('#actualizarModal').modal('show');
+                //$('#respuesta').append(data);
             }
         });
     }
