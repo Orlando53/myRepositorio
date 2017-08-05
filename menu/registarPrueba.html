@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../css/bootstrap-multiselect.css" type="text/css"/>		
+	<link rel="stylesheet" href="../css/nvst.css">	
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+	</head>
+	<div class="row">
+			<div class="col-md-1 col-md-offset-1 goback"><a href="../index.html"><img src="../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
+			<div class="col-md-8 floater">
+				<h2>Áreas de Trabajo</h2>
+					<div class="nvt-input-group third">						
+						<input type="search" name="Nombre" id="search">
+						<span class="bar"></span>
+						<label for="search">Buscar</label>
+					</div>
+					<div class="nvt-button-group two-third right-align">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Insertar" data-toggle="modal" data-target="#insertarModal">
+						<a class="nvt-btn nvt-btn-primary" href="listarAreasTrabajo.php" >Listar</a>
+					</div>
+					<table class="table table-responsive nvt-table">
+						<tr><td>#</td><td>Nombre</td><td>Descripción</td></tr>
+						<tr><td>
+							<div class="checkbox-input"><label for="checkbox"><input type="checkbox" name="checkbox" id="checkbox">1</label></div>
+						</td>
+						<td>Desarrollo</td><td>Programación de Aplicaciones</td></tr>
+					</table>
+			</div>
+			<div class="col-md-1"><a href="#ayuda" data-toggle="modal" data-target="#ayudaModal"><img src="../media/icon/help.png"  data-toggle="tooltip" data-placement="bottom" title="Ayuda"></a></div>
+		</div>
+
+		<!-- Modal Insertar -->
+		<div class="modal fade" id="insertarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		  	<form id="frmAreasTrabajo" action="guardarAreasTrabajo.php" method="post">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Registro Areas de Trabajo</h4>
+			      </div>
+			      <div class="modal-body">
+			      <!--Modal Body-->
+			        
+						<div class="nvt-input-group third">						
+							<input type="text" name="nombre" id="txtNombre">
+							<span class="bar"></span>
+							<label for="nombre">Nombre</label>
+						</div>
+						<div class="nvt-input-group third">						
+							<input name="apellido" id="apellido" />
+							<label for="descripcion">Apellido</label>
+							<p class="charcount"></p>
+						</div>
+						<div class="nvt-input-group third">						
+							<input name="direccion" id="txtDireccion"/>
+							<label for="descripcion">Direccion</label>
+							<p class="charcount"></p>
+						</div>
+					
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+			        <button type="submit" class="nvt-btn nvt-btn-primary" data-dismiss="modal" id="btn-guardarAreasTrabajo">Guardar Datos</button>
+			      </div>
+			    </div>
+		    </form>
+		  </div>
+		</div>
+
+		<!-- Modal Ayuda -->
+		<div class="modal fade" id="ayudaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Ayuda</h4>
+		      </div>
+		      <div class="modal-body">
+		      <!--Modal Body-->
+		        Información de Ayuda Referente a Esta Vista.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../js/bootstrap-select.js"></script>
+  <script src="../js/nvt.js"></script>
+  <script src="js/this_view.js"></script>
+  <script> 
+    $('#btn-guardarAreasTrabajo').click(function(){
+        var url = "guardarAreasTrabajo.php";
+        $.ajax({                        
+           type: "POST",                 
+           url: url,                     
+           data: $("#frmAreasTrabajo").serialize(),
+           beforeSend: function(){
+           		$("#respuesta").html('<img src="../media/image/ajaxload.gif" />');
+           },
+           success: function(data)             
+           {
+             window.alert(data);
+           }
+       });
+    });
+    </script>
+</body>
+</html>

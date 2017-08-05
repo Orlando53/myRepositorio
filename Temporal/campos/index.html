@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/font-awesome.min.css">		
+	<link rel="stylesheet" href="../../css/nvst.css">	
+	<link rel="stylesheet" href="../../css/style.css">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+</head>
+<body>
+	<div class="container-fluid"><!-- Inicio del Contenedor Principal-->
+		<div class="row">
+			<div class="col-md-12">
+				<form id="forms">					
+				</form>
+				<input type="button" class="btn btn-primary btn-lg" value="añadir campo" data-toggle="modal" data-target="#modal">	
+			</div>		
+		</div>
+		<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Crear Nuevo Campo</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<form id="createform">
+		      		<div class="form-group">
+		      			<label for="tipo">Tipo</label>
+		      			<select id="tipo" class="form-control">
+		      				<option>Seleccione Uno</option>
+		      				<option>Texto</option>
+		      				<option>Número</option>
+		      				<option>Fecha</option>
+		      				<option>Select</option>
+		      				<option>TextArea</option>
+		      				<option>Archivo</option>
+		      			</select>
+		      		</div>
+		      		<div id="extra">
+			      		<div class="form-group">
+			      			<label for="nombre">Nombre</label>
+			      			<input type="text" id="nombre" class="form-control">
+			      		</div>
+			      	</div>
+		      	</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="reset" class="btn btn-primary" onclick="crearCampo()">Crear</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div><!-- Fin del Contenedor Principal-->
+  <script src="../../js/jquery-3.2.1.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
+  <script src="../../js/nvt.js"></script>
+  <script src="js/this_view.js"></script>
+</body>
+</html>

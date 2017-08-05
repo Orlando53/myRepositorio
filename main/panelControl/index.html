@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Control SSTPlus</title>
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap-select.css">
+	<link rel="stylesheet" href="../../css/nvst.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../media/image/favicon-32x32.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+</head>
+<body>
+ 	<div class="row control-panel">
+ 		<div class="col-xs-6">
+ 			<img src="../../media/image/P.png" style="position:absolute;bottom:0;right:0;">
+ 			<div class="col-xs-4" style="height:100%;background-color: yellow;"></div>
+ 			<div class="col-xs-8"></div>
+ 		</div>
+ 		<div class="col-xs-6">
+ 			<img src="../../media/image/H.png" style="position:absolute;bottom:0;left:0;">
+ 			<div class="col-xs-8"></div>
+ 			<div class="col-xs-4" style="height:100%;background-color: yellow;"></div>
+ 		</div>
+ 		<div class="col-xs-6">
+ 			<img src="../../media/image/A.png" style="position:absolute;top:0;right:0;">
+ 			<div class="col-xs-4" style="height:100%;background-color: yellow;"></div>
+ 			<div class="col-xs-8"></div>
+ 		</div>
+ 		<div class="col-xs-6">
+ 			<img src="../../media/image/V.png" style="position:absolute;top:0;left:0;">
+ 			<div class="col-xs-8"></div>
+ 			<div class="col-xs-4" style="height:100%;background-color: yellow;"></div>
+ 		</div>
+	</div>
+	<script src="../../js/jquery-3.2.1.min.js"></script>
+	<script src="../../js/jquery-ui.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/nvt.js"></script>
+	<script>
+		$(window).on('load',function(){
+			var height = $(window).height();
+			$('.control-panel').css('height',height+'px');
+		});
+	</script>
+</body>
+</html>

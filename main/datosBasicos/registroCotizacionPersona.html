@@ -1,0 +1,104 @@
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap-select.css" type="text/css"/>		
+	<link rel="stylesheet" href="../../css/nvst.css">	
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../images/favicon-32x32.png">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">	
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 floater">
+				<h2>Registro y Facturación</h2>
+				<form class="datosEmpresa">
+					<div class="nvt-input-group half">						
+						<select id="selTipoDoc" class="selectpicker" title="Seleccione">
+							<option>Cedula de Ciudadanía</option>
+							<option>Cedula de Extranjería</option>
+							<option>NIT</option>
+						</select>
+						<label for="selTipoDoc">Tipo de Documento</label>
+					</div>					
+					<div class="nvt-input-group half">						
+						<input type="number" name="numDoc" id="numDoc">
+						<span class="bar"></span>
+						<label for="numDoc">Número de Documento</label>
+					</div>
+					<div class="nvt-input-group third">						
+						<input type="text" name="Nombres" id="txtNombres">
+						<span class="bar"></span>
+						<label for="txtNombres">Nombres</label>
+					</div>
+					<div class="nvt-input-group third">						
+						<input type="text" name="Apellido1" id="txtApellido1">
+						<span class="bar"></span>
+						<label for="txtApellido1">Primer Apellido</label>
+					</div>
+					<div class="nvt-input-group third">						
+						<input type="text" name="Apellido1" id="txtApellido1">
+						<span class="bar"></span>
+						<label for="txtApellido1">Segundo Apellido</label>
+					</div>
+					<div class="nvt-input-group third">						
+							<select id="selPais"  class="selectpicker"  title="Seleccione">
+								<option>Colombia</option>
+							</select>
+							<label for="selPais">País de Residencia</label>
+						</div>
+					<div class="nvt-input-group third">						
+						<select id="selDPTO"  class="selectpicker"  title="Seleccione">
+							<option>Huila</option>
+						</select>
+						<label for="selDPTO">Departamento</label>
+					</div>
+					<div class="nvt-input-group third">						
+						<select id="selMPIO"  class="selectpicker"  title="Seleccione">
+							<option>Neiva</option>
+						</select>
+						<label for="selMPIO">Municipio</label>
+					</div>
+					<div class="nvt-input-group third">						
+						<input type="text" name="direccion" id="txtDireccion" readonly/>
+						<span class="bar"></span>
+						<label for="direccion">Dirección</label>
+					</div>
+					<div class="nvt-input-group third">						
+						<input type="number" id="numTelefono">
+						<span class="bar"></span>
+						<label for="numTelefono">Telefono</label>
+					</div>
+					<div class="nvt-input-group third">						
+						<input type="email" name="email" id="txtEmail">
+						<span class="bar"></span>
+						<label for="txtEmail">Correo Electrónico</label>
+					</div>
+					<input type="button" class="nvt-btn nvt-btn-primary" value="Registrar Datos">
+				<form>
+			</div>
+		</div>
+				<!-- Modal -->
+				<div class="modal fade" id="modalDireccion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				      </div>
+				      <div class="modal-body">
+				        ...
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="nvt-btn nvt-btn-primary" data-dismiss="modal">Save changes</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>	
+  <script src="../../js/jquery-3.2.1.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
+  <script src="../../js/bootstrap-select.js"></script>
+  <script src="../../js/nvt.js"></script>
+  <script src="js/this_view.js"></script>
+  </script>
+</body>
+</html>

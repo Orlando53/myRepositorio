@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>
+                Registrar Usuarios
+            </title>
+            <link href="../../css/bootstrap.min.css" rel="stylesheet">
+                <link href="../../css/font-awesome.min.css" rel="stylesheet">
+                    <link href="../../css/bootstrap-select.css" rel="stylesheet" type="text/css"/>
+                    <link href="../../css/nvst.css" rel="stylesheet">
+                        <link href="../../css/style.css" rel="stylesheet">
+                            <link href="../../../images/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+                                <meta content="minimum-scale=0.75, maximum-scale=1.0" name="viewport">
+                                    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+                                        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+                                        </link>
+                                    </link>
+                                </meta>
+                            </link>
+                        </link>
+                    </link>
+                </link>
+            </link>
+        </meta>
+    </head>
+    <body>
+        <br/>
+        <form class="datosEmpresa">
+            <div class="row">
+                <div class="col-md-1 col-md-offset-1 goback">
+                    <a class="goback" href="../index.php">
+                        <img data-placement="bottom" data-toggle="tooltip" src="../../media/icon/back.png" title="Volver"/>
+                    </a>
+                </div>
+                <div class="col-md-8 floater">
+                    <h2>
+                        Datos de la Empresa
+                    </h2>
+                    <div class="nvt-input-group two-third">
+                        <input id="nombre" name="Nombre" type="text">
+                            <span class="bar">
+                            </span>
+                            <label for="nombre">
+                                Nombre o Razón Social
+                            </label>
+                        </input>
+                    </div>
+                    <br>
+                        <div class="nvt-input-group half">
+                            <select class="selectpicker" id="tipoIdentificacion" name="tipoIdentificacion">
+                                <option>
+                                    Selecciona Uno
+                                </option>
+                                <option>
+                                    Nit
+                                </option>
+                            </select>
+                            <label for="tipoIdentificacion">
+                                Tipo de Identificación
+                            </label>
+                        </div>
+                        <div class="nvt-input-group half">
+                            <input id="numeroIdentificacion" name="numeroIdentificacion" type="text">
+                                <span class="bar">
+                                </span>
+                                <label for="numeroIdentificacion">
+                                    Numero de Identificación
+                                </label>
+                            </input>
+                        </div>
+                        <div class="nvt-input-group half">
+                            <input id="txtRepresentante" name="txtRepresentante" type="text">
+                                <span class="bar">
+                                </span>
+                                <label for="txtRepresentante">
+                                    Representante Legal
+                                </label>
+                            </input>
+                        </div>
+                        <div class="nvt-input-group half">
+                            <input id="direccion" name="direccion" readonly="" type="text">
+                                <span class="bar">
+                                </span>
+                                <label for="direccion">
+                                    Dirección
+                                </label>
+                            </input>
+                        </div>
+                        <div class="nvt-input-group third">
+                            <input id="email" name="email" type="email">
+                                <span class="bar">
+                                </span>
+                                <label for="email">
+                                    Correo Electrónico
+                                </label>
+                            </input>
+                        </div>
+                        <div class="nvt-input-group third">
+                            <input id="txtTelefono" name="txtTelefono" type="number">
+                                <span class="bar">
+                                </span>
+                                <label for="txtTelefono">
+                                    Teléfono
+                                </label>
+                            </input>
+                        </div>
+                        <div class="nvt-input-group third">
+                            <input id="numEmpleados" name="numEmpleados" typwe="number">
+                                <span class="bar">
+                                </span>
+                                <label for="numEmpleados">
+                                    Número de Empleados
+                                </label>
+                            </input>
+                        </div>
+                        <br>
+                            <button class="nvt-btn nvt-btn-primary" id="btnGuardar">
+                                Guardar Datos
+                            </button>
+                        </br>
+                    </br>
+                </div>
+            </div>
+        </form>
+        <!-- Modal -->
+        <div aria-labelledby="myModalLabel" class="modal fade" id="modalDireccion" role="dialog" tabindex="-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                            <span aria-hidden="true">
+                                ×
+                            </span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Agregar Dirección
+                        </h4>
+                    </div>
+                    <div class="modal-body" id="div-direccion">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="nvt-btn nvt-btn-default" data-dismiss="modal" type="button">
+                            Cancelar
+                        </button>
+                        <button class="nvt-btn nvt-btn-primary" data-dismiss="modal" id="btnAceptar-dir" type="button">
+                            Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div align="center" class="modal fade" id="cargando" role="dialog">
+            <img src="../../media/image/ajaxload.gif">
+            </img>
+        </div>
+        <script src="../../js/jquery-3.2.1.min.js">
+        </script>
+        <script src="../../js/bootstrap.min.js">
+        </script>
+        <script src="../../js/bootstrap-select.js">
+        </script>
+        <script src="../../js/nvt.js">
+        </script>
+        <script src="js/this_view.js">
+        </script>
+    </body>
+</html>
