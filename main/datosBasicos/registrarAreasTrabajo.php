@@ -35,7 +35,7 @@ if (!session::existsAttribute("LOGEADO")) {
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
 </head>
-<body>
+<body>  
 		<div class="row">
 			<div class="col-md-1 col-md-offset-1 goback"><a href="../index.php"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
 			<form id="frmOperaciones" method="post">
@@ -80,7 +80,7 @@ if (!session::existsAttribute("LOGEADO")) {
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="actualizar();"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">Registro Areas de Trabajo</h4>
+			        <h4 class="modal-title" id="myModalLabel">Registro Áreas de Trabajo</h4>
 			      </div>
 			      <div class="modal-body">
 			      <!--Modal Body-->

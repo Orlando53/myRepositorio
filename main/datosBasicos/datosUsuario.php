@@ -35,6 +35,9 @@ switch ($_REQUEST['accion']) {
     case 'update':
         actualizarRegistro();
         break;
+    case 'reenviarCorreo':
+        reenviarCorreo();
+        break;
     default:
         # code...
         break;
@@ -271,8 +274,76 @@ function enviarCorreoUsuario($email, $nombre, $mensaje, $asunto)
     $mail->Body    = "<b>" . $mensaje . "</b>";
 
     if (!$mail->send()) {
-        echo -2;
+        return -2;
+    }
+}
+
+function reenviarCorreo()
+{
+    $conn       = new DBManejador();
+    $id_persona = $_REQUEST['id_persona'];
+    $id_empresa = session::getAttribute('IDEMPRESA');
+    $password   = generaPass();
+    $sha1Pass   = sha1($password);
+    $columnas   = "p.email, u.id_usuario, u.usuario, u.contrasena, p.primer_nombre, p.segundo_nombre, p.primer_apellido, p.segundo_apellido";
+    $tabla      = "seg_usuarios u INNER JOIN gen_personas p ON u.id_persona=p.id_persona";
+    $condicion  = "u.id_persona = :v1 AND u.id_empresa=:v2";
+    $valores    = array(":v1" => $id_persona, ":v2" => $id_empresa);
+    $rs         = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
+
+    if (empty($rs)) {
+        echo -5;
         exit();
+    }
+
+    // Se envia el correo electronico con el usuario y password
+    $rutaActivaUsuario = $_SERVER['SERVER_NAME'] . "/sstplus/main/datosBasicos/datosUsuario.php?accion=activarUsuario&token=" . $sha1Pass . "&id=" . $rs[0]['id_usuario'];
+    $nombre            = $rs[0]['primer_nombre'] . ' ' . $rs[0]['segundo_nombre'] . ' ' . $rs[0]['primer_apellido'] . ' ' . $rs[0]['segundo_apellido'];
+    $asunto            = "No ha activado su cuenta de usuario";
+    $mensaje           = '<!DOCTYPE html>
+        <html>
+        <head>
+        <meta content="text/html; charset=utf-8">
+        </head>
+        <body style="background-color: #ededed;font-family:Helvetica;">
+            <table style="width:100%;vertical-align: middle;">
+                <tr><td colspan="3" style="height:75px;text-align: center;background-color: #ffffff;border-bottom: 3px solid #ddd;"><img src="http://i.imgur.com/0lrt35i.png" style="height:75px;;padding:5px;"></td></tr>
+                <tr><td style="width:10%"></td>
+                    <td style="padding:15px 0">
+                        <p> Señor(a) ' . $nombre . ' , usted ha sido registrado en SSTplus y se le ha creado una cuenta para que ingrese.</p>
+                        <p><strong>Usuario= </strong>' . $rs[0]['email'] . '</p>
+                        <p><strong>Contraseña= </strong>' . $password . '</p>
+                        <p>Para comenzar a usar su cuenta de usuario, haga clic en el siguiente
+                        enlace:<br>
+                        </p>
+                        <p>
+                        <a href="' . $rutaActivaUsuario . '"> Activar usuario SSTplus</a>
+                        </p>
+
+                    </td>
+                    <td style="width:10%"></td>
+                </tr>
+                <tr><td colspan="3" style="height:15px;text-align: left;background-color: #4dc311;"><p style="padding:0 15px">Centro de Desarrollo de Nuevas Tecnologias -  <a href="http://nuevastic.com" target="_blank">NuevasTIC</a></p></td></tr>
+            </table>
+        </body>
+        </html>';
+    $tabla     = 'seg_usuarios';
+    $campos    = 'contrasena=:v1';
+    $valores   = array(':v1' => $sha1Pass, ':v2' => $id_persona, ':v3' => $id_empresa);
+    $condicion = "id_persona = :v2 AND id_empresa=:v3";
+    $rs        = $conn->actualizar($tabla, $campos, $valores, $condicion);
+    if ($rs) {
+        $result = enviarCorreoUsuario($rs[0]['email'], $nombre, $mensaje, $asunto);
+        if (!empty($result)) {
+            echo $result;
+            exit();
+        } else {
+            echo 0;
+        }
+        echo 1;
+        exit();
+    } else {
+        echo 0;
     }
 }
 

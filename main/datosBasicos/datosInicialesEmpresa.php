@@ -1,22 +1,18 @@
 <?php
-
 /*
  * @autor: Jose Eric Castro Cuadrado
  * @fecha: 2017-27-18
  * @objetivo: Registrar datos iniciales empresa
  */
+
 @session_start();
-date_default_timezone_set('America/Bogota');
-ini_set("display_errors", '1');
-include_once '../../rsc/DBManejador.php';
-include_once '../../rsc/session.php';
+date_default_timezone_set("America/Bogota");
+ini_set("display_errors", 1);
+include_once "../../rsc/DBManejador.php";
+include_once "../../rsc/session.php";
 $conn = new DBManejador();
 if ($conn == null) {
     echo -1;
-    exit(0);
-}
-if (!session::existsAttribute("LOGEADO")) {
-    header("location: ../../index.php");
 }
 
 $n1 = trim(mb_strtoupper($_POST['txtNombre1']));
@@ -43,16 +39,15 @@ $v10 = '0';
 $tabla    = "gen_empresas";
 $columnas = "id_plan, razon_social, id_tipo_documento, numero_documento, nom_represente, direccion, email, telefono, numero_empleados, pago_confirmado, cred_enviada, nom_repre1, nom_repre2, ape_repre1, ape_repre2";
 $campos   = ":v0, :v1, :v2, :v3, :v4, :v5, :v6, :v7, :v8, :v9, :v10, :v11, :v12, :v13, :v14";
-$valores  = array(
-    ":v0" => $v0, ":v1" => $v1, ":v2" => $v2, ":v3" => $v3, ":v4" => $v4, ":v5" => $v5, ":v6" => $v6, ":v7" => $v7, ":v8" => $v8, ":v9" => $v9, ":v10" => $v10, ":v11" => $n1, ":v12" => $n2, ":v13" => $a1, ":v14" => $a2,
-);
+$valores  = array(":v0" => $v0, ":v1" => $v1, ":v2" => $v2, ":v3" => $v3, ":v4" => $v4, ":v5" => $v5, ":v6" => $v6, ":v7" => $v7, ":v8" => $v8, ":v9" => $v9, ":v10" => $v10, ":v11" => $n1, ":v12" => $n2, ":v13" => $a1, ":v14" => $a2);  
 $rs = $conn->agregar($tabla, $columnas, $campos, $valores);
 if ($rs) {
-
-    enviarCorreo();
+    echo 1;
+    //$flag = enviarCorreo();
 } else {
-
+    echo 0;
 }
+// enviar evidencia del correo al admin
 
 function enviarCorreo()
 {
@@ -132,3 +127,5 @@ function enviarCorreo()
 <p>Gracias por utilizar nuestros servicios.</p>
 </div>';
  */
+
+?>

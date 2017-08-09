@@ -89,7 +89,7 @@ $(document).ready(function() {
                     });
                     //return false;
                 } else {
-                    alertify.alert("Error! No se guaradron los datos");
+                    alertify.alert("Error! No se guardaron los datos");
                 }
             },
             timeout: 3000,

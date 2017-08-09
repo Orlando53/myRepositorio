@@ -3,8 +3,10 @@
  * @fecha: 2017-27-07
  * @objetivo: Registro Inicial de Empresa
  */
+
 var URL = "";
 URL = URLactual();
+
 $(document).ready(function() {
     $('#direccion').on('focus', function() {
         $("#div-direccion").load('../../util/direccion.php');
@@ -29,17 +31,15 @@ $(document).ready(function() {
     $('#btnEnviarDatosEmpresa').on('click', function() {
         if ($("form.datosEmpresa").validationEngine('validate')) {
             guardar()
-            return false
-        } else {
-            return false
-        }
+        } 
     });
     $("#tipoIdentificacion").jCombo("../../util/definiciones.php?id=1");
 
-    function guardar() {
+ function guardar() {
         var url = "datosInicialesEmpresa.php";
         $.ajax({
             type: "POST",
+            async: false,
             url: url,
             data: $("#datosEmpresa").serialize(),
             beforeSend: function() {
@@ -53,8 +53,8 @@ $(document).ready(function() {
                     alerta("Ocurrió un problema, por favor intente de nuevo");
                 } else if (data == 1) {
                     alerta("Se envió un mensaje al correo ingresado");
-                    var url = "../../../../portalweb/index.php";
-                    location.assign(url);
+                    var url = "http://localhost/portalweb/index.php";
+                    windows.open(url,"_self");
                 }
             }
         });

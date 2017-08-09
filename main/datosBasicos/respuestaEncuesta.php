@@ -51,8 +51,7 @@ if (!session::existsAttribute("LOGEADO")) {
                                             </input>
                                         </div>
                                         <div class="nvt-button-group two-third right-align">
-                                                        <input class="nvt-btn nvt-btn-primary" id="btn_modificar" type="button" value="Reenviar correo">
-                                                            <input class="nvt-btn nvt-btn-primary" type="button" value="Exportar">
+                                                        <input class="nvt-btn nvt-btn-primary" id="btn_reenviar" type="button" value="Reenviar correo">
                                                                 <a id="btn_terminar" href="#"><img src="../../media/icon/check.png" class="form-check" id="imgCheck"></a>
                                                             </input>
                                                         </input>
@@ -110,6 +109,8 @@ if (!session::existsAttribute("LOGEADO")) {
     <script type="text/javascript" src="../../js/jquery.funciones.js"></script>
     <script src="../../js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
     <script src="../../js/jquery.validationEngine.js" type="text/javascript"></script>
-    <script type="text/javascript">accion_usuario=''; </script>
+    <!-- <script type="text/javascript">accion_usuario=''; </script> -->
     <script src = "../../js/alertify.js"></script>
+    <script src = "./js/reenviarCorreo.js"></script>
+
 </body>

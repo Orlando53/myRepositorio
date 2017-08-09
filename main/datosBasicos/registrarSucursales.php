@@ -48,7 +48,7 @@ if (!session::existsAttribute("LOGEADO")) {
 					<div class="nvt-button-group two-third right-align">
 						<input type="button" class="nvt-btn nvt-btn-primary" value="Insertar" data-toggle="modal" data-target="#insertarModal">
 						<input type="button" class="nvt-btn nvt-btn-primary" value="Eliminar" id="btnEliminar">
-						<input type="button" class="nvt-btn nvt-btn-primary" value="Modificar" id="btnModificar">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Modificar" id="btnModificar" data-toggle="Modal" data-target="#actualizarModal">
 						<input type="button" class="nvt-btn nvt-btn-primary" value="Exportar">
 						<a href="#"><img src="../../media/icon/check.png" class="form-check" id="imgCheck"></a>
 					</div>
