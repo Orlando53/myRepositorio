@@ -13,7 +13,7 @@ function URLactual() {
 function dialogLoading(display) {
     $("#dlgLoading").remove();
     if (display == "show") {
-        var dialog = "<div title='Cargando Datos' id='dlgLoading' style=' text-align: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); '><img style='width:100px;position:relative;' src='" + URL + "media/image/ajaxload.gif' /></div>";
+        var dialog = "<div id='dlgLoading' style='text-align:center; z-index:100'><img style='width:100px;position:relative;' src='" + URL_ACTUAL + "media/image/ajaxload.gif' /></div>";
         $(dialog).appendTo("body");
         $("#dlgLoading").dialog({
             modal: true,

@@ -380,6 +380,7 @@
 .form-check:hover{
 	cursor: hand;
 }
+/*********************Panel de Control**************************/
 .control-panel{
 	background: url(../media/image/phva.png) no-repeat center;
 }
@@ -391,6 +392,29 @@
 }
 .control-panel div.col-xs-6:nth-child(n+3){
 	border-top:1px solid black;
+}
+.panel-list{
+	list-style: none;
+}
+.panel-list li{
+	width:100%;
+	margin:20px 0;
+	background-color: #03a33c;
+	text-align: center;
+	padding: 5px;
+	transform: skew(-21deg);
+}
+.panel-list li:hover{
+	background-color: #046928;
+	transition: ease-in-out 300ms;
+}
+.panel-list li a{
+	color: white;
+	font-weight:bold;
+}
+.panel-list li a span{
+	display: inline-block;
+	transform: skew(21deg);
 }
 /*********************+Media queries!!!!!!!!********************/
 @media (max-width: 1360px){

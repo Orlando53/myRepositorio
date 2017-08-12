@@ -10,6 +10,8 @@ date_default_timezone_set("America/Bogota");
 ini_set("display_errors", 1);
 include_once "../../rsc/DBManejador.php";
 include_once "../../rsc/session.php";
+include_once "../../rsc/constantes.php";
+
 $conn = new DBManejador();
 if ($conn == null) {
     echo -1;
@@ -41,12 +43,14 @@ $columnas = "id_plan, razon_social, id_tipo_documento, numero_documento, nom_rep
 $campos   = ":v0, :v1, :v2, :v3, :v4, :v5, :v6, :v7, :v8, :v9, :v10, :v11, :v12, :v13, :v14";
 $valores  = array(":v0" => $v0, ":v1" => $v1, ":v2" => $v2, ":v3" => $v3, ":v4" => $v4, ":v5" => $v5, ":v6" => $v6, ":v7" => $v7, ":v8" => $v8, ":v9" => $v9, ":v10" => $v10, ":v11" => $n1, ":v12" => $n2, ":v13" => $a1, ":v14" => $a2);  
 $rs = $conn->agregar($tabla, $columnas, $campos, $valores);
-if ($rs) {
-    echo 1;
-    //$flag = enviarCorreo();
-} else {
-    echo 0;
+$e = $conn->error;
+if(is_array($e)){
+    echo json_encode($e[2]);
+    exit();
 }
+echo 1;
+$flag = enviarCorreo();
+
 // enviar evidencia del correo al admin
 
 function enviarCorreo()
@@ -88,10 +92,10 @@ function enviarCorreo()
     //$mail->SMTPDebug = 4;                             // Habilitar el debug
 
     $mail->isSMTP(); // Usar SMTP
-    $mail->Host       = 'softwarenuevastic.com'; // Especificar el servidor SMTP
+    $mail->Host       = HOST; // Especificar el servidor SMTP
     $mail->SMTPAuth   = true; // Habilitar autenticacion SMTP
-    $mail->Username   = 'software'; // Nombre de usuario SMTP donde debe ir la cuenta de correo a utilizar para el envio
-    $mail->Password   = 'S0wftW@re20i5'; // Clave SMTP donde debe ir la clave de la cuenta de correo a utilizar para el envio
+    $mail->Username   = USEREMAIL; // Nombre de usuario SMTP donde debe ir la cuenta de correo a utilizar para el envio
+    $mail->Password   = PASSEMAIL; // Clave SMTP donde debe ir la clave de la cuenta de correo a utilizar para el envio
     $mail->SMTPSecure = 'tls'; // Habilitar encriptacion
     $mail->Port       = 587; // Puerto SMTP
 
@@ -109,23 +113,5 @@ function enviarCorreo()
 
     }
 }
-
-/*
- * '<div class="alert alert-danger alert-dismissable fade in" id="error">
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<strong>Error!</strong> El mensaje no pudo ser enviado, por favor intente nuevamente.
-</div>';
-
-'<div class="alert alert-success alert-dismissable fade in" id="success">
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-<strong>Exito!</strong> El mensaje ha sido enviado al correo electrónico ' . $destinatario . '. Revise en la bandeja de entrada o en la carpeta Spam.
-<p>En 24 horas nos pondremos en contacto con usted.</p>
-<p>Gracias por utilizar nuestros servicios.</p>
-</div>';
- */
 
 ?>

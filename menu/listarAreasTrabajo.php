@@ -32,12 +32,12 @@ echo "Error";
     <tbody>
            <?php while ($row = mysql_fetch_array($resultado) ): ?>
                 <tr>
-                <td><?php echo row["nombre"]; ?></td>
-                <td><?php echo row["apellido"]; ?></td>
-                <td><?php echo row["direccion"]; ?></td>
+                <td><?php echo $row["nombre"]; ?></td>
+                <td><?php echo $row["apellido"]; ?></td>
+                <td><?php echo $row["direccion"]; ?></td>
                 <td>
-                <a href="editarAreasTrabajo.php?id=<?php echo row["id_persona"]; ?>">Editar</a></td>
-                <a href="eliminarAreasTrabajo.php?id=<?php echo row["id_persona"]; ?>">Eliminar</a></td>
+                <a href="editarAreasTrabajo.php?id=<?php echo $row["id_persona"]; ?>">Editar</a></td>
+                <a href="eliminarAreasTrabajo.php?id=<?php echo $row["id_persona"]; ?>">Eliminar</a></td>
                 
                 </tr>
                 <?php endwhile;?>

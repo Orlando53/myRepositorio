@@ -14,5 +14,11 @@
 	define(	"PAS",	"123456");
 	define(	"BDA",	"db_sstplus");
 	define(	"PRT",	"3306");
-
+	
+/*
+ * variables conexion email
+ */
+	define("HOST", "softwarenuevastic.com");
+	define("USEREMAIL", "sotnvst");
+	define("PASSEMAIL", "sOftNvtc$2Ol7-");
 ?>

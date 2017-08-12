@@ -13,9 +13,9 @@ if ($conn == null) {
 }
 $user     = $_REQUEST['v0'];
 $pass     = sha1($_REQUEST['v1']);
-$columnas = "u.id_usuario, ep.id_empleado, u.id_persona, r.id_rol, u.id_empresa, u.usuario, u.fecha_inicio, u.fecha_fin, cambio_contrasena, fecha_inicio, fecha_fin, estado, e.razon_social, e.numero_documento as emp_numero_documento, r.rol,
+$columnas = "u.id_usuario, u.id_persona, r.id_rol, u.id_empresa, u.usuario, u.fecha_inicio, u.fecha_fin, cambio_contrasena, fecha_inicio, fecha_fin, estado, e.razon_social, e.numero_documento as emp_numero_documento, r.rol,
 CONCAT_WS(' ',COALESCE(primer_nombre,' '),COALESCE(segundo_nombre,' '),COALESCE(primer_apellido,' '),COALESCE(segundo_apellido) ) AS nombre";
-$tabla     = "seg_usuarios u INNER JOIN gen_personas p ON (u.id_persona = p.id_persona) INNER JOIN gen_empresas e ON (u.id_empresa = e.id_empresa) INNER JOIN seg_roles r ON (u.id_rol = r.id_rol) INNER JOIN ges_empleados ep ON (ep.id_persona=p.id_persona)";
+$tabla     = "seg_usuarios u INNER JOIN gen_personas p ON (u.id_persona = p.id_persona) INNER JOIN gen_empresas e ON (u.id_empresa = e.id_empresa) INNER JOIN seg_roles r ON (u.id_rol = r.id_rol)";
 $condicion = "u.usuario = :v1 AND contrasena = :v2";
 $valores   = array(":v1" => $user, ":v2" => $pass);
 $rs        = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
@@ -36,8 +36,13 @@ if ($rs[0]["estado"] == 0) {
 // vericacion de roles de usuario
 
 switch ($rs[0]["id_rol"]) {
-    // propietario
+    //propietario
     case 1:
+        echo 4;
+        exit();
+        break;
+    // gerente
+    case 2:
         $tabla     = "gen_control_pro_inicio";
         $columnas  = "estado";
         $condicion = "id_empresa=:v1";

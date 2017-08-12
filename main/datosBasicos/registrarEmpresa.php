@@ -38,9 +38,8 @@ ini_set("display_errors", '1');
                     <h2>Datos de la Empresa</h2>
                     <div class="nvt-input-group two-third">
 
-                        <?php
-/*$id_plan = 1;*/
-$id_plan = $_GET['id'];
+ <?php
+$id_plan = 1; //$_REQUEST['id'];
 echo '<input type="hidden" name="id_plan" id="id_plan" value="' . $id_plan . '">';
 ?>
                         <input type="text" name="nombre" id="nombre" class="validate[required]">

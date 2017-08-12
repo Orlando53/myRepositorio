@@ -52,7 +52,7 @@ function enviarEmail($nombre, $email, $link)
 
     require '../util/email/PHPMailerAutoload.php';
     $destinatario = $email;
-    $nombre       = $nombre;
+   // $nombre       = $nombre; 	QUE ES ESTO ING. ERICK??????
 
     $mensaje = '<!DOCTYPE html>
     <html>
@@ -61,10 +61,10 @@ function enviarEmail($nombre, $email, $link)
             <tr><td colspan="3" style="height:75px;text-align: center;background-color: #ffffff;border-bottom: 3px solid #ddd;"><img src="http://i.imgur.com/0lrt35i.png" style="height:75px;;padding:5px;"></td></tr>
             <tr><td style="width:10%"></td>
                 <td style="padding:15px 0">
-                    <p> Señor(a) ' . $nombre . ' , hemos recibido una petición para restablecer la contraseña de tu cuenta.</p>
-                    <p>Si hiciste esta petición, haz clic en el siguiente enlace, si no hiciste esta petición puedes ignorar este correo.</p>
+                    <p> Señor(a) ' . $nombre . ' , hemos recibido una petición para restablecer la contraseña de su cuenta.</p>
+                    <p>Si hizo esta petición, haga clic en el siguiente enlace, si no hizo esta petición puede ignorar este correo.</p>
                     <p>
-                    <strong>Enlace para restablecer tu contraseña</strong><br>
+                    <strong>Enlace para restablecer su contraseña</strong><br>
                     <a href="' . $link . '"> Restablecer contraseña </a>
                     </p>
 

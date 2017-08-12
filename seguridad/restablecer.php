@@ -43,6 +43,9 @@ if (count($rs_res) > 0) {
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+    <link href="../css/validationEngine.jquery.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/alertify.core.css">
+        <link rel="stylesheet" type="text/css" href="../css/alertify.default.css">
 </head>
 <body>
   <div class="container"><!-- Inicio del Contenedor Principal-->
@@ -59,7 +62,7 @@ if (count($rs_res) > 0) {
         <input name="password2" pattern=".{6,}" required title="más de 6 caracteres" type="password" class="form-control" id="confirmaContrasena" required/>
       </div>
 
-          <div id="respuesta" align="center"></div>
+          <!-- <div id="respuesta" align="center"></div> -->
 
 
 
@@ -70,10 +73,15 @@ if (count($rs_res) > 0) {
     </div>
   </div><!-- Fin del Contenedor Principal-->
   <script type = "text/javascript" src= "../js/jquery-3.2.1.min.js"></script>
+  <script src = "../js/jquery-ui.min.js"></script>
   <script type = "text/javascript" src= "../js/bootstrap.min.js"></script>
   <script type = "text/javascript" src= "../js/nvt.js"></script>
+  <script src="../js/jquery.validationEngine.js"></script>
+  <script src="../js/languages/jquery.validationEngine-es.js"></script>
   <script type = "text/javascript" src= "../js/jquery.funciones.js"></script>
+  <script src = "../js/alertify.js"></script>
   <script type = "text/javascript" src= "js/restablecer.js"></script>
+
 
 
 </body>

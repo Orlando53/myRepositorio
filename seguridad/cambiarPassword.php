@@ -19,7 +19,7 @@ $password1 = $_POST['password1'];
 $password2 = $_POST['password2'];
 $idusuario = $_POST['idusuario'];
 $token     = $_POST['token'];
-$respuesta = new stdClass();
+//$respuesta = new stdClass();
 if ($password1 != "" && $password2 != "" && $idusuario != "" && $token != "") {
     $tabla     = "seg_restaurar_contrasena";
     $columnas  = "*";
@@ -55,26 +55,26 @@ if ($password1 != "" && $password2 != "" && $idusuario != "" && $token != "") {
                 if ($rs_act && $rs_act2) {
                     // $sql = "DELETE FROM seg_restaurar_contrasena WHERE token = '$token'";
                     // $resultado = $conexion->query( $sql );
-
-                    echo $respuesta->mensaje = 'La contraseña ha sido actualizada. Será re direccionado a la página de inicio.';
+                    echo 1;
+                    //echo $respuesta->mensaje = 'La contraseña ha sido actualizada. Será re direccionado a la página de inicio.';
                     //header('Location:index.html');
                 } else {
-
-                    echo $respuesta->mensaje = 'Ocurrió un error al actualizar la contraseña, intentalo más tarde.';
+                    echo 0;
+                    // echo $respuesta->mensaje = 'Ocurrió un error al actualizar la contraseña, intentalo más tarde.';
                 }
             } else {
-
-                echo $respuesta->mensaje = 'Las contraseñas no coinciden o la contraseña ingresada está actualmente en uso.';
+                echo 2;
+                // echo $respuesta->mensaje = 'Las contraseñas no coinciden o la contraseña ingresada está actualmente en uso.';
 
             }
 
         } else {
-            echo $respuesta->mensaje = 'El token no es válido.';
-
+            //echo $respuesta->mensaje = 'El token no es válido.';
+            echo 3;
         }
     } else {
-
-        echo $respuesta->mensaje = 'El token no es válido.';
+        echo 3;
+        //echo $respuesta->mensaje = 'El token no es válido.';
 
     }
 

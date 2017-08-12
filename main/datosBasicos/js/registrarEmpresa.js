@@ -30,17 +30,16 @@ $(document).ready(function() {
     })
     $('#btnEnviarDatosEmpresa').on('click', function() {
         if ($("form.datosEmpresa").validationEngine('validate')) {
-            guardar()
+            guardar();
         } 
     });
     $("#tipoIdentificacion").jCombo("../../util/definiciones.php?id=1");
 
  function guardar() {
-        var url = "datosInicialesEmpresa.php";
-        $.ajax({
+	 $.ajax({
             type: "POST",
             async: false,
-            url: url,
+            url: "datosInicialesEmpresa.php",
             data: $("#datosEmpresa").serialize(),
             beforeSend: function() {
                 dialogLoading('show');
@@ -49,12 +48,12 @@ $(document).ready(function() {
                 dialogLoading('close');
             },
             success: function(data) {
-                if (data == 0) {
-                    alerta("Ocurrió un problema, por favor intente de nuevo");
-                } else if (data == 1) {
+               if (data == 1) {
                     alerta("Se envió un mensaje al correo ingresado");
                     var url = "http://localhost/portalweb/index.php";
-                    windows.open(url,"_self");
+                    window.open(url,"_self");
+                }else{
+                	alerta(data);
                 }
             }
         });

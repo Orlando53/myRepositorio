@@ -44,32 +44,33 @@ function logear(parametros) {
         success: function(datos) {
             switch (datos) {
                 case -1:
-                    alertify.alert("No se pudo establecer la conexi�n!");
+                    alertify.alert("No se pudo establecer la conexión!");
                     break;
                 case 0:
                     alertify.alert("Usuario o Contraseña errada!");
                     break;
                 case 1:
-                    abrirMenu('seguridad/cambiarContrasena.php');
+                    abrirMenu('seguridad/cambiarContrasena.php'); //debe cambiar la contraseña
                     break;
                 case 2:
                     alertify.alert("Información! Usuario Inactivo, debe ingresar a su correo electrónico para activar la cuenta");
                     break;
-                    //...................
+                    //gerente---------
                 case 4:
-                    abrirMenu('index.php?ruta=main/menuPrincipal.php');
+                    abrirMenu('temporal/index.php'); //menu principal del gerente
                     break;
                 case -4:
-                    abrirMenu('index.php?ruta=main/index.php');
+                    abrirMenu('index.php?ruta=main/index.php'); // pasos con los datso basicos de la empresa
                     break;
                 case 04:
                     alertify.alert("Error al redireccionar al menú!");
                     break;
+                    //empleado---------
                 case 3:
-                    abrirMenu('index.php?ruta=main/menuPrincipal.php');
+                    abrirMenu('index.php?ruta=main/menuPrincipal.php'); //menu principal
                     break;
                 case -3:
-                    abrirMenu('index.php?ruta=main/datosBasicos/form-preguntas.html');
+                    abrirMenu('index.php?ruta=main/datosBasicos/form-preguntas.html'); //hacer la encuesta
                     break;
             }
         },

@@ -4,6 +4,9 @@
  * @autor: Jose Eric Castro Cuadrado
  * @fecha: 2017-07-28
  * @objetivo: Crear usuario y contraseña una vez confirmado pago
+ * @Modifica:	Orlando Puentes
+ * @Objetivo:	
+ * @fecha:		agosto 09 de 2017
  */
 
 date_default_timezone_set('America/Bogota');
@@ -14,7 +17,7 @@ if ($conn == null) {
     echo -1;
     exit(0);
 }
-
+include_once ("../rsc/constantes.php");
 // Consulta si hay empresas que hayan confirmado pago pero no se les haya enviado la solicitud
 
 $columnase  = "*";
@@ -26,83 +29,125 @@ $rs_consultar = $conn->consultarCondicion($columnase, $tablae, $condicione, $val
 
 //Si las hay, entonces graba en gen_personas y usuarios
 if ($rs_consultar) {
-
+	$conn->begin();
     foreach ($rs_consultar as $num) {
 
         $n1 = $num['nom_repre1'];
         $n2 = $num['nom_repre2'];
         $a1 = $num['ape_repre1'];
         $a2 = $num['ape_repre2'];
-
-        $tablap      = "gen_personas";
-        $columnasp   = "primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, estado_persona";
-        $camposp     = ":v1, :v2, :v3, :v4, :v5, :v6";
-        $valoresp    = array(":v1" => $n1, ":v2" => $n2, ":v3" => $a1, ":v4" => $a2, ":v5" => $num['email'], ":v6" => '1');
-        $rs_agregarp = $conn->agregar($tablap, $columnasp, $camposp, $valoresp);
-
-        if ($rs_agregarp) {
-
-            $columnasp1  = "id_persona";
-            $tablap1     = "gen_personas";
-            $condicionp1 = "email = :v1 AND estado_persona = :v2";
-            $valoresp1   = array(":v1" => $num['email'], ":v2" => '1');
-
-            $rs_consultarp1 = $conn->consultarCondicion($columnasp1, $tablap1, $condicionp1, $valoresp1);
-
-            $usuario = generarUsuario(eliminarTildes($n1), $num['numero_documento']);
-            // $usuario    = $num['email'];
-            $contrasena = generarContrasena();
+		$tdoc = $num['id_tipo_documento'];
+		$numero = $num['numero_documento'];
+		$idempresa = $num['id_empresa'];
+		
+		//buscar persona
+		$columnas = "id_persona";
+		$tabla = "gen_personas";
+		$condicion = "id_tipo_documento = :v1 AND numero_documento = :v2";
+		$valores = array(":v1" => $tdoc, ":v2" => $numero);
+		$rs_idpersona = $conn->consultarCondicion($columnas,$tabla,$condicion,$valores);
+		$e = $conn->error;
+		if(is_array($e)){
+			echo json_encode($e[2]);
+			$conn->rollback();
+			exit();
+		}
+		if($rs_idpersona){
+			$idpersona = $rs_idpersona[0]['id_persona'];
+			//actulizar persona
+			
+			
+			$e = $conn->error;
+			if(is_array($e)){
+				echo json_encode($e[2]);
+				$conn->rollback();
+				exit();
+			}
+		}else{
+			//insert persona
+			$tablap      = "gen_personas";
+	        $columnasp   = "primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, estado_persona";
+	        $camposp     = ":v1, :v2, :v3, :v4, :v5, :v6";
+	        $valoresp    = array(":v1" => $n1, ":v2" => $n2, ":v3" => $a1, ":v4" => $a2, ":v5" => $num['email'], ":v6" => '1');
+	        $idpersona = $conn->agregar($tablap, $columnasp, $camposp, $valoresp);
+			$e = $conn->error;
+			if(is_array($e)){
+				echo json_encode($e[2]);
+				$conn->rollback();
+				exit();
+			} 
+		}
+		//buscar usuario
+		$columnas = "id_usuario";
+		$tabla = "seg_usuarios";
+        $condicion = "id_persona :=v1 AND id_empresa :=v2";
+        $valores = array(":v1" => $idpersona, ":v2" => $idempresa);
+        $rs_idusuario = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
+        $e = $conn->error;
+		if(is_array($e)){
+				echo json_encode($e[2]);
+				$conn->rollback();
+				exit();
+		} 
+		if($rs_idusuario){
+			//actulizar usuario
+			
+			$e = $conn->error;
+			if(is_array($e)){
+				echo json_encode($e[2]);
+				$conn->rollback();
+				exit();
+			}
+		}else{
+			//usuario nuevo
+			$contrasena = generarContrasena();
+			$usuario = generarUsuario(eliminarTildes($n1), $num['numero_documento']);
             $fecha_fin  = generaFechaFin(date('Y-m-d'));
-
-            //echo $usuario;
-
-            // echo $rs_consultarp1[0]['id_persona'];
-            // echo $rs_consultar[0]['id_empresa'];
-            // echo $usuario;
-            // echo sha1($contrasena);
-            // echo date('Y-m-d');
-            // echo $fecha_fin;
-
             $tablau      = "seg_usuarios";
             $columnasu   = "id_persona, id_rol, id_empresa, usuario, contrasena, cambio_contrasena, fecha_inicio, fecha_fin, estado";
             $camposu     = ":v1, :v2, :v3, :v4, :v5, :v6, :v7, :v8, :v9";
-            $valoresu    = array(":v1" => $rs_consultarp1[0]['id_persona'], ":v2" => '1', ":v3" => $num['id_empresa'], ":v4" => $usuario, ":v5" => sha1($contrasena), ":v6" => '0', ":v7" => date('Y-m-d'), ":v8" => $fecha_fin, ":v9" => '1');
+            $valoresu    = array(":v1" => $idpersona, ":v2" => '1', ":v3" => $idempresa, ":v4" => $usuario, ":v5" => sha1($contrasena), ":v6" => '0', ":v7" => date('Y-m-d'), ":v8" => $fecha_fin, ":v9" => '1');
             $rs_agregaru = $conn->agregar($tablau, $columnasu, $camposu, $valoresu);
-
-            //echo print_r($valoresu);
-
-            if ($rs_agregaru > 0) {
-                if (enviarCorreo($num['email'], mb_strtoupper($num['nom_represente']), $usuario, $contrasena, $num['razon_social'])) {
-
-                    $columnasae      = "cred_enviada=:v2";
-                    $tablaae         = "gen_empresas";
-                    $condicionae     = "id_empresa=:v1";
-                    $valoresae       = array(':v1' => $num['id_empresa'], ':v2' => 1);
-                    $rs_act_empresas = $conn->actualizar($tablaae, $columnasae, $valoresae, $condicionae);
-                    //echo print_r($rs_act_empresas);
-
-                    //inserta el id de la empresa en gen_control_pro_inicio
-                    $tablacp      = "gen_control_pro_inicio";
-                    $columnascp   = "id_empresa";
-                    $camposcp     = ":v1";
-                    $valorescp    = array(":v1" => $num['id_empresa']);
-                    $rs_agregarcp = $conn->agregar($tablacp, $columnascp, $camposcp, $valorescp);
-
-                    crearCarpeta($num['numero_documento']);
-
-                } else {
-                    echo "error actualizar empresa a 1 el estado de Credencial Enviada";
-                }
-
-            } else {
-                echo "error agregar usuario";
-            }
-
+			$e = $conn->error;
+			if(is_array($e)){
+				echo json_encode($e[2]);
+				$conn->rollback();
+				exit();
+			} 
+            
+		}
+        if (!enviarCorreo($num['email'], mb_strtoupper($num['nom_represente']), $usuario, $contrasena, $num['razon_social'])) {
+        	echo "No se pudo enviar el Email, error: _____";
+        	$conn->rollback();
+			exit();
         }
-    }
+		//marcar empresa procesada	
+        	
+        $columnasae      = "cred_enviada=:v2";
+        $tablaae         = "gen_empresas";
+        $condicionae     = "id_empresa=:v1";
+        $valoresae       = array(':v1' => $num['id_empresa'], ':v2' => 1);
+        $rs_act_empresas = $conn->actualizar($tablaae, $columnasae, $valoresae, $condicionae);
+        $tablacp      = "gen_control_pro_inicio";
+        $columnascp   = "id_empresa";
+        $camposcp     = ":v1";
+        $valorescp    = array(":v1" => $num['id_empresa']);
+        $rs_agregarcp = $conn->agregar($tablacp, $columnascp, $camposcp, $valorescp);
+		$e = $conn->error;
+		if(is_array($e)){
+			echo json_encode($e[2]);
+			$conn->rollback();
+			exit();
+		} 
+		if(crearCarpeta($num['numero_documento'])){
+			$conn->commit();
+			echo "proceso realizado satisfacoriamente";
+        } else {
+        	$conn->rollback();
+        	echo "error creando directorio de la empresa";
+        }
 
-} else {
-    echo 'No hay empresas con pagos pendientes';
+    }
 }
 
 function generarUsuario($string_name, $numdocx)
@@ -110,40 +155,29 @@ function generarUsuario($string_name, $numdocx)
     $nomUsuario = substr($string_name, 0, 2);
     $usuario    = $nomUsuario . $numdocx;
     return $usuario;
-//     $username_parts = array_filter(explode(" ", strtolower($string_name))); //pasa a minúscula y convierte a array
-    //     $username_parts = array_slice($username_parts, 0, 2); //devuelve las dos primeras partes del array
-
-//     $part1 = (!empty($username_parts[0])) ? substr($username_parts[0], 0, 8) : ""; //corta el primer nombre a 8 letras
-    //     $part2 = (!empty($username_parts[1])) ? substr($username_parts[1], 0, 5) : ""; //corta el segundo nombre a 5 letras
-    //     $part3 = ($rand_no) ? rand(0, $rand_no) : "";
-
-//     $username = $part1 . str_shuffle($part2) . $part3; //str_shuffle ordena las letras aleatoriamente
-    //     return $username;
 }
 
 function crearCarpeta($numDoc)
 {
     $rutainicial = $_SERVER['DOCUMENT_ROOT'] . '/Empresas/' . $numDoc . '';
-    $array       = array('imagenes', 'evidencias', 'firmas', 'login');
+    $array       = array('imagenes', 'evidencias', 'firmas', 'logo','hojas_vida');
 
-    if (file_exists($rutainicial)) {
-
+    if (file_exists($rutainicial)) { 
+		//borrar todo el arbol si existe
         foreach ($array as $carpetas) {
             mkdir($rutainicial . '/' . $carpetas . '', 0777, true);
         }
 
-        echo 'La carpeta ' . $numDoc . ' ya existe';
-
     } else {
         if (!mkdir($rutainicial, 0777, true)) {
-            die('Fallo al crear las carpetas...');
+            return false;
         } else {
 
             foreach ($array as $carpetas) {
                 mkdir($rutainicial . '/' . $carpetas . '', 0777, true);
             }
 
-            echo "éxito al crear carpetas...";
+            return true;
         }
     }
 
@@ -268,13 +302,12 @@ function enviarCorreo($destinatario, $nombre, $usuario, $contrasena, $empresa)
     //$mail->SMTPDebug = 4;                             // Habilitar el debug
 
     $mail->isSMTP(); // Usar SMTP
-    $mail->Host       = 'softwarenuevastic.com'; // Especificar el servidor SMTP
+    $mail->Host       = HOST; // Especificar el servidor SMTP
+    $mail->Username   = USEREMAIL; // Nombre de usuario SMTP donde debe ir la cuenta de correo a utilizar para el envio
+    $mail->Password   = PASSEMAIL; // Clave SMTP donde debe ir la clave de la cuenta de correo a utilizar para el envio
     $mail->SMTPAuth   = true; // Habilitar autenticacion SMTP
-    $mail->Username   = 'software'; // Nombre de usuario SMTP donde debe ir la cuenta de correo a utilizar para el envio
-    $mail->Password   = 'S0wftW@re20i5'; // Clave SMTP donde debe ir la clave de la cuenta de correo a utilizar para el envio
     $mail->SMTPSecure = 'tls'; // Habilitar encriptacion
     $mail->Port       = 587; // Puerto SMTP
-
     $mail->setFrom('gerencia@nuevastic.com', 'Servicio al Cliente SSTPlus'); //Direccion de correo remitente
     $mail->addAddress($destinatario, $nombre); // Agregar el destinatario
     $mail->isHTML(true); // Habilitar contenido HTML
@@ -283,24 +316,11 @@ function enviarCorreo($destinatario, $nombre, $usuario, $contrasena, $empresa)
     $mail->Body    = "<b>$mensaje</b>";
 
     if (!$mail->send()) {
-        // echo '<div class="alert alert-danger alert-dismissable fade in" id="error">
-        //         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        //         <span aria-hidden="true">&times;</span>
-        //         </button>
-        //         <strong>Error!</strong> El mensaje no pudo ser enviado, por favor intente nuevamente.
-        //         </div>';
+    	echo $mail->ErrorInfo;
         return 0;
         // enviar tabla log_email de los correos no enviados
 
     } else {
-        // echo '<div class="alert alert-success alert-dismissable fade in" id="success">
-        //         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        //         <span aria-hidden="true">&times;</span>
-        //         </button>
-        //         <strong>Exito!</strong> El mensaje ha sido enviado al correo electrónico ' . $destinatario . '. Revise en la bandeja de entrada o en la carpeta Spam.
-        //         <p>En 24 horas nos pondremos en contacto con usted.</p>
-        //         <p>Gracias por utilizar nuestros servicios.</p>
-        //         </div>';
         return 1;
     }
 }

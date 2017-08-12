@@ -259,10 +259,10 @@ function enviarCorreoUsuario($email, $nombre, $mensaje, $asunto)
     //$mail->SMTPDebug = 4;                             // Habilitar el debug
 
     $mail->isSMTP(); // Usar SMTP
-    $mail->Host       = 'softwarenuevastic.com'; // Especificar el servidor SMTP
+    $mail->Host       = HOST; // Especificar el servidor SMTP
     $mail->SMTPAuth   = true; // Habilitar autenticacion SMTP
-    $mail->Username   = 'software'; // Nombre de usuario SMTP donde debe ir la cuenta de correo a utilizar para el envio
-    $mail->Password   = 'S0wftW@re20i5'; // Clave SMTP donde debe ir la clave de la cuenta de correo a utilizar para el envio
+    $mail->Username   = USEREMAIL; // Nombre de usuario SMTP donde debe ir la cuenta de correo a utilizar para el envio
+    $mail->Password   = PASSEMAIL; // Clave SMTP donde debe ir la clave de la cuenta de correo a utilizar para el envio
     $mail->SMTPSecure = 'tls'; // Habilitar encriptacion
     $mail->Port       = 587; // Puerto SMTP
 

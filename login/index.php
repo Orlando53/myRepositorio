@@ -10,9 +10,7 @@
 date_default_timezone_set('America/Bogota');
 ini_set("display_errors", '1');
 require_once '../rsc/session.php';
-if (session::existsAttribute("LOGEADO") == true) {
-    header("location:../index.php");
-}
+
 ?>
 
 
@@ -40,6 +38,7 @@ if (session::existsAttribute("LOGEADO") == true) {
                     </link>
                 </link>
             </link>
+             <link href="../css/validationEngine.jquery.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/alertify.core.css">
         <link rel="stylesheet" type="text/css" href="../css/alertify.default.css">
         </meta>
@@ -127,6 +126,8 @@ if (session::existsAttribute("LOGEADO") == true) {
         <script src="../js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../js/jquery.blockUI.js" type="text/javascript"></script>
         <!--<script type = "text/javascript" src= "../js/nvt.js"></script>-->
+        <script src="../js/jquery.validationEngine.js"></script>
+        <script src="../js/languages/jquery.validationEngine-es.js"></script>
         <script src = "../js/alertify.js"></script>
         <script src="../js/jquery.funciones.js" type="text/javascript"></script>
         <script src="js/restaurarContrasena.js" type="text/javascript"></script>
