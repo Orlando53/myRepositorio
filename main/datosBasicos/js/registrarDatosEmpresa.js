@@ -83,12 +83,11 @@ $(document).ready(function() {
             cache: false,
             success: function(datos) {
                 if (datos == 1) {
-                    alertify.alert("Bien! Datos guardados correctamente", function() {
-                        window.location = "../../main/index.php";
+                    alertify.alert("Datos guardados correctamente", function() {
+                    window.location = "../../main/index.php";
                     });
-                    return false;
                 } else {
-                    alertify.alert("Error! No se guaradron los datos");
+                    alertify.alert(datos);
                 }
             },
             timeout: 3000,
@@ -143,7 +142,6 @@ function Listar() {
                 selected_value: datos.cod_dpto
             });
             $("#nombre").val(datos.razon_social);
-            $("#logoImg").attr('src', datos.url_logo);
             $("#numeroIdentificacion").val(datos.numero_documento);
             $("#txtDigito").val(datos.digito);
             $("#txtRepresentante").val(datos.nom_represente);
@@ -156,6 +154,9 @@ function Listar() {
                 parent: "#dpto",
                 selected_value: datos.co_municipio
             });
+            var ruta = urlLogo(datos.numero_documento) + datos.url_logo;
+            //var ruta = "http://localhost/Empresas/" + datos.numero_documento + "/logo/" + datos.url_logo;
+            $("#logoImg").attr('src', ruta);
         },
         timeout: 3000,
         type: "GET"

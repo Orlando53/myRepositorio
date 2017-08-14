@@ -27,3 +27,13 @@ function dialogLoading(display) {
         });
     }
 }
+
+function urlLogo(num){
+	var url2 = window.location.protocol + "//" + location.hostname  + "/Empresas/" + num + "/logo/";
+    return url2;
+}
+
+function urlfirmas(num){
+	var url2 = window.location.protocol + "//" + location.hostname  + "/Empresas/" + num + "/firmas/";
+    return url2;
+}

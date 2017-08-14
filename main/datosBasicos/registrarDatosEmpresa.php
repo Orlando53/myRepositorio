@@ -52,7 +52,7 @@ if (!session::existsAttribute("LOGEADO")) {
                     <div class="nvt-input-group half" style="text-align: center;">
                         <h5>Logo</h5>
                         <div class="file-input">
-                            <img  id="logoImg">
+                            <img  id="logoImg" >
                             <label for="logo">cambiar</label>
                             <input type="file" name="" class="imgFile" id="logo" accept="image/jpg,image/png">
                         </div>
@@ -149,10 +149,9 @@ if (!session::existsAttribute("LOGEADO")) {
         <script src="../../js/bootstrap-select.js"></script>
         <script src="../../js/jquery.funciones.js"></script>
         <script src = "../../js/jquery.jCombo.js"></script>
-        <script src = "../../js/nvt.js"></script>
         <script src = "../../js/alertify.js"></script>
-        <script src="js/registrarDatosEmpresa.js"></script>
         <script src="../../js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
         <script src="../../js/jquery.validationEngine.js" type="text/javascript"></script>
+        <script src="js/registrarDatosEmpresa.js"></script>
     </body>
 </html>

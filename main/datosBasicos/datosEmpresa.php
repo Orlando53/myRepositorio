@@ -10,6 +10,7 @@ date_default_timezone_set('America/Bogota');
 ini_set("display_errors", '1');
 include_once '../../rsc/DBManejador.php';
 include_once '../../rsc/session.php';
+require_once '../../util/class.upload.php';
 
 $conn = new DBManejador();
 if ($conn == null) {
@@ -25,20 +26,10 @@ if (!isset($_REQUEST['accion'])) {
 }
 $accion = $_REQUEST['accion'];
 switch ($accion) {
-    case 'listar':
-        Listar($conn);
-        break;
-
-    case 'guardar':
-        Guardar($conn);
-        break;
-    case 'actualizar':
-        Actualizar($conn);
-        break;
-
-    default:
-        # code...
-        break;
+    case 'listar': Listar($conn); break;
+	case 'guardar': Guardar($conn); break;
+    case 'actualizar': Actualizar($conn); break;
+    
 }
 
 function Listar($conn)
@@ -60,7 +51,7 @@ function Actualizar($conn)
     $v3         = $_REQUEST['numIdent'];
     $v4         = mb_strtoupper($_REQUEST['nombre']);
     $v5         = $_REQUEST['actividadEconomica'];
-    $v6         = $_REQUEST['url_logo'];
+    $v6         = "";
     $v7         = $_REQUEST['telefono'];
     $v8         = strtolower($_REQUEST['email']);
     $v9         = $_REQUEST['direccion'];
@@ -71,12 +62,20 @@ function Actualizar($conn)
     $v14        = strtoupper($_REQUEST['repre']);
 
     if (isset($_FILES['logo'])) {
-        $ruta = $_SERVER['DOCUMENT_ROOT'] . '/sstplus/Temporal/' . $v3 . basename($_FILES['logo']['name']);
-        if (move_uploaded_file($_FILES['logo']['tmp_name'], $ruta)) {
-            $v6 = '../../Temporal/' . $v3 . basename($_FILES['logo']['name']);
-        }
+        $a		= $_FILES['logo']['name'];
+		$d		= $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR."Empresas".DIRECTORY_SEPARATOR.$v3.DIRECTORY_SEPARATOR."logo".DIRECTORY_SEPARATOR;	
+		$e		= array("gif","jpg","png");
+		$t		= $_FILES['logo']['size'];
+		$tmp	= $_FILES['logo']['tmp_name'];
+		$Archivo = new Upload($a,$d,$e,$t,$tmp);	
+		if( $Archivo->upLoadFile() ){
+			$v6 = $a;
+			//chmod($d.$a, 0755);
+		}else{
+			//mensaje
+		}
     }
-
+	$conn->begin();
     $tabla  = "gen_empresas";
     $campos = "id_tipo_documento=:v2, numero_documento=:v3, razon_social=:v4, id_actividad_economica=:v5, url_logo=:v6, telefono=:v7, "
         . "email=:v8, direccion=:v9, cod_dpto=:v10, co_municipio=:v11, numero_sucursales=:v12, digito=:v13, nom_represente=:v14";
@@ -86,15 +85,20 @@ function Actualizar($conn)
         ":v9" => $v9, ":v10"        => $v10, ":v11" => $v11, ":v12" => $v12, ":v13" => $v13, ":v14" => $v14,
     );
     $rs = $conn->actualizar($tabla, $campos, $valores, $condicion);
-    if ($rs > 0) {
-        echo 1; // 1. registro insertado satisfactoriamente
-
+    if ($rs) {
         $columnas  = "paso1=:v2, paso2=:v3";
         $tabla     = "gen_control_pro_inicio";
         $condicion = "id_empresa=:v1";
         $valores   = array(':v1' => $id_empresa, ":v2" => 1, ":v3" => 0);
         $rs        = $conn->actualizar($tabla, $columnas, $valores, $condicion);
-    } else {
-        echo 0;
-    }
+    } 
+    $e = $conn->error;
+	if(is_array($e)){
+		echo json_encode($e[2]);
+		$conn->rollback();
+		exit();
+	} 
+	$conn->commit();
+	echo 1;
+    
 }

@@ -253,7 +253,7 @@ function guardarUsuario()
 function enviarCorreoUsuario($email, $nombre, $mensaje, $asunto)
 {
     require '../../util/email/PHPMailerAutoload.php';
-
+    require_once '../../rsc/constantes.php';
     $mail = new PHPMailer;
 
     //$mail->SMTPDebug = 4;                             // Habilitar el debug
@@ -293,7 +293,6 @@ function reenviarCorreo()
 
     if (empty($rs)) {
         echo -5;
-        exit();
     }
 
     // Se envia el correo electronico con el usuario y password

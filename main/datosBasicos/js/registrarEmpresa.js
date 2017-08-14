@@ -34,28 +34,43 @@ $(document).ready(function() {
         } 
     });
     $("#tipoIdentificacion").jCombo("../../util/definiciones.php?id=1");
-
- function guardar() {
-	 $.ajax({
-            type: "POST",
-            async: false,
-            url: "datosInicialesEmpresa.php",
-            data: $("#datosEmpresa").serialize(),
-            beforeSend: function() {
-                dialogLoading('show');
-            },
-            complete: function() {
-                dialogLoading('close');
-            },
-            success: function(data) {
-               if (data == 1) {
-                    alerta("Se enviÃ³ un mensaje al correo ingresado");
-                    var url = "http://localhost/portalweb/index.php";
-                    window.open(url,"_self");
-                }else{
-                	alerta(data);
-                }
-            }
-        });
-    }
 });
+
+function guardar() {
+	$.ajax({
+		url: "datosInicialesEmpresa.php",
+        async:false,
+        data: $("#datosEmpresa").serialize(),
+        beforeSend: function(objeto){
+        	dialogLoading('show');
+        },
+        complete: function(objeto, exito){
+        	dialogLoading('close');
+            if(exito == "success"){
+            	$( "#tabs" ).tabs( "option", "active", 2 );
+            }
+        },
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        error: function(objeto, quepaso, otroobj){
+            alert("En Registar Empresa, pasó lo siguiente: "+otroobj);
+        },
+        global: true,
+        ifModified: false,
+        processData:true,
+        success: function(data) {
+            if (data == 1) {
+                 alerta("Se envio un correo a su email");
+                 var url = "http://localhost/portalweb/index.php";
+                 window.open(url,"_self");
+             }else{
+             	alert(data);
+             }
+         },
+        timeout: 3000,
+        type: "GET"
+	})
+	
+}
+	
+	

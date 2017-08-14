@@ -257,7 +257,7 @@ function enviarCorreo($destinatario, $nombre, $usuario, $contrasena, $empresa)
 {
     $enlace = $_SERVER["SERVER_NAME"] . '/sstplus/login';
 
-    require '../util/email/PHPMailerAutoload.php';
+    require_once '../util/email/PHPMailerAutoload.php';
 
     $mensaje = '<!DOCTYPE html>
     <html>

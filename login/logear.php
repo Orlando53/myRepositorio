@@ -37,10 +37,7 @@ if ($rs[0]["estado"] == 0) {
 
 switch ($rs[0]["id_rol"]) {
     //propietario
-    case 1:
-        echo 4;
-        exit();
-        break;
+    case 1: echo 4; break;
     // gerente
     case 2:
         $tabla     = "gen_control_pro_inicio";
@@ -74,7 +71,7 @@ switch ($rs[0]["id_rol"]) {
         break;
 
     default:
-        # code...
+        //
         break;
 }
 
