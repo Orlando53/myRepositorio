@@ -1,0 +1,118 @@
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap-select.css" type="text/css"/>	
+	<!--<<link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.css">-->
+    <link rel="stylesheet" type="text/css" href="../../css/alertify.core.css">
+    <link rel="stylesheet" type="text/css" href="../../css/alertify.default.css">	
+	<link rel="stylesheet" href="../../css/nvst.css">	
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../images/favicon-32x32.png">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+		<div class="row">
+			<div class="col-md-1 goback"><a href="../index.html"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
+			<div class="col-md-10 floater">
+				<h2>Realizar Diagnostico</h2>
+					<div class="nvt-input-group third">						
+						<b>Descripción: </b>Evaluación Realizada en el Periodo xyz<br>
+						<b>Fecha: </b>09-08-2017<br>
+						<b>Puntaje Parcial: </b>25%
+					</div>
+					<br>
+					<div class="nvt-button-group half">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Planear">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Hacer">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Verificar">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Actuar">
+					</div>
+					<div class="nvt-button-group half right-align">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Tabla de Valoraciones" data-toggle="modal" data-target="#tablaValoracionesModal">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Columnas a Mostrar" data-toggle="modal" data-target="#columnasModal">
+					</div>
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered" id="tabla-diagnostico">
+							<tr><td rowspan="2">Ciclo</td><td rowspan="2">Estandar</td><td rowspan="2">Aspecto</td><td rowspan="2">Item del Estandar</td><td rowspan="2">Que Cumplir</td><td rowspan="2">Como se Verifica</td><td rowspan="2">Marco Legal</td><td rowspan="2">Valor del Item</td><td rowspan="2">Cumple</td><td rowspan="2">No Cumple</td><td colspan="2" align="center">No Aplica</td><td rowspan="2">Comentarios</td></tr>
+							<tr><td>Justifica</td><td>No Justifica</td></tr>
+							<tr></tr>
+							<tr>
+								<td>Planear</td><td>Recursos(10%)</td><td>Recursos Financieros(2%)</td><td>Responsable del SG-SST</td><td>Para empresas de 10 o menos trabajadores</td><td>Solicitar el documento</td><td><a href="#Decreto">Decreto 1072</a></td><td>0.5</td><td><input type="radio" name="cumple"></td><td><input type="radio" name="cumple"></td><td><input type="radio" name="justifica"></td><td><input type="radio" name="justifica"></td><td></td></tr>
+							</tr>
+						</table>
+					</div>
+			</div>
+			<div class="col-md-1"><a href="#ayuda" data-toggle="modal" data-target="#ayudaModal"><img src="../../media/icon/help.png"  data-toggle="tooltip" data-placement="bottom" title="Ayuda"></a></div>
+		</div>
+
+		<!-- Modal Nuevo -->
+		<div class="modal fade" id="tablaValoracionesModal" tabindex="-1" role="dialog" aria-labelledby="tablaValoracionesModalLabel">
+		  <div class="modal-dialog" role="document" style="width:50%;">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Tabla de Valoraciones</h4>
+		      </div>
+		      <div class="modal-body">
+			   	<table class="table nvt-table table-bordered">
+			   		<tr><td>Criterio</td><td>Valoración</td><td>Acción</td></tr>
+			   		<tr><td></td><td></td><td></td></tr>
+			   		<tr><td></td><td></td><td></td></tr>
+			   		<tr><td></td><td></td><td></td></tr>
+			   	</table>
+			      <div class="modal-footer">
+			        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Cerar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+
+		<!-- Modal Nuevo -->
+		<div class="modal fade" id="columnasModal" tabindex="-1" role="dialog" aria-labelledby="columnasModalLabel">
+		  <div class="modal-dialog" role="document" style="width:40%;">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Columnas a Motrar</h4>
+		      </div>
+		      <div class="modal-body">
+			   	<div class="checkbox-input"><label for="checkbox1"><input type="checkbox" name="checkbox" id="checkbox1">Aspecto</label></div>
+			   	<div class="checkbox-input"><label for="checkbox2"><input type="checkbox" name="checkbox" id="checkbox2">Que Cumplir</label></div>
+			   	<div class="checkbox-input"><label for="checkbox3"><input type="checkbox" name="checkbox" id="checkbox3">Como se Verifica</label></div>
+			   	<div class="checkbox-input"><label for="checkbox4"><input type="checkbox" name="checkbox" id="checkbox4">Marco Legal</label></div>
+			      <div class="modal-footer">
+			        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="nvt-btn nvt-btn-primary" data-dismiss="modal">Guardar Datos</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<!-- Modal Ayuda -->
+		<div class="modal fade" id="ayudaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Ayuda</h4>
+		      </div>
+		      <div class="modal-body">
+		      <!--Modal Body-->
+		        Información de Ayuda Referente a Esta Vista.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>		
+		
+  <script src="../../js/jquery-3.2.1.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
+  <script src="../../js/bootstrap-select.js"></script>
+  <script src="../../js/nvt.js"></script>
+  <script src="../../js/jquery.dataTables.js"></script>
+  <script src="../../js/tables.js"></script>
+  <script type="text/javascript" src="../../js/jquery.jCombo.js"></script>
+  <script type="text/javascript" src="../../js/jquery.funciones.js"></script>
+  

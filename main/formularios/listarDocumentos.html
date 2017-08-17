@@ -1,0 +1,219 @@
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap-select.css" type="text/css"/>	
+	<link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="../../css/alertify.core.css">
+    <link rel="stylesheet" type="text/css" href="../../css/alertify.default.css">	
+	<link rel="stylesheet" href="../../css/nvst.css">	
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../images/favicon-32x32.png">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+		<div class="row">
+			<div class="col-md-1 goback"><a href="../index.html"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
+			<div class="col-md-10 floater">
+				<h2>Lista Documentos</h2>
+					<div class="nvt-input-group third">						
+						<input type="search" name="Nombre" id="search">
+						<span class="bar"></span>
+						<label for="search">Buscar</label>
+					</div>
+					<div class="nvt-button-group two-third right-align">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Nuevo" data-toggle="modal" data-target="#nuevoModal">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Modificar">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Ver">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Eliminar">
+					</div>
+					<table class="table table-striped table-bordered">
+						<tr><td>id</td><td>Versión</td><td>Código</td><td>Nombre</td><td>Tipo</td><td>Proceso</td><td>Estado</td><td>Normas</td><td>Alcance</td><td>Confidencialidad</td></tr>
+						<tr><td>
+							<div class="checkbox-input"><label for="checkbox"><input type="checkbox" name="checkbox" id="checkbox">1</label></div>
+							</td>
+						<td>3</td><td>POI-NVST</td><td>Plan Operativo Inicial</td><td>Procedimiento</td><td>Talento Humano</td><td>Migración</td><td>1-Decreto</td><td>Al Proceso</td><td></td></tr>
+					</table>
+			</div>
+			<div class="col-md-1"><a href="#ayuda" data-toggle="modal" data-target="#ayudaModal"><img src="../../media/icon/help.png"  data-toggle="tooltip" data-placement="bottom" title="Ayuda"></a></div>
+		</div>
+
+		<!-- Modal Administrar -->
+		<div class="modal fade" id="nuevoModal" tabindex="-1" role="dialog" aria-labelledby="nuevoModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Datos Principales</h4>
+		      </div>
+		      <div class="modal-body">
+		      <!--Modal Body-->
+		        <form class="datosDocumento">
+					<div class="nvt-input-group half">						
+						<input type="text" name="Nombre" id="txtNombre">
+						<span class="bar"></span>
+						<label for="txtNombre">Nombre</label>
+					</div>
+					<div class="nvt-input-group half">						
+						<select id="selProceso" class="selectpicker" title="Seleccione">
+							<option>Proceso 1</option>
+							<option>Proceso 2</option>
+							<option>Proceso 3</option>
+						</select>
+						<label for="selProceso">Proceso</label>
+					</div>
+					<div class="nvt-input-group half">						
+						<select id="selSucursal" class="selectpicker" title="Seleccione" data-live-search="true">
+							<option>Sede 1</option>
+							<option>Sede 2</option>
+							<option>Sede 3</option>
+						</select>
+						<label for="selSucursal">Sucursal</label>
+					</div>	  					
+					<div class="nvt-input-group half">						
+						<select id="selAlcance" class="selectpicker" title="Seleccione">
+							<option>Alcance 1</option>
+							<option>Alcance 2</option>
+							<option>Alcance 3</option>
+						</select>
+						<label for="selAlcance">Alcance</label>
+					</div>	
+					<div class="nvt-input-group half">						
+						<select id="selTipo" class="selectpicker" title="Seleccione">
+							<option>Tipo 1</option>
+							<option>Tipo 2</option>
+							<option>Tipo 3</option>
+						</select>
+						<label for="selTipo">Tipo</label>
+					</div>
+					<div class="nvt-input-group fourth">						
+						<input type="number" name="revisar" id="numRevisar">
+						<span class="bar"></span>
+						<label for="numRevisar">Revisar En (Meses)</label>
+					</div>
+					<div class="nvt-input-group half">						
+						<select id="selGrado" class="selectpicker" title="Seleccione">
+							<option>Grado 1</option>
+							<option>Grado 2</option>
+							<option>Grado 3</option>
+						</select>
+						<label for="selGrado">Grado de Confidencialidad</label>
+					</div>
+					<div class="nvt-input-group half">						
+						<input type="text" name="ubicacion" id="txtUbicacion">
+						<span class="bar"></span>
+						<label for="txtUbicacion">Ubicación del Formato</label>
+					</div>	
+					<table class="table" id="tablaPermisos">
+						<tr><td></td><td>Por Usuarios</td><td>Por Cargos</td><td>Por Grupos</td></tr>
+						<tr><td>Responsable del Documento</td><td><input type="radio" name="responsable"></td><td><input type="radio" name="responsable"></td><td></td></tr>
+						<tr><td>Quien puede Visualizar</td><td><input type="radio" name="visualizar"></td><td><input type="radio" name="visualizar"></td><td><input type="radio" name="visualizar"></td></tr>
+						<tr><td>Quien puede Imprimir</td><td><input type="radio" name="imprimir"></td><td><input type="radio" name="imprimir"></td><td><input type="radio" name="imprimir"></td></tr>
+					</table>					
+									
+					<div class="modal-header">
+						<h4 class="modal-title">Datos Laborales</h4>
+		     		</div>
+		     		<div class="modal-body">
+			     		 <div class="nvt-input-group third">						
+							<select id="selNormas" class="selectpicker" title="Seleccione" Multiple data-live-search="true">
+									<option>Norma 1</option>
+									<option>Norma 2</option>
+									<option>Norma 3</option>
+							</select>
+							<label for="selNormas">Normas</label>
+						</div>
+						<div class="nvt-input-group third">						
+							<select id="selPuedenVer" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+								<option>Usuario 1</option>
+								<option>Usuario 2</option>
+								<option>Usuario 3</option>
+							</select>
+							<label for="selPuedenVer">Pueden Ver</label>
+						</div>
+						<div class="nvt-input-group third">						
+							<select id="selRedactar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+								<option>Usuario 1</option>
+								<option>Usuario 2</option>
+								<option>Usuario 3</option>
+							</select>
+							<label for="selRedactar">Encargados de Redactar</label>
+						</div>  
+						<div class="nvt-input-group third">						
+							<select id="selRevisar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+								<option>Usuario 1</option>
+								<option>Usuario 2</option>
+								<option>Usuario 3</option>
+							</select>
+							<label for="selRevisar">Encargados de Revisar</label>
+						</div>
+						<div class="nvt-input-group third">						
+							<select id="selImprimir" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+								<option>Usuario 1</option>
+								<option>Usuario 2</option>
+								<option>Usuario 3</option>
+							</select>
+							<label for="selImprimir">Encargados de Imprimir</label>
+						</div>
+						<div class="nvt-input-group third">						
+							<select id="selAprobar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+								<option>Usuario 1</option>
+								<option>Usuario 2</option>
+								<option>Usuario 3</option>
+							</select>
+							<label for="selAprobar">Encargados de Aprobar</label>
+						</div>																				 						
+					</div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="nvt-btn nvt-btn-primary" data-dismiss="modal">Guardar Datos</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Modal Ayuda -->
+		<div class="modal fade" id="ayudaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Ayuda</h4>
+		      </div>
+		      <div class="modal-body">
+		      <!--Modal Body-->
+		        Información de Ayuda Referente a Esta Vista.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Modal Dirección-->
+				<div class="modal fade" id="modalDireccion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				      </div>
+				      <div class="modal-body">
+				        Cargar Selector de Dirección
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="nvt-btn nvt-btn-primary" data-dismiss="modal">Guardar Cambios</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>	
+
+	
+  <script src="../../js/jquery-3.2.1.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
+  <script src="../../js/bootstrap-select.js"></script>
+  <script src="../../js/nvt.js"></script>
+  <script src="../../js/jquery.dataTables.js"></script>
+  <script src="../../js/tables.js"></script>
+  <script type="text/javascript" src="../../js/jquery.jCombo.js"></script>
+  <script type="text/javascript" src="../../js/jquery.funciones.js"></script>

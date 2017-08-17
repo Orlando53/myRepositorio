@@ -1,0 +1,280 @@
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../css/bootstrap-select.css" type="text/css"/>	
+	<link rel="stylesheet" type="text/css" href="../../css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="../../css/alertify.core.css">
+    <link rel="stylesheet" type="text/css" href="../../css/alertify.default.css">	
+	<link rel="stylesheet" href="../../css/nvst.css">	
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../images/favicon-32x32.png">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+		<div class="row">
+			<div class="col-md-1 goback"><a href="../index.html"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
+			<div class="col-md-10 floater">
+				<h2>Lista Empleados</h2>
+					<div class="nvt-input-group third">						
+						<input type="search" name="Nombre" id="search">
+						<span class="bar"></span>
+						<label for="search">Buscar</label>
+					</div>
+					<div class="nvt-button-group two-third right-align">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Administrar" data-toggle="modal" data-target="#administrarModal">
+					</div>
+					<table class="table table-striped table-bordered">
+						<tr><td>#</td><td>Nombres</td><td>Apellidos</td><td>Cargo</td><td>Hoja de Vida</td></tr>
+						<tr><td>
+							<div class="checkbox-input"><label for="checkbox"><input type="checkbox" name="checkbox" id="checkbox">1</label></div>
+							</td>
+						<td>Juan</td><td>Ninco Collazos</td><td>Programador</td>
+						<td style="text-align:center;">
+							<button class="nvt-btn nvt-btn-primary hv" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ver"><i class="fa fa-eye"></i></button>
+							<button class="nvt-btn nvt-btn-primary hv" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Descargar"><i class="fa fa-download"></i></button>
+							<button class="nvt-btn nvt-btn-primary hv" data-toggle="tooltip" data-placement="bottom" title="" data-original-title=""><i class="fa fa-bullseye"></i></button>
+						</td></tr>
+					</table>
+			</div>
+			<div class="col-md-1"><a href="#ayuda" data-toggle="modal" data-target="#ayudaModal"><img src="../../media/icon/help.png"  data-toggle="tooltip" data-placement="bottom" title="Ayuda"></a></div>
+		</div>
+
+		<!-- Modal Administrar -->
+		<div class="modal fade" id="administrarModal" tabindex="-1" role="dialog" aria-labelledby="administrarModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Datos Personales</h4>
+		      </div>
+		      <div class="modal-body">
+		      <!--Modal Body-->
+		        <form class="datosEmpresa">
+					<div class="nvt-input-group half">						
+						<input type="text" name="Nombres" id="txtNombres">
+						<span class="bar"></span>
+						<label for="txtNombres">Nombres</label>
+					</div>
+					<div class="nvt-input-group half">						
+						<input type="text" name="Apellidos" id="txtApellidos">
+						<span class="bar"></span>
+						<label for="txtApellidos">Apellidos</label>
+					</div>
+					<div class="nvt-input-group half">						
+						<select id="selTipoDoc" class="selectpicker" title="Seleccione">
+							<option>Cedula de Ciudadanía</option>
+							<option>Cedula de Extranjería</option>
+							<option>NIT</option>
+						</select>
+						<label for="selTipoDoc">Tipo de Documento</label>
+					</div>					
+					<div class="nvt-input-group half">						
+						<input type="number" name="numDoc" id="numDoc">
+						<span class="bar"></span>
+						<label for="numDoc">Número de Documento</label>
+					</div>
+					<div class="nvt-input-group half">						
+						<select id="selGenero" class="selectpicker" title="Seleccione">
+							<option>Masculino</option>
+							<option>Femenino</option>
+							<option>Otro</option>
+						</select>
+						<label for="selGenero">Género</label>
+					</div>
+					<div class="nvt-input-group half">						
+						<input type="text" name="direccion" id="direccion" readonly/>
+						<span class="bar"></span>
+						<label for="direccion">Dirección</label>
+					</div>
+					<div class="nvt-input-group fourth">						
+						<select id="selDPTO"  class="selectpicker"  title="Seleccione">
+							<option>Huila</option>
+						</select>
+						<label for="selDPTO">Departamento</label>
+					</div>
+					<div class="nvt-input-group fourth">						
+						<select id="selMPIO"  class="selectpicker"  title="Seleccione">
+							<option>Neiva</option>
+						</select>
+						<label for="selMPIO">Municipio</label>
+					</div>
+					<div class="nvt-input-group fourth">						
+						<input type="number" id="numTelefono">
+						<span class="bar"></span>
+						<label for="numTelefono">Telefono</label>
+					</div>	
+					<div class="nvt-input-group fourth">						
+						<input type="email" name="email" id="txtEmail">
+						<span class="bar"></span>
+						<label for="txtEmail">Correo Electrónico</label>
+					</div>					
+					
+					<div class="nvt-input-group third" style="text-align: center;">
+						<h5>Imagen</h5>						
+						<div class="file-input">
+							<img src="../../media/image/placeholderPhoto.png">			
+							<label for="fileImagen">Cambiar</label>
+							<input type="file" name="" class="imgFile" id="fileImagen">
+						</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
+					</div>
+					<div class="nvt-input-group third" style="text-align: center;">
+						<h5>Firma</h5>						
+						<div class="file-input">
+							<img src="../../media/image/placeholderPhoto.png">			
+							<label for="logo">Cambiar</label>
+							<input type="file" name="" class="imgFile" id="logo">
+						</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
+					</div>
+					<div class="nvt-input-group third" style="text-align: center;">
+						<h5>Hoja de Vida</h5>						
+						<div class="file-input">								
+							<label for="hv">Cambiar</label>
+							<input type="file" name="" class="imgFile" id="hv">
+						</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
+					</div>					
+					<div class="modal-header">
+						<h4 class="modal-title" style="margin-top:25px;">&nbsp</h4>
+						<h4 class="modal-title">Datos Laborales</h4>
+		     		</div>
+		     		<div class="modal-body">
+			     		 <div class="nvt-input-group half">						
+							<select id="selJefe" class="selectpicker" title="Seleccione" data-live-search="true">
+									<option>Jose</option>
+									<option>Luis</option>
+									<option>Camilo</option>
+								</select>
+								<label for="selJefe">Jefe Inmediato</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<select id="selCargo" class="selectpicker" title="Seleccione">
+								<option>Gerente</option>
+								<option>Programador</option>
+								<option>Diseñador</option>
+							</select>
+							<label for="selCargo">Cargo</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<select id="selArea"  class="selectpicker"  title="Seleccione">
+								<option>Gerencia</option>
+								<option>Desarrollo</option>
+								<option>Calidad</option>
+							</select>
+							<label for="selArea">Área</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<select id="selSucursal" class="selectpicker" title="Seleccione" data-live-search="true">
+								<option>Sede 1</option>
+								<option>Sede 2</option>
+								<option>Sede 3</option>
+							</select>
+							<label for="selSucursal">Sucursal</label>
+						</div>	     		 						
+						<div class="nvt-input-group half">						
+							<select id="selTipoVinculacion"  class="selectpicker"  title="Seleccione">
+								<option>De Planta</option>
+								<option>Prestación de Servicios</option>
+								<option>Práctica Universitaria</option>
+							</select>
+							<label for="selTipoVinculacion">Tipo de Vilculación</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<select id="selEPS"  class="selectpicker"  title="Seleccione" data-live-search="true">
+								<option>Cafesalud E.P.S.</option>
+								<option>Comfamiliar E.P.S</option>
+								<option>Sanitas E.P.S.</option>
+							</select>
+							<label for="selEPS">Entidad Prestadora de Salud</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<select id="selAFP"  class="selectpicker"  title="Seleccione" data-live-search="true">
+								<option>Porvenir</option>
+								<option>ColPensiones</option>
+							</select>
+							<label for="selAFP">Administradora de Fondos de Pensión</label>
+						</div>	
+						<div class="nvt-input-group half">						
+							<select id="selARL"  class="selectpicker"  title="Seleccione" data-live-search="true">
+								<option>Positiva</option>
+								<option>Sura</option>
+							</select>
+							<label for="selARL">Administradora de Riesgos Laborales</label>
+						</div>	
+						<div class="row">		
+							<div class="col-md-4">
+								<div class="checkbox-input"><label for="cbrAdministrador"><input type="checkbox" name="checkbox" id="cbrAdministrador">Es Administrador?</label></div>
+								<div class="checkbox-input"><label for="cbrEmpleado"><input type="checkbox" name="checkbox" id="cbrEmpleado">Es Empleado?</label></div>						
+							</div>
+							<div class="col-md-4">
+								<div class="checkbox-input"><label for="cbrJefe"><input type="checkbox" name="checkbox" id="cbrJefe">Es Jefe?</label></div>
+								<div class="checkbox-input"><label for="cbrAuditor"><input type="checkbox" name="checkbox" id="cbrAuditor">Es Auditor?</label></div>						
+							</div>
+							<div class="col-md-4">
+								<div class="checkbox-input"><label for="cbrActivo"><input type="checkbox" name="checkbox" id="cbrActivo">Activo/Inactivo</label></div>					
+							</div>
+						</div>
+						<br>
+						<div class="nvt-input-group half">						
+							<input type="date" name="datFechaIngreso" id="datFechaIngreso">
+							<span class="bar"></span>
+							<label for="datFechaIngreso">Fecha de Ingreso</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<input type="date" name="datFechaIngreso" id="datFechaSalida">
+							<span class="bar"></span>
+							<label for="datFechaSalida">Fecha de salida</label>
+						</div>
+					</div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="nvt-btn nvt-btn-primary" data-dismiss="modal">Guardar Datos</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Modal Ayuda -->
+		<div class="modal fade" id="ayudaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Ayuda</h4>
+		      </div>
+		      <div class="modal-body">
+		      <!--Modal Body-->
+		        Información de Ayuda Referente a Esta Vista.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Modal Dirección-->
+				<div class="modal fade" id="modalDireccion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				      </div>
+				      <div class="modal-body">
+				        Cargar Selector de Dirección
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="nvt-btn nvt-btn-primary" data-dismiss="modal">Guardar Cambios</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>	
+
+	
+  <script src="../../js/jquery-3.2.1.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
+  <script src="../../js/bootstrap-select.js"></script>
+  <script src="../../js/nvt.js"></script>
+  <script src="../../js/jquery.dataTables.js"></script>
+  <script src="../../js/tables.js"></script>
+  <script type="text/javascript" src="../../js/jquery.jCombo.js"></script>
+  <script type="text/javascript" src="../../js/jquery.funciones.js"></script>
