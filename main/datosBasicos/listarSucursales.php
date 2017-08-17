@@ -23,7 +23,7 @@ $respuesta  = new stdClass();
 
 $columnas  = "*";
 $tabla     = "gen_sucursales";
-$condicion = "id_empresa = :v1 AND estado = :v2";
+$condicion = "id_empresa = :v1 AND estado = :v2 ORDER BY razon_social ASC";
 $valores   = array(":v1" => $id_empresa, ":v2" => '1');
 
 $rs_consultar = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);

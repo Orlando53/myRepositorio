@@ -30,14 +30,15 @@ $(document).ready(function() {
             }
         },
         "paging": true,
-        "ordering": true,
+        "ordering": false,
         "info": true,
         "searching": true,
-        "order": [
-            // [0, 'desc'],
-            [1, 'asc']
-        ]
+        //"order": [
+        // [0, 'desc'],
+        //[1, 'asc']
+        //]
     });
+    //table.order([1, 'asc']).draw();
     $('#search').keyup(function() {
         table.search(this.value).draw();
     });

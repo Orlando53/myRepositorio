@@ -21,9 +21,9 @@ if (!session::existsAttribute("LOGEADO")) {
 
 $id_empresa = $_SESSION['IDEMPRESA'];
 
-$columnas = "p.*, e.*, a.*, c.*, p.fecha_sistema AS fecha_persona";
+$columnas = "emp.numero_documento AS doc_empresa, p.*, e.*, a.*, c.*, p.fecha_sistema AS fecha_persona";
 $tabla    = "gen_personas AS p INNER JOIN ges_empleados AS e ON e.id_persona=p.id_persona INNER JOIN gen_areas_trabajo AS a "
-    . "ON e.id_area_trabajo=a.id_area_trabajo INNER JOIN gen_cargos AS c ON e.id_cargo=c.id_cargo";
+    . "ON e.id_area_trabajo=a.id_area_trabajo INNER JOIN gen_cargos AS c ON e.id_cargo=c.id_cargo INNER JOIN gen_empresas AS emp ON emp.id_empresa=e.id_empresa";
 $condicion = "e.id_empresa = :v1 AND e.fecha_eliminado IS NULL ORDER BY p.primer_nombre";
 $valores   = array(":v1" => $id_empresa);
 
@@ -40,8 +40,16 @@ foreach ($rs_consultar as $row) {
 
 <tr>
     <td><div class="checkbox-input"><label for="checkbox"><label for="checkbox"><input type="checkbox" name="usuarios[]" id="<?php echo $row['id_persona'] ?>"><?php echo $contador ?></label></div></td>
-    <td><img style="height: 50px; width: 50px" src="<?php echo $row['url_foto'] ?>"></td>
-    <td><?php echo $row['numero_documento'] ?></td>
+    <td>
+    <?php if ($row['url_foto'] == "") {?>
+    <img style="height: 50px; width: 50px" src="../../media/image/interrogacion.png" id="<?php echo $row['id_persona'] ?>">
+
+    <?php } else {?>
+
+    <img style="height: 50px; width: 50px" src="<?php echo '../../../Empresas/' . $row['doc_empresa'] . '/imagenes/' . $row['url_foto'] ?>" id="<?php echo $row['id_persona'] ?>">
+    <?php }?>
+    </td>
+    <td><?php echo $row['doc_empresa'] ?></td>
     <td><?php echo $row['primer_nombre'] . ' ' . $row['segundo_nombre'] ?></td>
     <td><?php echo $row['primer_apellido'] . ' ' . $row['segundo_apellido'] ?></td>
     <td><?php echo $row['fecha_persona'] ?></td>
@@ -57,6 +65,5 @@ if ($row['estado_empleado'] == 1) {
     ?></td>
 
 </tr>
-
-
 <?php }?>
+

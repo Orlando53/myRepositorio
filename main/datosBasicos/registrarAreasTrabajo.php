@@ -30,12 +30,12 @@ if (!session::existsAttribute("LOGEADO")) {
 	<link rel="icon" type="image/png" sizes="32x32" href="../../../images/favicon-32x32.png">
     <link rel="stylesheet" type="text/css" href="../../css/alertify.core.css">
     <link rel="stylesheet" type="text/css" href="../../css/alertify.default.css">
-
+	<link rel="stylesheet" type="text/css" href="shadowbox.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
 </head>
-<body>  
+<body>
 		<div class="row">
 			<div class="col-md-1 col-md-offset-1 goback"><a href="../index.php"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
 			<form id="frmOperaciones" method="post">
@@ -47,10 +47,10 @@ if (!session::existsAttribute("LOGEADO")) {
 						<label for="search">Buscar</label>
 					</div>
 					<div class="nvt-button-group two-third right-align">
-						<input type="button" class="nvt-btn nvt-btn-primary" value="Insertar" data-toggle="modal" data-target="#insertarModal">
+						<input type="button" class="nvt-btn nvt-btn-primary" value="Nuevo" data-toggle="modal" data-target="#insertarModal">
 						<input type="button" class="nvt-btn nvt-btn-primary" value="Eliminar" onclick = "this.form.action = 'eliminarAreasTrabajo.php'" id="btnEliminar">
 						<input type="button" class="nvt-btn nvt-btn-primary" value="Modificar" id="btnModificar" onclick = "this.form.action = 'actualizarAreasTrabajo.php'">
-						<input type="button" class="nvt-btn nvt-btn-primary" value="Exportar" id="btnExportar">
+						<!-- <input type="button" class="nvt-btn nvt-btn-primary" value="Exportar" id="btnExportar"> -->
 						<a href="#"><img src="../../media/icon/check.png" class="form-check" id="imgCheck"></a>
 					</div>
 					<table id="tabla" class="table table-striped table-bordered">
@@ -69,7 +69,13 @@ if (!session::existsAttribute("LOGEADO")) {
 					</table>
 			</div>
 			</form>
-			<div class="col-md-1"><a href="#ayuda" data-toggle="modal" data-target="#ayudaModal"><img src="../../media/icon/help.png"  data-toggle="tooltip" data-placement="bottom" title="Ayuda"></a></div>
+			<div class="col-md-1">
+			<!--href="#ayuda" data-toggle="modal" data-target="#ayudaModal" -->
+				<a rel="shadowbox;width=405;height=340;" title="Shakira" href="http://www.youtube.com/v/h5jduAtpClk">
+					<img src="../../media/icon/help.png"  data-toggle="tooltip" data-placement="bottom" title="Ayuda">
+				</a>
+			</div>
+
 		</div>
 
 		<!-- Modal Insertar -->
@@ -98,7 +104,7 @@ if (!session::existsAttribute("LOGEADO")) {
 					  <div id="cargando" align="center"></div>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal" onclick="actualizar();">Close</button>
+			        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal" onclick="actualizar();">Cerrar</button>
 			        <button type="button" class="nvt-btn nvt-btn-primary" id="btn-guardarAreasTrabajo">Guardar Datos</button>
 			      </div>
 			    </div>
@@ -124,7 +130,7 @@ if (!session::existsAttribute("LOGEADO")) {
 
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal" onclick="actualizar();">Close</button>
+			        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal" onclick="actualizar();">Cerrar</button>
 			        <button type="button" class="nvt-btn nvt-btn-primary" id="btn-actualizarAreasTrabajo" onclick = "this.form.action = 'confirmarActualizacionAreas.php'">Actualizar</button>
 			      </div>
 			    </div>
@@ -142,22 +148,28 @@ if (!session::existsAttribute("LOGEADO")) {
 		        <h4 class="modal-title" id="myModalLabel">Ayuda</h4>
 		      </div>
 		      <div class="modal-body">
-		      <!--Modal Body-->
-		        Información de Ayuda Referente a Esta Vista.
+		      	<!-- <video autoplay controls>
+					<source src="../../gen/paso2.mp4" type="video/mp4"/>
+				</video> -->
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Cerrar</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 
+
+
 <script type = "text/javascript" src= "../../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="shadowbox.js"></script>
+<script type="text/javascript">
+Shadowbox.init();
+</script>
 <script type = "text/javascript" src= "../../js/jquery-ui.min.js"></script>
 <script type = "text/javascript" src= "../../js/bootstrap.min.js"></script>
 <script src = "../../js/alertify.js"></script>
 <script type = "text/javascript" src= "../../js/jquery.funciones.js"></script>
-<script src="../../js/nvt.js"></script>
 <script src="js/AreasTrabajo.js"></script>
 <script src="../../js/jquery.blockUI.js"></script>
 <script src="../../js/jquery.dataTables.js"></script>

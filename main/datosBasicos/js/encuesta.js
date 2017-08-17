@@ -104,11 +104,11 @@ $(document).ready(function() {
         url: "datosEncuesta.php",
         async: false,
         beforeSend: function(objeto) {
-            //                dialogLoading('show');
+            dialogLoading('show');
         },
         complete: function(objeto, exito) {
-            //                dialogLoading('close');
-            if (exito == "success") {}
+            // dialogLoading('close');
+            // if (exito == "success") {}
         },
         contentType: "application/json",
         dataType: "json",
@@ -167,8 +167,10 @@ $(document).ready(function() {
                 }
                 contador += 1;
             });
+            setTimeout(function() {
+                dialogLoading('close');
+            }, 6000);
         },
-        timeout: 3000,
         type: "GET"
     });
     $(".step-form").on('click', '.btn-enviar', function() {

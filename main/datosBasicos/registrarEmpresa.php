@@ -1,14 +1,22 @@
 <?php
+
 /*
  * @autor:         Jose Eric Castro Cuadrado
  * @fecha:         25-07-2017
  * @objetivo:      Registro datos básicos de empresa
  */
 
-@session_start();
-date_default_timezone_set('America/Bogota');
-ini_set("display_errors", '1');
+// @session_start();
+// date_default_timezone_set('America/Bogota');
+// ini_set("display_errors", '1');
+// require_once '../../rsc/session.php';
+// if (!session::existsAttribute("LOGEADO")) {
+//     header("location: ../../index.php");
+// }
 ?>
+
+
+
 
 <html>
     <head>
@@ -38,8 +46,9 @@ ini_set("display_errors", '1');
                     <h2>Datos de la Empresa</h2>
                     <div class="nvt-input-group two-third">
 
- <?php
-$id_plan = 1; //$_REQUEST['id'];
+                        <?php
+$id_plan = 1;
+/*$id_plan = $_GET['id'];*/
 echo '<input type="hidden" name="id_plan" id="id_plan" value="' . $id_plan . '">';
 ?>
                         <input type="text" name="nombre" id="nombre" class="validate[required]">
@@ -48,7 +57,7 @@ echo '<input type="hidden" name="id_plan" id="id_plan" value="' . $id_plan . '">
                     </div>
                     <br>
                     <div class="nvt-input-group half">
-                        <select name="tipoIdentificacion" id="tipoIdentificacion" class="selectpicker validate[required]" data-live-search="true">
+                        <select name="tipoIdentificacion" id="tipoIdentificacion" class="selectpicker validate[required]" data-live-search="true" >
                             <option >Selecciona Uno</option>
                             <option >Nit</option>
                         </select>
@@ -57,7 +66,7 @@ echo '<input type="hidden" name="id_plan" id="id_plan" value="' . $id_plan . '">
                     <div class="nvt-input-group half">
                         <input type="text" name="numeroIdentificacion" id="numeroIdentificacion" class="validate[required,custom[integer],min[1]]">
                         <span class="bar"></span>
-                        <label for="numeroIdentificacion">Número de Identificación</label>
+                        <label for="numeroIdentificacion">Numero de Identificación</label>
                     </div>
                     <div class="nvt-input-group half">
                         <input type="text" name="direccion" id="direccion" class="validate[required]" readonly>

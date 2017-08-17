@@ -48,7 +48,7 @@ require_once '../rsc/session.php';
             <!-- Inicio del Contenedor Principal-->
             <div class="well col-md-6 col-md-offset-3 login-form">
                 <img class="img-responsive center-block" src="../media/image/logo.png">
-                    <form method="get">
+                    <form method="get" id="login">
                         <div class="form-group">
                             <label for="user">
                                 Usuario
@@ -58,7 +58,7 @@ require_once '../rsc/session.php';
                                     <span class="glyphicon glyphicon-user">
                                     </span>
                                 </div>
-                                <input class="form-control" id="user" required="" type="text"/>
+                                <input class="form-control validate[required]" id="user"  type="text"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -70,7 +70,7 @@ require_once '../rsc/session.php';
                                     <span class="glyphicon glyphicon-asterisk">
                                     </span>
                                 </div>
-                                <input class="form-control" id="contrasena" pattern=".{6,}" required="" title="más de 6 caracteres" type="password"/>
+                                <input class="form-control validate[required]" id="contrasena" pattern=".{6,}"  title="más de 6 caracteres" type="password"/>
                             </div>
                         </div>
                         <input class="btn btn-default" id="btnRegistrar" type="button" value="Registrar">

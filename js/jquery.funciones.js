@@ -13,7 +13,7 @@ function URLactual() {
 function dialogLoading(display) {
     $("#dlgLoading").remove();
     if (display == "show") {
-        var dialog = "<div id='dlgLoading' style='text-align:center; z-index:100'><img style='width:100px;position:relative;' src='" + URL_ACTUAL + "media/image/ajaxload.gif' /></div>";
+        var dialog = "<div id='dlgLoading' style='text-align:center; z-index:3000'><img style='width:100px;position:relative;' src='" + URL_ACTUAL + "media/image/ajaxload.gif' /></div>";
         $(dialog).appendTo("body");
         $("#dlgLoading").dialog({
             modal: true,
@@ -28,12 +28,17 @@ function dialogLoading(display) {
     }
 }
 
-function urlLogo(num){
-	var url2 = window.location.protocol + "//" + location.hostname  + "/Empresas/" + num + "/logo/";
+function urlLogo(num) {
+    var url2 = window.location.protocol + "//" + location.hostname + "/Empresas/" + num + "/logo/";
     return url2;
 }
 
-function urlfirmas(num){
-	var url2 = window.location.protocol + "//" + location.hostname  + "/Empresas/" + num + "/firmas/";
+function urlFirma(num) {
+    var url2 = window.location.protocol + "//" + location.hostname + "/Empresas/" + num + "/firmas/";
+    return url2;
+}
+
+function urlImagen(num) {
+    var url2 = window.location.protocol + "//" + location.hostname + "/Empresas/" + num + "/imagenes/";
     return url2;
 }

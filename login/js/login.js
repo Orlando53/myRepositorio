@@ -9,18 +9,29 @@
 var ruta = "";
 ruta = URLactual();
 jQuery(document).ready(function() {
+    $('#login').keypress(function(e) {
+        if (e.keyCode == 13) {
+            validacion();
+        }
+    });
     $("#btnRegistrar").bind("click", function() {
+        validacion();
+    });
+});
+
+function validacion() {
+    if ($("#login").validationEngine('validate')) {
         var strUsuario = $("#user").val();
         var strContrasena = $("#contrasena").val();
-        if (strUsuario == "") return false;
-        if (strContrasena == "") return false;
         var parametros = {
             "v0": strUsuario,
             "v1": strContrasena
         };
         logear(parametros);
-    });
-});
+    } else {
+        return false;
+    }
+}
 
 function logear(parametros) {
     $.ajax({
@@ -60,17 +71,16 @@ function logear(parametros) {
                     abrirMenu('temporal/index.php'); //menu principal del gerente
                     break;
                 case -4:
-                    abrirMenu('index.php?ruta=main/index.php'); // pasos con los datso basicos de la empresa
+                    abrirIframe('index.php'); // pasos con los datso basicos de la empresa
                     break;
                 case 04:
                     alertify.alert("Error al redireccionar al menú!");
                     break;
                     //empleado---------
-                case 3:
-                    abrirMenu('index.php?ruta=main/menuPrincipal.php'); //menu principal
-                    break;
+                case 3:abrirIframe('index.php');break; //menu principal
+                    
                 case -3:
-                    abrirMenu('index.php?ruta=main/datosBasicos/form-preguntas.html'); //hacer la encuesta
+                    abrirIframe('index.php'); //hacer la encuesta
                     break;
             }
         },
@@ -81,5 +91,10 @@ function logear(parametros) {
 
 function abrirMenu(archivo) {
     var URL = ruta + archivo;
-    window.open(URL, '_self');
+    window.open(URL, '_self','status=no');
+}
+
+function abrirIframe(url,flag){
+	var URL = ruta + url;
+    window.open(URL, '_top','status=no');
 }

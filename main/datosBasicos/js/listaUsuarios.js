@@ -1,3 +1,8 @@
+/*
+ * @autor: Juan Diego Ninco Collazos
+ * @fecha: 2017-18-07
+ * @objetivo: CRUD usuarios
+ */
 $(document).ready(function() {
     $("#search").focus();
 });
@@ -29,7 +34,6 @@ $('#btn_modificar').click(function() {
         } else {
             $('#insertarModal').modal('show');
             id_persona = $("input:checked").attr("id");
-            $('#pFormularioUsuario').text('Actualizar datos de usuario');
             $.ajax({
                 type: "POST",
                 url: './formularioUsuario.php',
@@ -41,7 +45,9 @@ $('#btn_modificar').click(function() {
                 },
                 success: function(data) {
                     $('#contenedor').html(data);
+                    $('#pFormularioUsuario').text('Actualizar datos de usuario');
                     $.ajax({
+                        // async: false,
                         type: "POST",
                         dataType: 'json',
                         url: './datosUsuario.php',
@@ -65,8 +71,14 @@ $('#btn_modificar').click(function() {
                             $('#numDocumento').val(datos.numero_documento);
                             $('#txtFechaExpedicion').val(datos.fecha_expedicion_documento);
                             $('#email').val(datos.email);
-                            $('#foto').attr('src', datos.url_foto);
-                            $('#firma').attr('src', datos.url_firma);
+                            if (datos.url_foto != "") {
+                                $('#foto').attr('src', urlImagen(datos.doc_empresa) + datos.url_foto);
+                                $('#hid_foto').val(datos.url_foto);
+                            }
+                            if (datos.url_firma != "") {
+                                $('#firma').attr('src', urlFirma(datos.doc_empresa) + datos.url_firma);
+                                $('#hid_firma').val(datos.url_firma);
+                            }
                             $("#selCargo").jCombo("../../util/cargarCargosCombo.php?estado=1", {
                                 selected_value: datos.id_cargo
                             });
@@ -82,7 +94,7 @@ $('#btn_modificar').click(function() {
                             $("#selSede").jCombo("../../util/sedes.php", {
                                 selected_value: datos.id_sucursal
                             });
-                        }
+                        },
                     });
                 }
             });

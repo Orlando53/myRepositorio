@@ -32,7 +32,6 @@ if (!session::existsAttribute("LOGEADO")) {
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/validationEngine.jquery.css">
 </head>
 <body>
 <div class="row">
@@ -98,6 +97,32 @@ if (!session::existsAttribute("LOGEADO")) {
             <div class="col-md-1"><a href="#ayuda" data-toggle="modal" data-target="#ayudaModal"><img src="../../media/icon/help.png"  data-toggle="tooltip" data-placement="bottom" title="Ayuda"></a></div>
         </div>
 
+                                                        <!-- Modal Ayuda -->
+                            <div aria-labelledby="myModalLabel" class="modal fade" id="ayudaModal" role="dialog" tabindex="-1">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                                    <span aria-hidden="true">
+                                                        ×
+                                                    </span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">
+                                                    Ayuda
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!--Modal Body-->
+                                                Información de Ayuda Referente a Esta Vista.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="nvt-btn nvt-btn-default" data-dismiss="modal" type="button">
+                                                    Cerrar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
     <script src="../../js/jquery-3.2.1.min.js"></script>
     <script src="../../js/jquery-ui.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
@@ -105,11 +130,7 @@ if (!session::existsAttribute("LOGEADO")) {
     <script src="../../js/nvt.js"></script>
     <script src="../../js/jquery.dataTables.js"></script>
     <script src="../../js/tables.js"></script>
-    <script type="text/javascript" src="../../js/jquery.jCombo.js"></script>
     <script type="text/javascript" src="../../js/jquery.funciones.js"></script>
-    <script src="../../js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
-    <script src="../../js/jquery.validationEngine.js" type="text/javascript"></script>
-    <!-- <script type="text/javascript">accion_usuario=''; </script> -->
     <script src = "../../js/alertify.js"></script>
     <script src = "./js/reenviarCorreo.js"></script>
 

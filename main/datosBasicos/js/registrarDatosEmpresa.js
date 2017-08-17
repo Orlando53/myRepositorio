@@ -6,6 +6,7 @@
 var ruta = "";
 ruta = URLactual();
 $(document).ready(function() {
+    listar();
     $('#direccion').on('focus', function() {
         $("#div-direccion").load('../../util/direccion.php');
         var arr = [];
@@ -25,82 +26,22 @@ $(document).ready(function() {
         $("#btnAceptar-dir").bind("click", function() {
             $('#direccion').val($('#tDirCompleta').val());
         });
-    })
-    Listar();
+    });
     $('#numeroIdentificacion').focusout(function() {
         var d = calcularDigitoVerificacion($(this).val());
         $('#txtDigito').val(d)
-    })
-    $('#btnGuardar').on('click', function() {
-        if ($("form.datosEmpresa").validationEngine('validate')) {
-            guardar()
-            return false
-        } else {
-            return false
-        }
     });
-
-    function guardar() {
-        var inputFileImage = document.getElementById("logo");
-        var file = inputFileImage.files[0];
-        var parametros = new FormData();
-        parametros.append('logo', file)
-        var url_logo = ""
-        if (!file) url_logo = $('#logoImg').attr('src')
-        parametros.append('url_logo', url_logo)
-        parametros.append('nombre', $("#nombre").val())
-        parametros.append('tipoDoc', $("#tipoIdentificacion").val())
-        parametros.append('numIdent', $("#numeroIdentificacion").val())
-        parametros.append('dv', $("#txtDigito").val())
-        parametros.append('repre', $("#txtRepresentante").val())
-        parametros.append('actividadEconomica', $("#actividadEconomica").val())
-        parametros.append('direccion', $("#direccion").val())
-        parametros.append('telefono', $("#txtTelefono").val())
-        parametros.append('email', $("#email").val())
-        parametros.append('dpto', $("#dpto").val())
-        parametros.append('mpio', $("#mpio").val())
-        parametros.append('sucursales', $("#sucursales").val())
-        parametros.append('accion', "actualizar")
-        console.log($("#txtRepresentante").val())
-        $.ajax({
-            url: "datosEmpresa.php",
-            async: false,
-            data: parametros,
-            beforeSend: function(objeto) {
-                dialogLoading('show');
-            },
-            complete: function(objeto, exito) {
-                dialogLoading('close');
-            },
-            contentType: false,
-            dataType: "html",
-            error: function(objeto, quepaso, otroobj) {
-                alertify.alert("Error! No se pudo reaizar la petición: " + otroobj);
-            },
-            global: true,
-            ifModified: false,
-            processData: false,
-            cache: false,
-            success: function(datos) {
-                if (datos == 1) {
-                    alertify.alert("Datos guardados correctamente", function() {
-                    window.location = "../../main/index.php";
-                    });
-                } else {
-                    alertify.alert(datos);
-                }
-            },
-            timeout: 3000,
-            type: "POST"
-        });
+});
+$('#btnGuardar').on('click', function() {
+    if ($("form.datosEmpresa").validationEngine('validate')) {
+        guardar()
+        return false
+    } else {
+        return false
     }
 });
-$('#logo').change(function(event) {
-    var tmppath = URL.createObjectURL(event.target.files[0]);
-    $('#logoImg').attr('src', tmppath);
-});
 
-function Listar() {
+function listar() {
     var parametros = {
         accion: "listar"
     };
@@ -112,7 +53,7 @@ function Listar() {
             dialogLoading('show');
         },
         complete: function(objeto, exito) {
-            dialogLoading('close');
+            // dialogLoading('close');
         },
         contentType: "application/json",
         dataType: "json",
@@ -123,14 +64,9 @@ function Listar() {
         ifModified: false,
         processData: true,
         success: function(datos) {
-            if (datos.length == 0) {
-                $("#tipoIdentificacion").jCombo("../../util/definiciones.php?id=1");
-                $("#actividadEconomica").jCombo("../../util/ciiu.php");
-                $("#dpto").jCombo("../../util/deptos.php?id=1");
-                $("#mpio").jCombo("../../util/ciudades.php?id=", {
-                    parent: "#dpto"
-                });
-            }
+            setTimeout(function() {
+                dialogLoading('close');
+            }, 6000);
             datos = datos[0];
             $("#tipoIdentificacion").jCombo("../../util/definiciones.php?id=1", {
                 selected_value: datos.id_tipo_documento
@@ -141,27 +77,90 @@ function Listar() {
             $("#dpto").jCombo("../../util/deptos.php?id=1", {
                 selected_value: datos.cod_dpto
             });
+            $("#mpio").jCombo("../../util/ciudades.php?id=", {
+                parent: "#dpto",
+                selected_value: datos.co_municipio
+            });
+	    var d = calcularDigitoVerificacion(datos.numero_documento);
+	    $('#txtDigito').val(d);
             $("#nombre").val(datos.razon_social);
             $("#numeroIdentificacion").val(datos.numero_documento);
-            $("#txtDigito").val(datos.digito);
+            //$("#txtDigito").val(datos.digito);
             $("#txtRepresentante").val(datos.nom_represente);
             //$("#actividadEconomica").val(datos.id_actividad_economica);
             $("#direccion").val(datos.direccion);
             $("#txtTelefono").val(datos.telefono);
             $("#email").val(datos.email);
             $("#sucursales").val(datos.numero_sucursales);
-            $("#mpio").jCombo("../../util/ciudades.php?id=", {
-                parent: "#dpto",
-                selected_value: datos.co_municipio
-            });
             var ruta = urlLogo(datos.numero_documento) + datos.url_logo;
             //var ruta = "http://localhost/Empresas/" + datos.numero_documento + "/logo/" + datos.url_logo;
-            $("#logoImg").attr('src', ruta);
+            if (datos.url_logo != null && datos.url_logo != "") {
+                $("#logoImg").attr('src', ruta);
+            }
         },
         timeout: 3000,
         type: "GET"
     });
 }
+
+function guardar() {
+    var inputFileImage = document.getElementById("logo");
+    var file = inputFileImage.files[0];
+    var parametros = new FormData();
+    parametros.append('logo', file)
+    var url_logo = ""
+    if (!file) url_logo = $('#logoImg').attr('src')
+    parametros.append('url_logo', url_logo)
+    parametros.append('nombre', $("#nombre").val())
+    parametros.append('tipoDoc', $("#tipoIdentificacion").val())
+    parametros.append('numIdent', $("#numeroIdentificacion").val())
+    parametros.append('dv', $("#txtDigito").val())
+    parametros.append('repre', $("#txtRepresentante").val())
+    parametros.append('actividadEconomica', $("#actividadEconomica").val())
+    parametros.append('direccion', $("#direccion").val())
+    parametros.append('telefono', $("#txtTelefono").val())
+    parametros.append('email', $("#email").val())
+    parametros.append('dpto', $("#dpto").val())
+    parametros.append('mpio', $("#mpio").val())
+    parametros.append('sucursales', $("#sucursales").val())
+    parametros.append('accion', "actualizar")
+    console.log($("#txtRepresentante").val())
+    $.ajax({
+        url: "datosEmpresa.php",
+        async: false,
+        data: parametros,
+        beforeSend: function(objeto) {
+            dialogLoading('show');
+        },
+        complete: function(objeto, exito) {
+            dialogLoading('close');
+        },
+        contentType: false,
+        dataType: "html",
+        error: function(objeto, quepaso, otroobj) {
+            alertify.alert("Error! No se pudo reaizar la petición: " + otroobj);
+        },
+        global: true,
+        ifModified: false,
+        processData: false,
+        cache: false,
+        success: function(datos) {
+            if (datos == 1) {
+                alertify.alert("Datos guardados correctamente", function() {
+                    window.location = "../../main/index.php";
+                });
+            } else {
+                alertify.alert(datos);
+            }
+        },
+        timeout: 3000,
+        type: "POST"
+    });
+}
+$('#logo').change(function(event) {
+    var tmppath = URL.createObjectURL(event.target.files[0]);
+    $('#logoImg').attr('src', tmppath);
+});
 
 function CheckFileName(fileName) {
     var ext = fileName.split('.').pop().toUpperCase();

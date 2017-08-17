@@ -29,7 +29,7 @@ $condicion = "c.id_empresa = :v1 AND c.estado = :v2";
 
 $columnas2  = "c.id_cargo, c.cargo, c.descripcion, (c.cargo) AS jefe";
 $tabla2     = "gen_cargos c";
-$condicion2 = "c.id_empresa = :v3 AND c.estado = :v4 AND c.id_jefe_inmediato = :v5";
+$condicion2 = "c.id_empresa = :v3 AND c.estado = :v4 AND c.id_jefe_inmediato = :v5 ORDER BY cargo ASC";
 $valores    = array(":v1" => $id_empresa, ":v2" => '1', ":v3" => $id_empresa, ":v4" => '1', ":v5" => '0');
 
 $rs_consultar = $conn->consultarUnion($columnas, $tabla, $condicion, $columnas2, $tabla2, $condicion2, $valores);

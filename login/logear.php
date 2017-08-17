@@ -37,8 +37,8 @@ if ($rs[0]["estado"] == 0) {
 
 switch ($rs[0]["id_rol"]) {
     //propietario
-    case 1: echo 4; break;
-    // gerente
+    case 1: echo 4; session::setAttribute("OPCION", 4); break;
+    // ADM SISTEMA
     case 2:
         $tabla     = "gen_control_pro_inicio";
         $columnas  = "estado";
@@ -47,9 +47,9 @@ switch ($rs[0]["id_rol"]) {
         $rs3       = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
         if ($rs3) {
             if ($rs3[0]['estado'] == 1) {
-                echo 4; // ya completo todos los pasos
+                echo 4; session::setAttribute("OPCION", 4);// ya completo todos los pasos
             } else {
-                echo -4; //no ha completado los pasos
+                echo -4; session::setAttribute("OPCION", 9);//no ha completado los pasos
             }
         } else {
             echo 04; //no se ha encontrado información de los pasos
@@ -64,9 +64,9 @@ switch ($rs[0]["id_rol"]) {
         $valores   = array(':v1' => $rs[0]["id_empresa"], ':v2' => $rs[0]["id_persona"]);
         $rs2       = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
         if ($rs2) {
-            echo 3;
+            echo 3; session::setAttribute("OPCION", 3);
         } else {
-            echo -3;
+            echo -3; session::setAttribute("OPCION", 6);
         }
         break;
 

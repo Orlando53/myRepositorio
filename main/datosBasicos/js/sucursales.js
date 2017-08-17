@@ -46,17 +46,17 @@ $(document).ready(function() {
     });
 
     function guardar() {
-        var inputFileImage = document.getElementById("logo");
-        var file = inputFileImage.files[0];
+        //var inputFileImage = document.getElementById("logo");
+        //var file = inputFileImage.files[0];
         var parametros = new FormData();
-        parametros.append('logo', file)
-        var url_logo = ""
-        if (!file) url_logo = $('#logoImg').attr('src')
-        parametros.append('url_logo', url_logo)
+        //parametros.append('logo', file)
+        //var url_logo = ""
+        //if (!file) url_logo = $('#logoImg').attr('src')
+        //parametros.append('url_logo', url_logo)
         parametros.append('prefijo', $("#Prefijo").val())
         parametros.append('nombre', $("#nombre").val())
-        parametros.append('tipoDoc', $("#tipoIdentificacion").val())
-        parametros.append('numIdent', $("#numeroIdentificacion").val())
+        //parametros.append('tipoDoc', $("#tipoIdentificacion").val())
+        //parametros.append('numIdent', $("#numeroIdentificacion").val())
         parametros.append('telefono', $("#numTelefono").val())
         parametros.append('direccion', $("#direccion").val())
         parametros.append('email', $("#email").val())
@@ -120,10 +120,10 @@ function marcar(source) {
         }
     }
 }
-$('#logo').change(function(event) {
-    var tmppath = URL.createObjectURL(event.target.files[0]);
-    $('#logoImg').attr('src', tmppath);
-});
+// $('#logo').change(function(event) {
+//     var tmppath = URL.createObjectURL(event.target.files[0]);
+//     $('#logoImg').attr('src', tmppath);
+// });
 $('#btnEliminar').click(function() {
     var estado;
     estado = validar();
@@ -134,6 +134,36 @@ $('#btnEliminar').click(function() {
     } else {
         eliminarRegistros();
     }
+});
+$('#btnNuevo').click(function() {
+    var url = "consultarSucursales.php";
+    $.ajax({
+        timeout: 3000,
+        //type: "POST",
+        url: url,
+        //data: parametros,
+        dataType: 'json',
+        beforeSend: function() {
+            dialogLoading('show');
+        },
+        complete: function() {
+            dialogLoading('close');
+        },
+        success: function(data) {
+            var sucursal = data[0];
+            var mensaje = 'De acuerdo a la información ingresada, usted no puede registrar sucursales';
+            if (sucursal.numero_sucursales == 0) {
+                alertify.alert(mensaje);
+            } else {
+                var nFilas = $("#tabla tr").length;
+                if (parseInt(nFilas - 2) == sucursal.numero_sucursales) {
+                    alertify.alert(mensaje);
+                } else {
+                    $('#insertarModal').modal('show');
+                }
+            }
+        }
+    });
 });
 
 function validar() {
@@ -168,9 +198,10 @@ function eliminarRegistros() {
                 },
                 success: function(data) {
                     if (data == 1) {
-                        alertify.alert("Bien! Cargo eliminado");
+                        alertify.alert("Bien! Sucursal eliminada", function() {
+                            window.location = "../datosBasicos/registrarSucursales.php";
+                        });
                     }
-                    window.location = "../datosBasicos/registrarSucursales.php";
                 }
             });
         } else {
@@ -193,6 +224,7 @@ $('#btnModificar').click(function() {
             id_sucursal: id_check
         };
         $.ajax({
+            timeout: 3000,
             type: "POST",
             url: url,
             data: parametros,
@@ -208,13 +240,13 @@ $('#btnModificar').click(function() {
                 $('#PrefijoAct').val(sucursal.prefijo);
                 $('#idSucursal').val(sucursal.id_sucursal);
                 $('#nombreAct').val(sucursal.razon_social);
-                $("#tipoIdentificacionAct").jCombo("../../util/definiciones.php?id=1", {
-                    first_optval: "0",
-                    initial_text: "Ninguno",
-                    selected_value: sucursal.id_tipo_documento
-                });
-                $('#numeroIdentificacionAct').val(sucursal.numero_documento);
-                $('#logoAct').val(sucursal.url_logo);
+                // $("#tipoIdentificacionAct").jCombo("../../util/definiciones.php?id=1", {
+                //     first_optval: "0",
+                //     initial_text: "Ninguno",
+                //     selected_value: sucursal.id_tipo_documento
+                // });
+                // $('#numeroIdentificacionAct').val(sucursal.numero_documento);
+                //$('#logoAct').val(sucursal.url_logo);
                 $('#numTelefonoAct').val(sucursal.telefono);
                 $('#direccionAct').val(sucursal.direccion);
                 $('#emailAct').val(sucursal.email);
@@ -223,7 +255,8 @@ $('#btnModificar').click(function() {
                     initial_text: "Ninguno",
                     selected_value: sucursal.cod_dpto
                 });
-                $("#selMPIOAct").jCombo("../../util/ciudades.php?id=1", {
+                $("#selMPIOAct").jCombo("../../util/ciudades.php?id=", {
+                    parent: "#selDPTOAct",
                     first_optval: "0",
                     initial_text: "Ninguno",
                     selected_value: sucursal.co_municipio
@@ -249,9 +282,9 @@ $('#btn-actualizarSucursal').click(function() {
             success: function(data) {
                 if (data == 1) {
                     alertify.alert("Bien! Sucursal actualizada", function() {
-                        window.location = "../datosBasicos/registrarCargos.php";
+                        window.location = "../datosBasicos/registrarSucursales.php";
                     });
-                }
+                } else {}
                 //$('#actualizarModal').modal('show');
                 //$('#respuesta').append(data);
             }

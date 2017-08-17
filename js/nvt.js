@@ -18,10 +18,16 @@ $('body').on('keyup','textarea', function(){
 });
 
 //estilizar los input de archivo a un solo botón
-//$('body').on('change','input[type="file"]', function(){
-//    var filename = $(this).val().split('\\').pop();
- // 	$(this).siblings('label').text(filename);
-//});
+$('body').on('change','input[type="file"]', function(){
+    var filename = $(this).val().split('\\').pop();
+ 	$(this).siblings('label').text(filename);
+});
+
+//cambiar los input file con imagenes
+$('.imgfile').change(function(event) {
+    var tmppath = URL.createObjectURL(event.target.files[0]);
+    $(this).siblings('img').attr('src', tmppath);
+});
 
 //mostrar valores en los Input Range
 $('body').on('change','[type="range"]', function() {
@@ -56,6 +62,36 @@ $('#direccion').on('focus',function(){
 $('select').on('change', function(){
     $('.selectpicker').selectpicker('refresh');    
 })
+
+$(document).on('show.bs.modal', '.modal', function () {
+    $('.selectpicker').selectpicker();
+    $('.selectpicker').selectpicker('refresh'); 
+    $('.selectpicker').selectpicker('render');  
+});
+
+//despliegue de Submenús panel de control
+$('.jumboson').on('mouseover' , function(){
+    $(this).children('div').css('display','block');
+    $(this).children('div').animate({opacity : "1"},300);
+})
+$('.jumboson').on('mouseleave' , function(){            
+    $(this).children('div').css('display','none');
+    $(this).children('div').animate({opacity : "0"},1);         
+})
+
+
+//despliegue de doble modal
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * $('.modal:visible').length);
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+});
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
+
 //++++++++++++++++++++++++++++Script para los formularios por pasos++++++++++++++++++++++++++++++++++++++++++
 /*var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate

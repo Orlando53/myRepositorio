@@ -43,7 +43,7 @@ if (!session::existsAttribute("LOGEADO")) {
     <script type="text/javascript" src="../../js/jquery.funciones.js"></script>
     <script src="../../js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
     <script src="../../js/jquery.validationEngine.js" type="text/javascript"></script>
-    <script type="text/javascript">accion_usuario=''; </script>
+    <!-- <script type="text/javascript">accion_usuario=''; </script> -->
     <script src = "../../js/alertify.js"></script>
 </head>
 <body>
@@ -63,16 +63,11 @@ if (!session::existsAttribute("LOGEADO")) {
                                             </input>
                                         </div>
                                         <div class="nvt-button-group two-third right-align">
-                                                <input type="button" class="nvt-btn nvt-btn-primary" id="btn_insertar" value="Insertar">
+                                                <input type="button" class="nvt-btn nvt-btn-primary" id="btn_insertar" value="Nuevo">
                                                     <input class="nvt-btn nvt-btn-primary" type="button" id="btn_eliminar" value="Eliminar">
                                                         <input class="nvt-btn nvt-btn-primary" id="btn_modificar" type="button" value="Modificar">
-                                                            <input class="nvt-btn nvt-btn-primary" type="button" value="Exportar">
                                                                 <a id="btn_terminar" href="#"><img src="../../media/icon/check.png" class="form-check" id="imgCheck"></a>
-                                                            </input>
-                                                        </input>
-                                                    </input>
-                                                </input>
-                                            </input>
+
                                         </div>
 
                                         <table id="tabla" class="table table-striped table-bordered">
@@ -146,11 +141,13 @@ if (!session::existsAttribute("LOGEADO")) {
                                             </div>
                                             <div class="modal-body">
                                                 <!--Modal Body-->
-                                                Información de Ayuda Referente a Esta Vista.
+                                                <video autoplay controls>
+                                                    <source src="../../gen/paso5.mp4" type="video/mp4"/>
+                                                </video>
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="nvt-btn nvt-btn-default" data-dismiss="modal" type="button">
-                                                    Close
+                                                    Cerrar
                                                 </button>
                                             </div>
                                         </div>

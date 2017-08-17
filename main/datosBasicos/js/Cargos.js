@@ -110,9 +110,11 @@ function eliminarRegistros() {
                 },
                 success: function(data) {
                     if (data == 1) {
-                        alertify.alert("Bien! Cargo eliminado");
+                        alertify.alert("Bien! Cargo eliminado", function() {
+                            window.location = "../datosBasicos/registrarCargos.php";
+                        });
                     }
-                    window.location = "../datosBasicos/registrarCargos.php";
+                    
                 }
             });
         } else {

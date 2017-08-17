@@ -13,13 +13,13 @@ ini_set("display_errors", '1');
 include_once 'rsc/DBManejador.php';
 $conn = new DBManejador();
 if ($conn == null) {
-    echo -1;
     exit(0);
 }
 require_once 'rsc/session.php';
 if (!session::existsAttribute("LOGEADO")) {
     header("location: login/index.php");
 }
+$flag = session::getAttribute('OPCION');
 $id_empresa  = session::getAttribute("IDEMPRESA");
 $nom_usuario = session::getAttribute('NOMBRE');
 $columnas    = "razon_social";
@@ -44,9 +44,19 @@ $rz          = $rs[0]['razon_social'];
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
   <link rel="stylesheet" href="css/validationEngine.jquery.css">
+<script src ="js/jquery-3.2.1.min.js"></script>
+<script src ="js/bootstrap.min.js"></script>
+<script src ="js/bootstrap-select.js"></script>
+<script src ="js/nvt.js"></script>
+<script src ="js/this_view.js"></script>
+<script src ="main/subMenu/js/modal_menu.js"></script>
+<script src = "js/jquery.blockUI.js"></script>
+<script src ="js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
+<script src ="js/jquery.validationEngine.js" type="text/javascript"></script>
+<script src = "js/iframe.js" type = "text/javascript"></script>
 
 </head>
-<body>
+<body onload="cargarIframe();" >
   <header id="header" class="fixed">
     <div class="menu-container">
       <div class="row head">
@@ -82,9 +92,11 @@ $rz          = $rs[0]['razon_social'];
       </div>
     </div>
   </header>
+  <input type="hidden" id="txtFlag" value="<?php echo $flag; ?>" />
   <div class="container-fluid fixed-top"><!-- Inicio del Contenedor Principal-->
-    <iframe src="<?php echo $_REQUEST['ruta']; ?>" height="599px;" width="100%" style="border:none;min-height:585px;" name="iframe_a" scrolling="no" id="iframe_a" onload="resizeIframe(this);" allowfullscreen ></iframe>
+    <iframe  height="599px;" width="100%" style="border:none;min-height:585px;" name="iframe_a" scrolling="no" id="iframe_a" onload="resizeIframe(this);" allowfullscreen ></iframe>
   </div><!-- Fin del Contenedor Principal-->
+ 
   <!-- Modal con las opciones del usuario desde una vez logueado-->
         <div class="modal fade" id="modal_menu" role="dialog">
             <div class="modal-dialog">
@@ -113,25 +125,6 @@ $rz          = $rs[0]['razon_social'];
                 </div>
             </div>
         </div>
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/bootstrap-select.js"></script>
-  <script src="js/nvt.js"></script>
-  <script src="js/this_view.js"></script>
-  <script src="main/subMenu/js/modal_menu.js"></script>
-  <script src = "js/jquery.blockUI.js"></script>
-  <script src="js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
-  <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
-  <script>
-  function resizeIframe(obj) {
-    //obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-    var iFrameID = document.getElementById('iframe_a');
-      if(iFrameID) {
-            // here you can make the height, I delete it first, then I make it again
-            iFrameID.height = "";
-            iFrameID.height = iFrameID.contentWindow.document.body.scrollHeight + "px";
-      }
-  }
-  </script>
+
 </body>
 </html>

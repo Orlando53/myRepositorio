@@ -24,7 +24,7 @@ if (!session::existsAttribute("LOGEADO")) {
     <title>Usuario</title>
 </head>
 <body>
- <form class="datosEmpresa" id="frmUsuarios" method="POST">
+ <form  id="frmUsuario" method="POST">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"> <p id="pFormularioUsuario">Registrar Nuevo Usuario</p></h4>
@@ -92,6 +92,8 @@ if (!session::existsAttribute("LOGEADO")) {
                                                 <label for="selSede">Sede o Sucursal</label>
                                             </div>
 
+                                            <input type="hidden" id="hid_foto">
+                                            <input type="hidden" id="hid_firma">
                                             <div class="nvt-input-group half" style="text-align: center;">
                                                 <h5>Foto</h5>
                                                 <div class="file-input">

@@ -46,7 +46,7 @@ class DBManejador extends PDO
             if (is_array(PDO::getAvailableDrivers())) {
                 if (in_array("mysql", PDO::getAvailableDrivers())) {
 
-                    $conex = new PDO("mysql:host=".$srv."; port=3306;dbname=db_sstplus", "$usr", "$pas");
+                    $conex = new PDO("mysql:host=$srv; port=3306;dbname=db_sstplus", "$usr", "$pas");
                     $this->setManejador('mysql');
                 } else {
                     throw new PDOException("No se puede trabajar sin establecer una conexión adecuada con la base de datos de mysql");
@@ -55,7 +55,7 @@ class DBManejador extends PDO
             }
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            $this->error=$e->getMessage();
+            $this->error = $e->getMessage();
         }
 
         $this->setConexion($conex);
@@ -73,8 +73,8 @@ class DBManejador extends PDO
      * @return mixed
      *
      **/
-	 
-	final public function consultar($columnas, $tabla, $getObjects = false)
+
+    final public function consultar($columnas, $tabla, $getObjects = false)
     {
         $rt = null;
         try
@@ -92,7 +92,7 @@ class DBManejador extends PDO
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            $this->error=$e->getMessage();
+            $this->error = $e->getMessage();
         }
         return $rt;
     }
@@ -131,23 +131,24 @@ class DBManejador extends PDO
             //$this->setConexion(null);
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            $this->error=$e->getMessage();
+            $this->error = $e->getMessage();
         }
         return $rt;
     }
 
-	public function count($tabla, $condicion, $valores){
-		$rt = null;
-		try
-		{
-			$query = $this->conexion->prepare("SELECT COUNT(*) AS cuenta FROM " . $tabla . " WHERE ". $condicion);
-			$rt = $query->fetch(PDO::FETCH_OBJ);
-		} catch(PDOException $e){
-			error_log($e->getMessage);
-			$this->error=$e->getMessage();
-		}
-		return $rt;
-	}
+    public function count($tabla, $condicion, $valores)
+    {
+        $rt = null;
+        try
+        {
+            $query = $this->conexion->prepare("SELECT COUNT(*) AS cuenta FROM " . $tabla . " WHERE " . $condicion);
+            $rt    = $query->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            error_log($e->getMessage);
+            $this->error = $e->getMessage();
+        }
+        return $rt;
+    }
     public function consultarUnion($columnas, $tabla, $condicion, $columnas2, $tabla2, $condicion2, $valores)
     {
         $rt = null;
@@ -169,7 +170,7 @@ class DBManejador extends PDO
             //$this->setConexion(null);
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            $this->error=$e->getMessage();
+            $this->error = $e->getMessage();
         }
         return $rt;
     }
@@ -194,7 +195,7 @@ class DBManejador extends PDO
             //$this->setConexion(null);
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            $this->error=$e->getMessage();
+            $this->error = $e->getMessage();
         }
         return $rt;
     }
@@ -218,10 +219,10 @@ class DBManejador extends PDO
         try
         {
             $query = $this->conexion->prepare("INSERT INTO " . $tabla . " (" . $columnas . ") VALUES (" . $campos . ")");
-            $rt = $query->execute($valores);
+            $rt    = $query->execute($valores);
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            $this->error=$e->getMessage();
+            $this->error = $e->getMessage();
         }
         return $this->conexion->lastInsertId($tabla);
     }
@@ -259,7 +260,7 @@ class DBManejador extends PDO
 
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            $this->error=$e->getMessage();
+            $this->error = $e->getMessage();
         }
 
         return $rt;
@@ -302,7 +303,7 @@ class DBManejador extends PDO
         } catch (PDOException $e) {
 
             error_log($e->getMessage());
-            $this->error=$e->getMessage();
+            $this->error = $e->getMessage();
         }
 
         return $rt;
@@ -521,16 +522,19 @@ class DBManejador extends PDO
 
         return PDO::PARAM_STR;
     }
-    
-    public function begin(){
-    	$this->conexion->beginTransaction();
+
+    public function begin()
+    {
+        $this->conexion->beginTransaction();
     }
-    
-    public function rollback(){
-    	$this->conexion->rollBack();
+
+    public function rollback()
+    {
+        $this->conexion->rollBack();
     }
-    
-    public function commit(){
-    	$this->conexion->commit();
+
+    public function commit()
+    {
+        $this->conexion->commit();
     }
 }

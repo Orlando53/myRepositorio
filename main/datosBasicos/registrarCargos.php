@@ -54,10 +54,10 @@ if (!session::existsAttribute("LOGEADO")) {
                 </input>
             </div>
             <div class="nvt-button-group two-third right-align">
-                <input class="nvt-btn nvt-btn-primary" data-target="#insertarModal" data-toggle="modal" type="button" value="Insertar">
+                <input class="nvt-btn nvt-btn-primary" data-target="#insertarModal" data-toggle="modal" type="button" value="Nuevo">
                     <input class="nvt-btn nvt-btn-primary" type="button" value="Eliminar" id="btnEliminar" onclick = "this.form.action = 'eliminarCargos.php'">
                         <input class="nvt-btn nvt-btn-primary" type="button" value="Modificar" id="btnModificar" onclick = "this.form.action = 'actualizarCargos.php'">
-                            <input class="nvt-btn nvt-btn-primary" type="button" value="Exportar">
+                            <!-- <input class="nvt-btn nvt-btn-primary" type="button" value="Exportar"> -->
                             <a href="#"><img src="../../media/icon/check.png" class="form-check" id="imgCheck"></a>
             </div>
             <table id="tabla" class="table table-striped table-bordered">
@@ -119,8 +119,7 @@ if (!session::existsAttribute("LOGEADO")) {
                             </label>
                         </div>
                         <div class="nvt-input-group full">
-                            <textarea name ="descripcion" id="txtDescripcion" class="validate[required]">
-                            </textarea>
+                            <textarea name ="descripcion" id="txtDescripcion" class="validate[required]"></textarea>
                             <label for="txtDescripcion">
                                 Descripción del cargo
                             </label>
@@ -131,7 +130,7 @@ if (!session::existsAttribute("LOGEADO")) {
                 </div>
                 <div class="modal-footer">
                     <button class="nvt-btn nvt-btn-default" data-dismiss="modal" type="button" onclick="actualizar();">
-                        Close
+                        Cerrar
                     </button>
                      <button type="button" class="nvt-btn nvt-btn-primary" id="btn-guardarCargos">Guardar Datos</button>
                 </div>
@@ -176,7 +175,7 @@ if (!session::existsAttribute("LOGEADO")) {
                 </div>
                 <div class="modal-footer">
                     <button class="nvt-btn nvt-btn-default" data-dismiss="modal" type="button" onclick="actualizar();">
-                        Close
+                        Cerrar
                     </button>
                      <button type="button" class="nvt-btn nvt-btn-primary" id="btn-actualizarCargos" onclick = "this.form.action = 'confirmarActualizacionCargos.php'">Actualizar</button>
                 </div>
@@ -203,11 +202,13 @@ if (!session::existsAttribute("LOGEADO")) {
                 </div>
                 <div class="modal-body">
                     <!--Modal Body-->
-                    Información de Ayuda Referente a Esta Vista.
+                    <video autoplay controls>
+                        <source src="../../gen/paso3.mp4" type="video/mp4"/>
+                    </video>
                 </div>
                 <div class="modal-footer">
                     <button class="nvt-btn nvt-btn-default" data-dismiss="modal" type="button">
-                        Close
+                        Cerrar
                     </button>
                 </div>
             </div>

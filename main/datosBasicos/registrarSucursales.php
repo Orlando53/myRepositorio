@@ -46,10 +46,11 @@ if (!session::existsAttribute("LOGEADO")) {
 						<label for="search">Buscar</label>
 					</div>
 					<div class="nvt-button-group two-third right-align">
-						<input type="button" class="nvt-btn nvt-btn-primary" value="Insertar" data-toggle="modal" data-target="#insertarModal">
+						<input type="button" id = "btnNuevo" class="nvt-btn nvt-btn-primary" value="Nuevo" >
+						<!-- data-toggle="modal" data-target="#insertarModal" -->
 						<input type="button" class="nvt-btn nvt-btn-primary" value="Eliminar" id="btnEliminar">
 						<input type="button" class="nvt-btn nvt-btn-primary" value="Modificar" id="btnModificar" data-toggle="Modal" data-target="#actualizarModal">
-						<input type="button" class="nvt-btn nvt-btn-primary" value="Exportar">
+						<!-- <input type="button" class="nvt-btn nvt-btn-primary" value="Exportar"> -->
 						<a href="#"><img src="../../media/icon/check.png" class="form-check" id="imgCheck"></a>
 					</div>
 					<table class="table table-striped table-bordered" id="tabla">
@@ -92,7 +93,7 @@ if (!session::existsAttribute("LOGEADO")) {
 						<span class="bar"></span>
 						<label for="txtNombre">Nombre</label>
 					</div>
-					<div class="nvt-input-group third">
+			<!-- 		<div class="nvt-input-group third">
                         <select name="tipoIdentificacion" id="tipoIdentificacion" class="selectpicker validate[required]" title="Selecciona Uno">
                             <option >Nit</option>
                             <option >Cédula de Ciudadanía</option>
@@ -113,7 +114,7 @@ if (!session::existsAttribute("LOGEADO")) {
                             <input type="file" name="" class="imgFile validate[required]" id="logo" accept="image/jpg,image/png">
                         </div>
                         <input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
-                    </div>
+                    </div> -->
                     <div class="nvt-input-group third">
                         <input type="number"  name="numTelefono" id="numTelefono" class="validate[required, custom[phone]]" />
                         <span class="bar"></span>
@@ -158,14 +159,14 @@ if (!session::existsAttribute("LOGEADO")) {
 				</form>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Salir</button>
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Cerrar</button>
 		        <button type="button" class="nvt-btn nvt-btn-primary" id="btn-guardarSucursal">Guardar Datos</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
 
-				<!-- Modal Actualizar -->
+					<!-- Modal Actualizar -->
 		<div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -187,11 +188,11 @@ if (!session::existsAttribute("LOGEADO")) {
 						<span class="bar"></span>
 						<label for="nombreAct">Nombre</label>
 					</div>
-					<div class="nvt-input-group third">
+					<!-- <div class="nvt-input-group third">
                         <select name="tipoIdentificacionAct" id="tipoIdentificacionAct" class="selectpicker validate[required]" title="Selecciona Uno">
-                   <!--          <option >Nit</option>
+                            <option >Nit</option>
                             <option >Cédula de Ciudadanía</option>
-                            <option >Cédula de Extrangería</option> -->
+                            <option >Cédula de Extrangería</option>
                         </select>
                         <label for="tipoIdentificacionAct">Tipo de Identificación</label>
                     </div>
@@ -208,7 +209,7 @@ if (!session::existsAttribute("LOGEADO")) {
                             <input type="file" name="logoAct" class="imgFile validate[required]" id="logoAct" accept="image/jpg,image/png">
                         </div>
                         <input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
-                    </div>
+                    </div> -->
                     <div class="nvt-input-group third">
                         <input type="number"  name="numTelefonoAct" id="numTelefonoAct" class="validate[required, custom[phone]]" />
                         <span class="bar"></span>
@@ -231,14 +232,14 @@ if (!session::existsAttribute("LOGEADO")) {
 					</div>
 					<div class="nvt-input-group half">
 						<select id="selMPIOAct" name="selMPIOAct[]" class="selectpicker validate[required]" title="Seleccione">
-							<option>Neiva</option>
+							<!-- <option>Neiva</option> -->
 						</select>
 						<label for="selMPIOAct">Municipio</label>
 					</div>
 				</form>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Salir</button>
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Cerrar</button>
 		        <button type="button" class="nvt-btn nvt-btn-primary" id="btn-actualizarSucursal">Actualizar</button>
 		      </div>
 		    </div>
@@ -280,7 +281,7 @@ if (!session::existsAttribute("LOGEADO")) {
 		        Información de Ayuda Referente a Esta Vista.
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Cerrar</button>
 		      </div>
 		    </div>
 		  </div>

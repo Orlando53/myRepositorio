@@ -29,9 +29,11 @@ function eliminarRegistros() {
                 },
                 success: function(data) {
                     if (data == 1) {
-                        alertify.alert("Bien! Área eliminada");
+                        alertify.alert("Bien! Área eliminada", function() {
+                            window.location = "../datosBasicos/registrarAreasTrabajo.php";
+                        });
                     }
-                    window.location = "../datosBasicos/registrarAreasTrabajo.php";
+                    
                 }
             });
         } else {

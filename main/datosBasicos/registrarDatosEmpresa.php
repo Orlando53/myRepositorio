@@ -52,21 +52,20 @@ if (!session::existsAttribute("LOGEADO")) {
                     <div class="nvt-input-group half" style="text-align: center;">
                         <h5>Logo</h5>
                         <div class="file-input">
-                            <img  id="logoImg" >
+                            <img  id="logoImg" src="../../media/image/placeholderPhoto.png">
                             <label for="logo">cambiar</label>
                             <input type="file" name="" class="imgFile" id="logo" accept="image/jpg,image/png">
                         </div>
                         <input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
                     </div>
                     <div class="nvt-input-group third">
-                        <select name="tipoIdentificacion" id="tipoIdentificacion" class="selectpicker validate[required]">
+                        <select name="tipoIdentificacion" id="tipoIdentificacion" class="selectpicker validate[required]" data-live-search="true">
                             <option >Selecciona Uno</option>
-                            <option >Nit</option>
                         </select>
                         <label for="tipoIdentificacion">Tipo de Identificación</label>
                     </div>
                     <div class="nvt-input-group third">
-                        <input type="text" name="numeroIdentificacion" id="numeroIdentificacion" class="validate[required],custom[integer],min[0]">
+                        <input type="text" name="numeroIdentificacion" id="numeroIdentificacion" class="validate[required],custom[integer],min[0]" >
                         <span class="bar"></span>
                         <label for="numeroIdentificacion">Numero de Identificación</label>
                     </div>
@@ -83,7 +82,6 @@ if (!session::existsAttribute("LOGEADO")) {
                     <div class="nvt-input-group half">
                         <select name="actividadEconomica" id="actividadEconomica" class="selectpicker validate[required]" data-live-search="true">
                             <option>Seleccione Uno</option>
-                            <option value="6201">6201 - Actividades de Desarrollo de Sistemas de Información</option>
                         </select>
                         <label for="actividadEconomica">Actividad Económica</label>
                     </div>
@@ -100,14 +98,12 @@ if (!session::existsAttribute("LOGEADO")) {
                     <div class="nvt-input-group third">
                         <select name="dpto" id="dpto" class="selectpicker validate[required]" data-live-search="true">
                             <option >Selecciona Uno</option>
-                            <option >Huila</option>
                         </select>
                         <label for="dpto">Departamento</label>
                     </div>
                     <div class="nvt-input-group third">
-                        <select name="mpio" id="mpio" class="selectpicker validate[required]" data-live-search="true">
+                        <select name="mpio" id="mpio" class="selectpicker validate[required]" title="Seleccione..." data-live-search="true">
                             <option >Selecciona Uno</option>
-                            <option >Neiva</option>
                         </select>
                         <label for="mpio">Municipio</label>
                     </div>
@@ -117,7 +113,7 @@ if (!session::existsAttribute("LOGEADO")) {
                         <label for="txtTelefono">Teléfono</label>
                     </div>
                     <div class="nvt-input-group third">
-                        <input name="sucursales" id="sucursales" class="validate[required],min[0]">
+                        <input name="sucursales" id="sucursales" class="validate[required],min[0]" value="0">
                         <span class="bar"></span>
                         <label for="sucursales">Número Sucursales</label>
                     </div>
@@ -143,15 +139,18 @@ if (!session::existsAttribute("LOGEADO")) {
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
-        <script src="../../js/jquery-ui.min.js"></script>
-        <script src="../../js/bootstrap.min.js"></script>
-        <script src="../../js/bootstrap-select.js"></script>
-        <script src="../../js/jquery.funciones.js"></script>
-        <script src = "../../js/jquery.jCombo.js"></script>
-        <script src = "../../js/alertify.js"></script>
-        <script src="../../js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
-        <script src="../../js/jquery.validationEngine.js" type="text/javascript"></script>
-        <script src="js/registrarDatosEmpresa.js"></script>
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/jquery-ui.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/bootstrap-select.js"></script>
+    <script src="../../js/jquery.jCombo.js"></script>
+    <script src="../../js/nvt.js"></script>
+    <script src="../../js/jquery.funciones.js"></script>
+    <script src="../../js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
+    <script src="../../js/jquery.validationEngine.js" type="text/javascript"></script>
+    <script src = "../../js/alertify.js"></script>
+    <script src="js/registrarDatosEmpresa.js"></script>
+
     </body>
 </html>

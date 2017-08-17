@@ -7,7 +7,7 @@
  */
 @session_start();
 date_default_timezone_set('America/Bogota');
-ini_set("display_errors", '1');
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 include_once '../../rsc/DBManejador.php';
 include_once '../../rsc/session.php';
 require_once '../../util/class.upload.php';
@@ -26,10 +26,13 @@ if (!isset($_REQUEST['accion'])) {
 }
 $accion = $_REQUEST['accion'];
 switch ($accion) {
-    case 'listar': Listar($conn); break;
-	case 'guardar': Guardar($conn); break;
-    case 'actualizar': Actualizar($conn); break;
-    
+    case 'listar':Listar($conn);
+        break;
+    case 'guardar':Guardar($conn);
+        break;
+    case 'actualizar':Actualizar($conn);
+        break;
+
 }
 
 function Listar($conn)
@@ -62,20 +65,20 @@ function Actualizar($conn)
     $v14        = strtoupper($_REQUEST['repre']);
 
     if (isset($_FILES['logo'])) {
-        $a		= $_FILES['logo']['name'];
-		$d		= $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR."Empresas".DIRECTORY_SEPARATOR.$v3.DIRECTORY_SEPARATOR."logo".DIRECTORY_SEPARATOR;	
-		$e		= array("gif","jpg","png");
-		$t		= $_FILES['logo']['size'];
-		$tmp	= $_FILES['logo']['tmp_name'];
-		$Archivo = new Upload($a,$d,$e,$t,$tmp);	
-		if( $Archivo->upLoadFile() ){
-			$v6 = $a;
-			//chmod($d.$a, 0755);
-		}else{
-			//mensaje
-		}
+        $a       = rand(1, 3000) . $_FILES['logo']['name'];
+        $d       = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "Empresas" . DIRECTORY_SEPARATOR . $v3 . DIRECTORY_SEPARATOR . "logo" . DIRECTORY_SEPARATOR;
+        $e       = array("gif", "jpg", "png");
+        $t       = $_FILES['logo']['size'];
+        $tmp     = $_FILES['logo']['tmp_name'];
+        $Archivo = new Upload($a, $d, $e, $t, $tmp);
+        if ($Archivo->upLoadFile()) {
+            $v6 = $a;
+            //chmod($d.$a, 0755);
+        } else {
+            //mensaje
+        }
     }
-	$conn->begin();
+    $conn->begin();
     $tabla  = "gen_empresas";
     $campos = "id_tipo_documento=:v2, numero_documento=:v3, razon_social=:v4, id_actividad_economica=:v5, url_logo=:v6, telefono=:v7, "
         . "email=:v8, direccion=:v9, cod_dpto=:v10, co_municipio=:v11, numero_sucursales=:v12, digito=:v13, nom_represente=:v14";
@@ -91,14 +94,29 @@ function Actualizar($conn)
         $condicion = "id_empresa=:v1";
         $valores   = array(':v1' => $id_empresa, ":v2" => 1, ":v3" => 0);
         $rs        = $conn->actualizar($tabla, $columnas, $valores, $condicion);
-    } 
+    }
+
+    $columnas  = "id_empresa";
+    $tabla     = "gen_sucursales";
+    $condicion = "id_empresa = :v1";
+    $valores   = array(":v1" => $id_empresa);
+    $rs        = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
+
+    if (empty($rs)) {
+        $tabla    = "gen_sucursales";
+        $columnas = "id_empresa, id_tipo_documento, numero_documento, prefijo, razon_social, url_logo, telefono, email, direccion, cod_dpto, co_municipio, estado";
+        $campos   = ":v1, :v2, :v3, :v4, :v5, :v6, :v7, :v8, :v9, :v10, :v11, :v12";
+        $valores  = array(":v1" => $id_empresa, ":v2" => $v2, ":v3" => $v3, ":v4" => "SST", ":v5" => $v4, ":v6" => $v6, ":v7" => $v7, ":v8" => $v8, ":v9" => $v9, ":v10" => $v10, ":v11" => $v11, ":v12" => 1);
+        $rs       = $conn->agregar($tabla, $columnas, $campos, $valores);
+    }
+
     $e = $conn->error;
-	if(is_array($e)){
-		echo json_encode($e[2]);
-		$conn->rollback();
-		exit();
-	} 
-	$conn->commit();
-	echo 1;
-    
+    if (is_array($e)) {
+        echo json_encode($e[2]);
+        $conn->rollback();
+        exit();
+    }
+    $conn->commit();
+    echo 1;
+
 }

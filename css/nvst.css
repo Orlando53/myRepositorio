@@ -37,16 +37,24 @@ body{
 	margin-right:1.2%;
 	display:inline-block;
 }
+.form-group.fourth{
+	width:25%;
+	margin-right:0.5%;
+	display:inline-block;
+}
 .form-group.two-third{
 	width:63%;
 	margin-right: 2%;
 	display:inline-block;
 }
-.form-group:not(.inline) input, .form-group:not(.inline) label, .form-group:not(.inline) select, .form-group:not(.inline) textarea{
+.form-group:not(.inline) input, .form-group:not(.inline) select, .form-group:not(.inline) textarea{
 	width:100%;
 	display:block;
 	text-align: left;
 }
+ .form-group:not(.inline) label{
+ 	width:auto;
+ }
 .form-group.inline input, .form-group.inline label, .form-group.inline select{
 	width:auto;
 	display:inline-block;
@@ -90,20 +98,33 @@ input[type='number']::-webkit-inner-spin-button {
 	width:63%;
 	margin-right: 2%;
 }
-.nvt-input-group:not(.add) input, .nvt-input-group:not(.add) label, .nvt-input-group:not(.add) select, .nvt-input-group:not(.add) textarea{
+.nvt-input-group.fourth, .nvt-button-group.fourth{
+	width:24%;
+	margin-right:0.5%;
+}
+.nvt-input-group:not(.add) input, .nvt-input-group:not(.add) select, .nvt-input-group:not(.add) textarea{
 	margin: 0;
 	width:100%;
 	display:block;
 	text-align: left;
 }
-.nvt-input-group.add input:not([type='button']), .nvt-input-group.add label, .nvt-input-group.add select, .nvt-input-group.add textarea{
+.nvt-input-group:not(.add) label{
+	width:auto;
+	display: inline-block;
+}
+.nvt-input-group.add input:not([type='button']), .nvt-input-group.add select, .nvt-input-group.add textarea{
 	margin: 0;
 	width:90%;
 	display:block;
 	text-align: left;
 }
+.nvt-input-group.add label{
+	width:auto;
+	display: inline-block;
+}
 .nvt-input-group.add input[type='button']{
 	width:auto;
+	display: inline-block;
 }
 .nvt-input-group textarea{
 	resize:none;
@@ -125,6 +146,13 @@ input[type='number']::-webkit-inner-spin-button {
 	border:0;
 	transition: border-bottom 400ms;
 	border-bottom:2px solid black;
+}
+input[type="color"]{
+	height:25px;
+}
+.charcount{
+	display: inline-block;
+	float:right;
 }
 .multi.btn{
 	box-shadow:none;
@@ -264,6 +292,9 @@ input:focus ~ .bar:after {
 	text-decoration: none;
 }
 /*******************Radio********************************/
+.radio-input{
+	display: inline-block;
+}
 .radio-input input{
 	transform:scale(2);
 	margin:10px;

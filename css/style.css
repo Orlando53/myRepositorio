@@ -357,9 +357,16 @@
 .modal-dialog {
     width: 70%;
 }
-.logoClear{
+.logoClear, .hv{
 	width:auto!important;
 	display:inline-block!important;
+}
+.hv{
+	margin:0 5px!important;
+}
+.hv i{
+	margin:0;
+	font-size: 12px;
 }
 .dir-selector{
 	height:15px;
@@ -384,7 +391,7 @@
 .control-panel{
 	background: url(../media/image/phva.png) no-repeat center;
 }
-.control-panel div{
+.control-panel div:not(.jumboson){
 	height:50%;
 }
 .control-panel div.col-xs-6:nth-child(2n){
@@ -396,15 +403,17 @@
 .panel-list{
 	list-style: none;
 }
-.panel-list li{
+.panel-list li:not(.item){
 	width:100%;
 	margin:20px 0;
 	background-color: #03a33c;
 	text-align: center;
 	padding: 5px;
 	transform: skew(-21deg);
+	position: relative;
+	z-index: 10;
 }
-.panel-list li:hover{
+.panel-list li:not(.item):hover{
 	background-color: #046928;
 	transition: ease-in-out 300ms;
 }
@@ -415,6 +424,57 @@
 .panel-list li a span{
 	display: inline-block;
 	transform: skew(21deg);
+}
+.dropdown-content{
+	display:none;
+	position:absolute;
+	left:85%;
+	margin-top: -54px;
+	z-index: 100;
+	opacity:0;
+}
+.dropdown-content ul{
+	list-style: none;
+	text-align: center;
+	background-color: #03a33c;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	min-width: 150px;
+	max-width: 230px;
+}
+.dropdown-content ul li.item{
+	padding:5px 0;
+	background-color: #03a33c;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	min-width: 150px;
+	max-width: 230px;
+}
+.dropdown-content ul li.item:hover{
+	background-color: #046928;
+	transition: ease-in 300ms;
+}
+.dropdown-content ul li.item a{
+	text-decoration: none;
+}
+
+.jumbo{
+	background-color: transparent;
+	padding-top: 25px;
+}
+#tabla-diagnostico{
+	text-align: center;
+	width:170%;
+	max-width: 200%;
+}
+#tabla-diagnostico tr td{
+	vertical-align:middle;
+	width:auto;
+}
+#tablaPermisos, #tablaPermisos tr, #tablaPermisos tr td{
+	text-align: center;
+	border:0;
+}
+#tablaPermisos tr td:first-child{
+	text-align: left;
 }
 /*********************+Media queries!!!!!!!!********************/
 @media (max-width: 1360px){

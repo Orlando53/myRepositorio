@@ -13,36 +13,43 @@ if (!session::existsAttribute("LOGEADO")) {
     header("location: index.php");
 }
 include_once '../../rsc/DBManejador.php';
-$conn = new DBManejador();
+require_once '../../rsc/constantes.php';
+include_once '../../util/email/envio.php';
+
+$conn  = new DBManejador();
+$envio = new envio();
+
 if ($conn == null) {
     echo -1;
     exit();
 }
 
+//funciones que se ejecutan segun el parametro "accion"
 switch ($_REQUEST['accion']) {
     case 'insert':
-        guardarUsuario();
+        guardarUsuario($conn, $envio);
         break;
     case 'activarUsuario':
-        activarUsuario();
+        activarUsuario($conn);
         break;
     case 'consultarRegistro':
-        consultarRegistro();
+        consultarRegistro($conn);
         break;
     case 'eliminarRegistro':
-        eliminarRegistro();
+        eliminarRegistro($conn);
         break;
     case 'update':
-        actualizarRegistro();
+        actualizarRegistro($conn);
         break;
     case 'reenviarCorreo':
-        reenviarCorreo();
+        reenviarCorreo($conn, $envio);
         break;
     default:
         # code...
         break;
 }
 
+//guarda los parametros recigidos por REQUEST en un array
 function parametros()
 {
     $values = array(
@@ -64,6 +71,7 @@ function parametros()
     return $values;
 }
 
+// genera una contraseña aleatoria de 10 caracteres
 function generaPass()
 {
     //Se define una cadena de caractares. Te recomiendo que uses esta.
@@ -87,6 +95,7 @@ function generaPass()
     return $pass;
 }
 
+//consulta y retorna el numero de documento de la empresa segun el id de la misma que se recibe como parametro
 function consultarDocumentoEmpresa($id_empresa)
 {
 
@@ -96,19 +105,19 @@ function consultarDocumentoEmpresa($id_empresa)
     $condicion = "id_empresa=:v1";
     $valores   = array(":v1" => $id_empresa);
     $rs        = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
+    // si ha retornado un valor
     if ($rs) {
         foreach ($rs as $row) {
             return $row['numero_documento'];
         }
     } else {
-        echo 0;
-        exit();
+        return 0; //error al consultar
     }
 }
 
-function guardarUsuario()
+// guarda los datos del usuario
+function guardarUsuario($conn, $envio)
 {
-    $conn       = new DBManejador();
     $id_empresa = session::getAttribute('IDEMPRESA');
     $values     = parametros();
     $conexion   = $conn->getConexion();
@@ -120,12 +129,13 @@ function guardarUsuario()
         $condicion = "usuario=:v1";
         $valores   = array(":v1" => $values['correoElectronico']);
         $rs        = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
+        // si el correo existe
         if ($rs) {
-            //el correo electronico ya existe
+            // sale del try catch
             throw new Exception('El correo ya existe');
         }
     } catch (Exception $ex) {
-        echo -5;
+        echo -5; // el correo ingresado ya existe
         exit();
     }
 
@@ -146,41 +156,60 @@ function guardarUsuario()
         $query->execute($valores);
         $idPersona = $conexion->lastInsertId();
 
-        // se registran datos  laborales de la persona
-        $destino             = "../../../Empresas/" . consultarDocumentoEmpresa($id_empresa) . "/imagenes";
-        $foto_predeterminada = "../../media/image/placeholderPhoto.png";
+        $documento_empresa = consultarDocumentoEmpresa($id_empresa);
+        if ($documento_empresa == 0) {
+            // sale del try catch
+            throw new Exception('Error al consultar empresa');
+        }
+
+        // se guarada la foto
+        $destino   = "../../../Empresas/" . $documento_empresa . "/imagenes/";
+        $ruta_foto = "";
         if (isset($_FILES['foto']['name'])) {
-            $nombre_foto = $_FILES['foto']['name'];
+            $nombre_foto = rand(1, 3000) . $_FILES['foto']['name'];
             $tipo_foto   = $_FILES['foto']['type'];
             $tamano_foto = $_FILES['foto']['size'];
             $tmp_foto    = $_FILES['foto']['tmp_name'];
-            $ruta_foto   = $destino . '/' . rand(1, 1000) . $nombre_foto;
-            move_uploaded_file($tmp_foto, $ruta_foto);
-        } else {
-            $ruta_foto = $foto_predeterminada;
+            $ruta        = $destino . $nombre_foto;
+            // si se mueve el archivo
+            if (move_uploaded_file($tmp_foto, $ruta)) {
+                $ruta_foto = $nombre_foto;
+            } else {
+                // sale del try catch
+                throw new Exception('Error al subir archivo');
+            }
         }
-        $destino = "../../../Empresas/" . consultarDocumentoEmpresa($id_empresa) . "/firmas";
+        // se guarda la firma
+        $destino    = "../../../Empresas/" . $documento_empresa . "/firmas/";
+        $ruta_firma = "";
         if (isset($_FILES['firma']['name'])) {
-            $nombre_firma = $_FILES['firma']['name'];
+            $nombre_firma = rand(1, 3000) . $_FILES['firma']['name'];
             $tipo_firma   = $_FILES['firma']['type'];
             $tamano_firma = $_FILES['firma']['size'];
             $tmp_firma    = $_FILES['firma']['tmp_name'];
-            $ruta_firma   = $destino . '/' . rand(1, 1000) . $nombre_firma;
-            move_uploaded_file($tmp_firma, $ruta_firma);
-        } else {
-            $ruta_firma = $foto_predeterminada;
+            $ruta         = $destino . $nombre_firma;
+            // si se mueve el archivo
+            if (move_uploaded_file($tmp_firma, $ruta)) {
+                $ruta_firma = $nombre_firma;
+            } else {
+                // sale del try catch
+                throw new Exception('Error al subir archivo');
+            }
         }
 
+        // id del jefe inmediato
         $jefe = 0;
         if ($values['jefeInmediato'] != "") {
             $jefe = $values['jefeInmediato'];
         }
 
+        // id de la sucursal
         $sucursal = 0;
         if ($values['sucursal'] != "") {
             $sucursal = $values['sucursal'];
         }
 
+        // registra los datos laborales de la persona
         $tabla    = "ges_empleados";
         $columnas = "id_empresa, id_persona, id_persona_jefe, url_foto, url_firma, id_cargo, id_area_trabajo, estado_empleado, id_sucursal";
         $campos   = ":v1, :v2, :v3, :v4, :v5, :v6, :v7, :v8, :v9";
@@ -218,8 +247,8 @@ function guardarUsuario()
                 <tr><td style="width:10%"></td>
                     <td style="padding:15px 0">
                         <p> Señor(a) ' . $nombre . ' , usted ha sido registrado en SSTplus y se le ha creado una cuenta para que ingrese.</p>
-                        <p><strong>Usuario= </strong>' . $values['correoElectronico'] . '</p>
-                        <p><strong>Contraseña= </strong>' . $password . '</p>
+                        <p><strong>Usuario: </strong>' . $values['correoElectronico'] . '</p>
+                        <p><strong>Contraseña: </strong>' . $password . '</p>
                         <p>Para comenzar a usar su cuenta de usuario, haga clic en el siguiente
                         enlace:<br>
                         </p>
@@ -235,120 +264,100 @@ function guardarUsuario()
         </body>
         </html>';
 
-        // Consignar los cambios
-        $conexion->commit();
-        $result = enviarCorreoUsuario($values['correoElectronico'], $nombre, $mensaje, $asunto);
-        if (!empty($result)) {
-            echo $result;
-        } else {
-            echo 1;
+        $result = $envio->enviarCorreo($values['correoElectronico'], $nombre, $mensaje, $asunto);
+        // si existe un valor retornado
+        if ($result != 1) {
+            // no se envio el correo
+            throw new Exception($result);
         }
+
+        // se guardan los cambios
+        $conexion->commit();
+        echo 1;
     } catch (Exception $e) {
-        echo 0; //no se guardaron los datos
+        echo 0;
         // Reconocer el error y revertir los cambios
         $conexion->rollBack();
     }
 
 }
-function enviarCorreoUsuario($email, $nombre, $mensaje, $asunto)
+
+function reenviarCorreo($conn, $envio)
 {
-    require '../../util/email/PHPMailerAutoload.php';
-    require_once '../../rsc/constantes.php';
-    $mail = new PHPMailer;
-
-    //$mail->SMTPDebug = 4;                             // Habilitar el debug
-
-    $mail->isSMTP(); // Usar SMTP
-    $mail->Host       = HOST; // Especificar el servidor SMTP
-    $mail->SMTPAuth   = true; // Habilitar autenticacion SMTP
-    $mail->Username   = USEREMAIL; // Nombre de usuario SMTP donde debe ir la cuenta de correo a utilizar para el envio
-    $mail->Password   = PASSEMAIL; // Clave SMTP donde debe ir la clave de la cuenta de correo a utilizar para el envio
-    $mail->SMTPSecure = 'tls'; // Habilitar encriptacion
-    $mail->Port       = 587; // Puerto SMTP
-
-    $mail->setFrom('gerencia@nuevastic.com', 'Equipo soporte'); //Direccion de correo remitente
-    $mail->addAddress($email, $nombre); // Agregar el destinatario
-    $mail->isHTML(true); // Habilitar contenido HTML
-    $mail->CharSet = 'UTF-8';
-    $mail->Subject = $asunto;
-    $mail->Body    = "<b>" . $mensaje . "</b>";
-
-    if (!$mail->send()) {
-        return -2;
-    }
-}
-
-function reenviarCorreo()
-{
-    $conn       = new DBManejador();
-    $id_persona = $_REQUEST['id_persona'];
+    $id_persona = $_REQUEST['ids_persona'];
     $id_empresa = session::getAttribute('IDEMPRESA');
-    $password   = generaPass();
-    $sha1Pass   = sha1($password);
-    $columnas   = "p.email, u.id_usuario, u.usuario, u.contrasena, p.primer_nombre, p.segundo_nombre, p.primer_apellido, p.segundo_apellido";
-    $tabla      = "seg_usuarios u INNER JOIN gen_personas p ON u.id_persona=p.id_persona";
-    $condicion  = "u.id_persona = :v1 AND u.id_empresa=:v2";
-    $valores    = array(":v1" => $id_persona, ":v2" => $id_empresa);
-    $rs         = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
 
-    if (empty($rs)) {
-        echo -5;
-    }
+    foreach ($id_persona as $id) {
+        $conn->begin();
+        $rs        = "";
+        $password  = generaPass();
+        $sha1Pass  = sha1($password);
+        $columnas  = "p.email, u.id_usuario, u.usuario, u.contrasena, p.primer_nombre, p.segundo_nombre, p.primer_apellido, p.segundo_apellido";
+        $tabla     = "seg_usuarios u INNER JOIN gen_personas p ON u.id_persona=p.id_persona";
+        $condicion = "u.id_persona = :v1 AND u.id_empresa=:v2";
+        $valores   = array(":v1" => $id, ":v2" => $id_empresa);
+        $rs        = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
 
-    // Se envia el correo electronico con el usuario y password
-    $rutaActivaUsuario = $_SERVER['SERVER_NAME'] . "/sstplus/main/datosBasicos/datosUsuario.php?accion=activarUsuario&token=" . $sha1Pass . "&id=" . $rs[0]['id_usuario'];
-    $nombre            = $rs[0]['primer_nombre'] . ' ' . $rs[0]['segundo_nombre'] . ' ' . $rs[0]['primer_apellido'] . ' ' . $rs[0]['segundo_apellido'];
-    $asunto            = "No ha activado su cuenta de usuario";
-    $mensaje           = '<!DOCTYPE html>
-        <html>
-        <head>
-        <meta content="text/html; charset=utf-8">
-        </head>
-        <body style="background-color: #ededed;font-family:Helvetica;">
-            <table style="width:100%;vertical-align: middle;">
-                <tr><td colspan="3" style="height:75px;text-align: center;background-color: #ffffff;border-bottom: 3px solid #ddd;"><img src="http://i.imgur.com/0lrt35i.png" style="height:75px;;padding:5px;"></td></tr>
-                <tr><td style="width:10%"></td>
-                    <td style="padding:15px 0">
-                        <p> Señor(a) ' . $nombre . ' , usted ha sido registrado en SSTplus y se le ha creado una cuenta para que ingrese.</p>
-                        <p><strong>Usuario= </strong>' . $rs[0]['email'] . '</p>
-                        <p><strong>Contraseña= </strong>' . $password . '</p>
-                        <p>Para comenzar a usar su cuenta de usuario, haga clic en el siguiente
-                        enlace:<br>
-                        </p>
-                        <p>
-                        <a href="' . $rutaActivaUsuario . '"> Activar usuario SSTplus</a>
-                        </p>
+        if ($rs) {
 
-                    </td>
-                    <td style="width:10%"></td>
-                </tr>
-                <tr><td colspan="3" style="height:15px;text-align: left;background-color: #4dc311;"><p style="padding:0 15px">Centro de Desarrollo de Nuevas Tecnologias -  <a href="http://nuevastic.com" target="_blank">NuevasTIC</a></p></td></tr>
-            </table>
-        </body>
-        </html>';
-    $tabla     = 'seg_usuarios';
-    $campos    = 'contrasena=:v1';
-    $valores   = array(':v1' => $sha1Pass, ':v2' => $id_persona, ':v3' => $id_empresa);
-    $condicion = "id_persona = :v2 AND id_empresa=:v3";
-    $rs        = $conn->actualizar($tabla, $campos, $valores, $condicion);
-    if ($rs) {
-        $result = enviarCorreoUsuario($rs[0]['email'], $nombre, $mensaje, $asunto);
-        if (!empty($result)) {
-            echo $result;
-            exit();
-        } else {
-            echo 0;
+            // Se envia el correo electronico con el usuario y password
+            $rutaActivaUsuario = $_SERVER['SERVER_NAME'] . "/sstplus/main/datosBasicos/datosUsuario.php?accion=activarUsuario&token=" . $sha1Pass . "&id=" . $rs[0]['id_usuario'];
+            $nombre            = $rs[0]['primer_nombre'] . ' ' . $rs[0]['segundo_nombre'] . ' ' . $rs[0]['primer_apellido'] . ' ' . $rs[0]['segundo_apellido'];
+            $asunto            = "No ha activado su cuenta de usuario";
+            $mensaje           = '<!DOCTYPE html>
+            <html>
+            <head>
+            <meta content="text/html; charset=utf-8">
+            </head>
+            <body style="background-color: #ededed;font-family:Helvetica;">
+                <table style="width:100%;vertical-align: middle;">
+                    <tr><td colspan="3" style="height:75px;text-align: center;background-color: #ffffff;border-bottom: 3px solid #ddd;"><img src="http://i.imgur.com/0lrt35i.png" style="height:75px;;padding:5px;"></td></tr>
+                    <tr><td style="width:10%"></td>
+                        <td style="padding:15px 0">
+                            <p> Señor(a) ' . $nombre . ' , usted ha sido registrado en SSTplus y se le ha creado una cuenta para que ingrese.</p>
+                            <p><strong>Usuario: </strong>' . $rs[0]['email'] . '</p>
+                            <p><strong>Contraseña: </strong>' . $password . '</p>
+                            <p>Para comenzar a usar su cuenta de usuario, haga clic en el siguiente
+                            enlace:<br>
+                            </p>
+                            <p>
+                            <a href="' . $rutaActivaUsuario . '"> Activar usuario SSTplus</a>
+                            </p>
+
+                        </td>
+                        <td style="width:10%"></td>
+                    </tr>
+                    <tr><td colspan="3" style="height:15px;text-align: left;background-color: #4dc311;"><p style="padding:0 15px">Centro de Desarrollo de Nuevas Tecnologias -  <a href="http://nuevastic.com" target="_blank">NuevasTIC</a></p></td></tr>
+                </table>
+            </body>
+            </html>';
+            $tabla     = 'seg_usuarios';
+            $campos    = 'contrasena=:v1';
+            $valores   = array(':v1' => $sha1Pass, ':v2' => $id, ':v3' => $id_empresa);
+            $condicion = "id_persona = :v2 AND id_empresa=:v3";
+            $rs2       = $conn->actualizar($tabla, $campos, $valores, $condicion);
+            if ($rs2) {
+                // si existe un valor retornado
+                if ($envio->enviarCorreo($rs[0]['email'], $nombre, $mensaje, $asunto) != 1) {
+                    // no se envio el correo
+                    echo 0;
+                    $conn->rollback();
+                    exit();
+                } else {
+                    $conn->commit();
+                }
+            } else {
+                echo 0;
+                exit();
+            }
+
         }
-        echo 1;
-        exit();
-    } else {
-        echo 0;
     }
+    echo 1;
 }
 
-function activarUsuario()
+function activarUsuario($conn)
 {
-    $conn     = new DBManejador();
     $password = $_REQUEST['token'];
     $id       = $_REQUEST['id'];
 
@@ -365,14 +374,12 @@ function activarUsuario()
     }
 }
 
-function consultarRegistro()
+function consultarRegistro($conn)
 {
-    $conn = new DBManejador();
-
     $id_persona = $_REQUEST['id_persona'];
-    $columnas   = "p.*, e.*, a.*, c.*, p.fecha_sistema AS fecha_persona";
+    $columnas   = "emp.numero_documento AS doc_empresa, p.*, e.*, a.*, c.*, p.fecha_sistema AS fecha_persona";
     $tabla      = "gen_personas AS p INNER JOIN ges_empleados AS e ON e.id_persona=p.id_persona INNER JOIN gen_areas_trabajo AS a "
-        . "ON e.id_area_trabajo=a.id_area_trabajo INNER JOIN gen_cargos AS c ON e.id_cargo=c.id_cargo";
+        . "ON e.id_area_trabajo=a.id_area_trabajo INNER JOIN gen_cargos AS c ON e.id_cargo=c.id_cargo INNER JOIN gen_empresas AS emp ON emp.id_empresa=e.id_empresa";
     $condicion = "p.id_persona = :v1";
     $valores   = array(":v1" => $id_persona);
     $rs        = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
@@ -381,9 +388,8 @@ function consultarRegistro()
 
 }
 
-function actualizarRegistro()
+function actualizarRegistro($conn)
 {
-    $conn       = new DBManejador();
     $values     = parametros();
     $id_empresa = session::getAttribute('IDEMPRESA');
     $conexion   = $conn->getConexion();
@@ -423,26 +429,57 @@ function actualizarRegistro()
         $query = $conexion->prepare("UPDATE " . $tabla . " SET " . $campos . " WHERE " . $condicion);
         $query->execute($valores);
 
+        // consulta imagenes
+        $columnas  = "url_foto, url_firma";
+        $tabla     = "ges_empleados";
+        $condicion = "id_persona = :v1";
+        $valores   = array(":v1" => $id_persona);
+        $rs        = $conn->consultarCondicion($columnas, $tabla, $condicion, $valores);
+        $carpeta   = consultarDocumentoEmpresa($id_empresa);
         // se registran datos  laborales de la persona
-        $destino = "../../../Empresas/" . consultarDocumentoEmpresa($id_empresa) . "/imagenes";
+        $destino = "../../../Empresas/" . $carpeta . "/imagenes/";
         if (isset($_FILES['foto']['name'])) {
-            $nombre_foto = $_FILES['foto']['name'];
+            $nombre_foto = rand(1, 1000) . $_FILES['foto']['name'];
             $tipo_foto   = $_FILES['foto']['type'];
             $tamano_foto = $_FILES['foto']['size'];
             $tmp_foto    = $_FILES['foto']['tmp_name'];
-            $ruta_foto   = $destino . '/' . rand(1, 1000) . $nombre_foto;
-            move_uploaded_file($tmp_foto, $ruta_foto);
+            $ruta_foto   = $nombre_foto;
+            $ruta        = $destino . $nombre_foto;
+            if (move_uploaded_file($tmp_foto, $ruta)) {
+
+                if ($rs) {
+                    if (!empty($rs[0]['url_foto'])) {
+                        // elimina foto
+                        unlink($destino . $rs[0]['url_foto']);
+                    }
+                }
+            } else {
+                //error al consultar
+                throw new Exception('Error al subir archivo');
+            }
         } else {
             $ruta_foto = $values['img_foto'];
         }
-        $destino = "../../../Empresas/" . consultarDocumentoEmpresa($id_empresa) . "/firmas";
+        $destino = "../../../Empresas/" . consultarDocumentoEmpresa($id_empresa) . "/firmas/";
         if (isset($_FILES['firma']['name'])) {
-            $nombre_firma = $_FILES['firma']['name'];
+            $nombre_firma = rand(1, 3000) . $_FILES['firma']['name'];
             $tipo_firma   = $_FILES['firma']['type'];
             $tamano_firma = $_FILES['firma']['size'];
             $tmp_firma    = $_FILES['firma']['tmp_name'];
-            $ruta_firma   = $destino . '/' . rand(1, 1000) . $nombre_firma;
-            move_uploaded_file($tmp_firma, $ruta_firma);
+            $ruta_firma   = $nombre_firma;
+            $ruta         = $destino . $nombre_firma;
+            if (move_uploaded_file($tmp_firma, $ruta)) {
+
+                if ($rs) {
+                    if (!empty($rs[0]['url_firma'])) {
+                        // elimina foto
+                        unlink($destino . $rs[0]['url_firma']);
+                    }
+                }
+            } else {
+                //error al consultar
+                throw new Exception('Error al subir archivo');
+            }
         } else {
             $ruta_firma = $values['img_firma'];
         }
@@ -478,9 +515,8 @@ function actualizarRegistro()
     }
 }
 
-function eliminarRegistro()
+function eliminarRegistro($conn)
 {
-    $conn     = new DBManejador();
     $conexion = $conn->getConexion();
 
     $id = $_REQUEST['id_persona'];

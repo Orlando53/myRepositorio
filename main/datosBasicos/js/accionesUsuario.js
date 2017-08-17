@@ -1,3 +1,8 @@
+/*
+ * @autor: Juan Diego Ninco Collazos
+ * @fecha: 2017-18-07
+ * @objetivo: CRUD usuarios
+ */
 $(document).ready(function() {
     $('#txtNombre1').focus();
     $("#selTipoDocumento").jCombo("../../util/definiciones.php?id=1");
@@ -6,8 +11,13 @@ $(document).ready(function() {
     $("#selArea").jCombo("../../util/areasTrabajo.php?estado=1");
     $("#selRol").jCombo("../../util/roles.php");
     $("#selSede").jCombo("../../util/sedes.php");
-    $('.selectpicker').selectpicker('render');
-    $('.selectpicker').selectpicker('refresh');
+    // alert($('#selJefe').length);
+    // if ($('#selJefe').length <= 1) {
+    //     $('#selJefe').prop('disabled', true);
+    // }
+    // if ($('#selSede').length <= 1) {
+    //     $('#selSede').prop('disabled', true);
+    // }
 });
 $('#fileFoto').change(function(event) {
     var tmppath = URL.createObjectURL(event.target.files[0]);
@@ -18,7 +28,7 @@ $('#fileFirma').change(function(event) {
     $('#firma').attr('src', tmppath);
 });
 $('#btnGuardarUsuario').click(function() {
-    if ($("form.datosEmpresa").validationEngine('validate')) {
+    if ($("#frmUsuario").validationEngine('validate')) {
         var inputFoto = document.getElementById("fileFoto");
         var inputFirma = document.getElementById("fileFirma");
         data = new FormData();
@@ -35,8 +45,8 @@ $('#btnGuardarUsuario').click(function() {
         data.append('area', $('#selArea').val());
         data.append('jefeInmediato', $('#selJefe').val());
         data.append('sucursal', $('#selSede').val());
-        data.append('img_foto', $('#foto').attr('src'));
-        data.append('img_firma', $('#firma').attr('src'));
+        data.append('img_foto', $('#hid_foto').val());
+        data.append('img_firma', $('#hid_firma').val());
         data.append('accion', accion_usuario);
         if (accion_usuario == 'update') {
             data.append('id_persona', $("input:checked").attr("id"));
@@ -54,7 +64,7 @@ $('#btnGuardarUsuario').click(function() {
             contentType: false,
             dataType: "json",
             error: function(objeto, quepaso, otroobj) {
-                alertify.alert('Error! Nol se pudo realizar petición: ' + otroobj);
+                alertify.alert('Error! No se pudo realizar petición: ' + otroobj);
             },
             global: true,
             ifModified: false,
@@ -69,15 +79,9 @@ $('#btnGuardarUsuario').click(function() {
                         break;
                     case 1:
                         $('#insertarModal').modal('hide');
-                        alertify.alert('Bien! Datos guardados correctamente, el usuario registrado debe verificar su correo electrónico en Recibidos o Spam', function() {
+                        alertify.alert('Bien! Datos guardados correctamente, el usuario registrado debe verificar su correo electrónico ', function() {
                             window.location = "usuarios.php";
                         });
-                        break;
-                    case 0:
-                        alertify.alert('Error! No se guardaron los datos, intenta guardarlos nuevamente');
-                        break;
-                    case -2:
-                        alertify.alert('Información! Se guardaron los datos correctamente pero ha fallado el envio de correo electrónico para la activación de la cuenta, verifica el registro');
                         break;
                     case 3:
                         $('#insertarModal').modal('hide');
@@ -85,15 +89,17 @@ $('#btnGuardarUsuario').click(function() {
                             window.location = "usuarios.php";
                         });
                         break;
+                    case 0:
+                        alertify.alert('Error! No se han podido guardar los datos ');
+                        break;
                     case -3:
-                        alertify.alert('Error! No se actualizo del registro, intenta guardarlos nuevamente');
+                        alertify.alert('Error! No se han podido actualizar los datos ');
                         break;
                     case -5:
-                        alertify.alert('Error! El correo electronico ingresado ya se encuentra registrado');
+                        alertify.alert('Error! El correo ingresado ya existe ');
                         break;
                 }
             },
-            timeout: 3000,
             type: "POST"
         });
     } else {

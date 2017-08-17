@@ -11,7 +11,7 @@ ini_set("display_errors", '1');
 
 require_once '../rsc/session.php';
 if (!session::existsAttribute("USUARIO")) {
-    header("location:../../index.php");
+    header("location:../index.php");
 }
 $usuario = session::getAttribute("USUARIO");
 $URL     = "hhtp://" . $_SERVER['HTTP_HOST'] . "/sstplus/";

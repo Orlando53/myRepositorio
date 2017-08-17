@@ -3,11 +3,10 @@
  * @fecha: 2017-27-07
  * @objetivo: Registro Inicial de Empresa
  */
-
 var URL = "";
 URL = URLactual();
-
 $(document).ready(function() {
+    //alertify.alert(window.location.hostname + '/portalweb/index.php');
     $('#direccion').on('focus', function() {
         $("#div-direccion").load('../../util/direccion.php');
         var arr = [];
@@ -30,47 +29,35 @@ $(document).ready(function() {
     })
     $('#btnEnviarDatosEmpresa').on('click', function() {
         if ($("form.datosEmpresa").validationEngine('validate')) {
-            guardar();
-        } 
+            guardar()
+            return false
+        } else {
+            return false
+        }
     });
     $("#tipoIdentificacion").jCombo("../../util/definiciones.php?id=1");
-});
 
-function guardar() {
-	$.ajax({
-		url: "datosInicialesEmpresa.php",
-        async:false,
-        data: $("#datosEmpresa").serialize(),
-        beforeSend: function(objeto){
-        	dialogLoading('show');
-        },
-        complete: function(objeto, exito){
-        	dialogLoading('close');
-            if(exito == "success"){
-            	$( "#tabs" ).tabs( "option", "active", 2 );
+    function guardar() {
+        var url = "datosInicialesEmpresa.php";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#datosEmpresa").serialize(),
+            beforeSend: function() {
+                dialogLoading('show');
+            },
+            complete: function() {
+                dialogLoading('close');
+            },
+            success: function(data) {
+                if (data == 0) {
+                    alertify.alert(data);
+                } else {
+                    alertify.alert("En un nomento nos pondremos en contacto!", function() {
+                        window.open('http://192.168.1.10/portalweb/', "_top");
+                    });
+                }
             }
-        },
-        contentType: "application/x-www-form-urlencoded",
-        dataType: "json",
-        error: function(objeto, quepaso, otroobj){
-            alert("En Registar Empresa, pasó lo siguiente: "+otroobj);
-        },
-        global: true,
-        ifModified: false,
-        processData:true,
-        success: function(data) {
-            if (data == 1) {
-                 alerta("Se envio un correo a su email");
-                 var url = "http://localhost/portalweb/index.php";
-                 window.open(url,"_self");
-             }else{
-             	alert(data);
-             }
-         },
-        timeout: 3000,
-        type: "GET"
-	})
-	
-}
-	
-	
+        });
+    }
+});
