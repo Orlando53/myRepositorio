@@ -27,10 +27,17 @@ if (!isset($_REQUEST['paso'])) {
 $paso_actual    = $_REQUEST['paso']; //paso2
 $paso_siguiente = 'paso' . ((substr($paso_actual, -1)) + 1); //paso3
 $id_empresa     = $_SESSION['IDEMPRESA'];
-
+if($paso_actual == "paso6"){
+    $campos    = '' . $paso_actual . ' = :v1, ' . $paso_siguiente . ' = :v2, estado = :v4';
+    $condicion = "id_empresa = :v3";
+    $valores   = array(":v1" => 1, ":v2" => 0, ":v3" => $id_empresa, ":v4" => 1);
+}else{
+    $campos    = '' . $paso_actual . ' = :v1, ' . $paso_siguiente . ' = :v2';
+    $condicion = "id_empresa = :v3";
+    $valores   = array(":v1" => 1, ":v2" => 0, ":v3" => $id_empresa);
+}
 $tabla     = "gen_control_pro_inicio";
-$campos    = '' . $paso_actual . ' = :v1, ' . $paso_siguiente . ' = :v2';
-$condicion = "id_empresa = :v3";
-$valores   = array(":v1" => 1, ":v2" => 0, ":v3" => $id_empresa);
 
 $rs_act = $conn->actualizar($tabla, $campos, $valores, $condicion);
+
+?>

@@ -36,7 +36,10 @@ if ($v0 == 1) {
 } else {
     $v9 = '0';
 }
-$v10     = '0';
+$v10 = '0';
+$v11 = $_POST['tipoIdentificacionRl'];
+$v12 = $_POST['numeroIdentificacionRl'];
+
 $asunto  = 'Bienvenido a SSTPlus';
 $mensaje = '<!DOCTYPE html>
     <html>
@@ -71,22 +74,39 @@ $campos   = ":v0, :v1, :v2, :v3, :v4, :v5, :v6, :v7, :v8, :v9, :v10, :v11, :v12,
 $valores  = array(
     ":v0" => $v0, ":v1" => $v1, ":v2" => $v2, ":v3" => $v3, ":v4" => $v4, ":v5" => $v5, ":v6" => $v6, ":v7" => $v7, ":v8" => $v8, ":v9" => $v9, ":v10" => $v10, ":v11" => $n1, ":v12" => $n2, ":v13" => $a1, ":v14" => $a2);
 $rs = $conn->agregar($tabla, $columnas, $campos, $valores);
+
 $e = $conn->error;
 if (is_array($e)) {
     echo json_encode($e[2]);
     exit();
 }
 if ($rs) {
-    $email = array();
-    $email[] = $v6;
-    $email[] = $v4;
-    $email[] = $mensaje;
-    $email[] = $asunto;
-    echo json_encode($email);
-}else{
+
+    $tablap    = "gen_personas";
+    $columnasp = "id_tipo_documento, numero_documento, primer_nombre, primer_apellido";
+    $camposp   = ":v15, :v16, :v17, :v18";
+    $valoresp  = array(
+        ":v15" => $v11, ":v16" => $v12, ":v17" => $n1, ":v18" => $a1);
+    $rsp = $conn->agregar($tablap, $columnasp, $camposp, $valoresp);
+    $e   = $conn->error;
+    if (is_array($e)) {
+        echo json_encode($e[2]);
+        exit();
+    }
+    if ($rsp) {
+        $email   = array();
+        $email[] = $v6;
+        $email[] = $v4;
+        $email[] = $mensaje;
+        $email[] = $asunto;
+        echo json_encode($email);
+    } else {
+        echo 0;
+    }
+
+} else {
     echo 0;
 }
 
 //$envio->enviarCorreo($v6, $v4, $mensaje, $asunto);
 // si  no  se envia el correo guardar en el log
-

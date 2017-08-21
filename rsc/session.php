@@ -32,6 +32,17 @@ class session
         }
     }
 
+    public static function valida(){
+    	$ultima = session::getAttribute("ULTIMA");
+		$ahora = date("Y-n-j H:i:s");
+		$tiempo_transcurrido = (strtotime($ahora)-strtotime($ultima));
+		if($tiempo_transcurrido >= 600){
+			session_destroy();
+			return false;
+		}
+    	return true;
+    }
+    
     public static function logout()
     {
         session_start();

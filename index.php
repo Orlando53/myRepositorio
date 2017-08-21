@@ -18,7 +18,13 @@ if ($conn == null) {
 require_once 'rsc/session.php';
 if (!session::existsAttribute("LOGEADO")) {
     header("location: login/index.php");
+}elseif( !session::valida() ){
+	header("location: login/index.php");
+}else{
+	$ahora = date("Y-n-j H:i:s");
+	session::setAttribute("ULTIMA", $ahora);
 }
+
 $flag = session::getAttribute('OPCION');
 $id_empresa  = session::getAttribute("IDEMPRESA");
 $nom_usuario = session::getAttribute('NOMBRE');

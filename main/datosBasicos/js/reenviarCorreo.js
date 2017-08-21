@@ -3,6 +3,10 @@
  * @fecha: 2017-28-07
  * @objetivo: reenviar correos
  */
+
+var ruta = "";
+ruta = URLactual();
+
 $('#btn_terminar').click(function() {
     alertify.confirm("¿Quieres terminar este paso y entrar al menú principal?", function(e) {
         if (e) {
@@ -21,7 +25,8 @@ $('#btn_terminar').click(function() {
                     dialogLoading('close');
                 },
                 success: function(data) {
-                	window.frames.iframe_a.location.href = "../panelControl/index.php";
+                	var URL = ruta + "index.php";
+                	window.open(URL, '_top','status=no');
                 }
             });
         }

@@ -8,6 +8,7 @@ function cargarIframe(){
 	var flag = $("#txtFlag").val();
 	switch (flag) {
 	case '3':url = "main/panelControl/index.php";break;
+	case '4':url = "main/panelControl/index.php";break;
 	case '6':url = "main/datosBasicos/form-preguntas.html";break;
 	case '9':url = "main/index.php";break;
 	default:

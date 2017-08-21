@@ -50,66 +50,89 @@ if (!session::existsAttribute("LOGEADO")) {
 		 				</li>
 		 				<div class="dropdown-content">
 		 					<ul>
-					 			<li class="item"><a href="organizacion/prueba.php" target="iframe_a" class="panel-button">Prueba 1</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 2</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 3</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 4</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 5</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 6</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 7</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 8</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 9</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 0</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Datos Empresa</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Areas de Trabajo</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Cargos</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Grupos Distribuci&oacuten</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Perfiles del Cargo</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Sucursales</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Empleados</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Mapa de Procesos</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Admin de SST</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Encuesta Sociodemogr&aacutefica</a></li>
 					 		</ul>
 		 				</div>
 		 			</div>
 		 			<div class="jumboson">
 		 				<li>
-		 					<a href="#" class="panel-button"><span>Diagnóstico</span></a>
+		 					<a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button"><span>Diagnóstico</span></a>
 		 				</li>
 		 				<div class="dropdown-content">
 		 					<ul>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 1</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 2</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 3</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 4</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Datos Empresa</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Areas de Trabajo</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Cargos</a></li>
+					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Encuesta Sociodemogr&aacutefica</a></li>
 					 		</ul>
-		 				</div>
+		 				</div>	 				
 		 			</div>
 	 				
 	 				<div class="jumboson">
-		 				<li><a href="#" class="panel-button"><span>Documentación</span></a></li>
+		 				<li><a href class="panel-button"><span>Documentación</span></a></li>
 		 				<div class="dropdown-content">
 		 					<ul>
-					 			<li class="item"><a href="#" class="panel-button">Configuración</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Admin Documento</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Admin Formato</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Diligenciar Formato</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Configuración</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Admin Documento</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Admin Formato</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Diligenciar Formato</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Documentos Externos</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Documentos Caducados</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Lista Maestra Documentos</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Tipos de documentos</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Solicitar Documentos</a></li>
+					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Papelera Reciclaje</a></li>
 					 		</ul>
 		 				</div>
 		 			</div>
 		 			
-	 				<li><a href="#" class="panel-button"><span>Política</span></a></li>
+	 				<div class="jumboson">
+		 				<li>
+		 					<a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button"><span>Pol&iacutetica</span></a>
+		 				</li>
+		 				<div class="dropdown-content">
+    		 				<ul>
+    					 		<li class="item"><a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button">Datos Empresa</a></li>
+    					 		<li class="item"><a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button">Areas de Trabajo</a></li>
+    					 		<li class="item"><a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button">Cargos</a></li>
+    					 		<li class="item"><a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button">Encuesta Sociodemogr&aacutefica</a></li>
+    					 	</ul>
+    					 </div>
+		 			</div>
+		 			
 	 			</ul>	 				
  			</div>
  			<div class="col-xs-4" style="height:100%">
  				<ul class="panel-list jumbo">
  					<div class="jumboson">
 		 				<li>
-		 					<a href="#" class="panel-button"><span>Indicadores</span></a>	 					
+		 					<a href="objetivos/noTiene.html" target="iframe_a" class="panel-button"><span>Objetivos/Indicadores</span></a>	 					
 		 				</li>
-		 				<div class="dropdown-content">
-		 					<ul>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 1</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 2</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 3</a></li>
-					 			<li class="item"><a href="#" class="panel-button">Objeto 4</a></li>
-					 		</ul>
-		 				</div>
+		 					 				
 		 			</div>
-	 				<li><a href="#" class="panel-button"><span>Plan Trabajo</span></a></li>
-	 				<li><a href="#" class="panel-button"><span>Objetivos</span></a></li>
-	 				<li><a href="#" class="panel-button"><span>Matriz de Req. Legales</span></a></li>
+		 			<div class="jumboson">
+    	 				<li><a href="#" class="panel-button"><span>Plan Trabajo</span></a></li>
+    	 				<div class="dropdown-content">
+    		 					<ul>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de SST</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de Salud</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de Capacitaci&oacuten</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Plan de Emergencias</a></li>
+    					 		</ul>
+    		 				</div>
+    		 		</div>
+    		 		<div class="jumboson">	 				
+    	 				<li><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button"><span>Matriz de Req. Legales</span></a></li>
+    		 		</div>	
 	 			</ul>
  			</div>
  		</div>
@@ -117,10 +140,24 @@ if (!session::existsAttribute("LOGEADO")) {
  			<img src="../../media/image/H.png" style="position:absolute;bottom:0;left:0;">
  			<div class="col-xs-6 col-xs-offset-1" style="border:0;height:100%">
  				<ul class="panel-list jumbo">
-	 				<li><a href="#" class="panel-button"><span>Gestión de Salud</span></a></li>
-	 				<li><a href="#" class="panel-button"><span>Gestión de Riesgos</span></a></li>
+	 				<div class="jumboson">
+    	 				<li><a href="#" class="panel-button"><span>Gesti&oacuten de Salud</span></a></li>
+    	 				
+    		 		</div>
+	 				<div class="jumboson">
+    	 				<li><a href="#" class="panel-button"><span>Gesti&oacuten de Riesgos</span></a></li>
+    	 				<div class="dropdown-content">
+    		 					<ul>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de SST</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de Salud</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de Capacitaci&oacuten</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Plan de Emergencias</a></li>
+    					 		</ul>
+    		 				</div>
+    		 		</div>
 	 				<li><a href="#" class="panel-button"><span>Emergencias</span></a></li>
 	 				<li><a href="#" class="panel-button"><span>Contratación</span></a></li>
+	 				<li><a href="#" class="panel-button"><span>Actas</span></a></li>
 	 			</ul>
  			</div>
  			<div class="col-xs-1"></div>

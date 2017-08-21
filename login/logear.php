@@ -100,3 +100,7 @@ session::setAttribute("ROL", $rol);
 session::setAttribute("IDPERSONA", $idpersona);
 session::setAttribute("fecha_inicio", $fecha_inicio);
 session::setAttribute("fecha_fin", $fecha_fin);
+$ahora = date("Y-n-j H:i:s");
+session::setAttribute("ULTIMA", $ahora);
+
+

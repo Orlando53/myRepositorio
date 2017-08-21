@@ -202,7 +202,7 @@ if (!session::existsAttribute("LOGEADO")) {
                 </div>
                 <div class="modal-body">
                     <!--Modal Body-->
-                    <video autoplay controls>
+                    <video controls>
                         <source src="../../gen/paso3.mp4" type="video/mp4"/>
                     </video>
                 </div>

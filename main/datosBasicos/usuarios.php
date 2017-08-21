@@ -141,15 +141,15 @@ if (!session::existsAttribute("LOGEADO")) {
                                             </div>
                                             <div class="modal-body">
                                                 <!--Modal Body-->
-                                                <video autoplay controls>
+                                                <video controls>
                                                     <source src="../../gen/paso5.mp4" type="video/mp4"/>
                                                 </video>
                                             </div>
-                                            <div class="modal-footer">
+                             <!--                <div class="modal-footer">
                                                 <button class="nvt-btn nvt-btn-default" data-dismiss="modal" type="button">
                                                     Cerrar
                                                 </button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>

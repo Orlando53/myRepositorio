@@ -44,7 +44,7 @@
                 <div class="col-md-1 col-md-offset-1 goback"><a href="../index.php" class="goback"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
                 <div class="col-md-8 floater">
                     <h2>Datos de la Empresa</h2>
-                    <div class="nvt-input-group two-third">
+                    <div class="nvt-input-group half">
 
                         <?php
 $id_plan = 1;
@@ -90,6 +90,18 @@ echo '<input type="hidden" name="id_plan" id="id_plan" value="' . $id_plan . '">
                     </div>
                     <h4 style="margin-top: 20px;">Representante Legal</h4>
                     <div class="row">
+                    <div class="nvt-input-group half">
+                        <select name="tipoIdentificacionRl" id="tipoIdentificacionRl" class="selectpicker validate[required]" data-live-search="true" >
+                            <option >Selecciona Uno</option>
+                            <option >Nit</option>
+                        </select>
+                        <label for="tipoIdentificacion">Tipo de Identificación</label>
+                    </div>
+                    <div class="nvt-input-group half">
+                        <input type="text" name="numeroIdentificacionRl" id="numeroIdentificacionRl" class="validate[required,custom[integer],min[1]]">
+                        <span class="bar"></span>
+                        <label for="numeroIdentificacion">Numero de Identificación</label>
+                    </div>
                     <div class="nvt-input-group col-md-3">
                         <input type="text" name="txtNombre1" id="txtNombre1" class="validate[required]">
                         <span class="bar"></span>
@@ -110,6 +122,9 @@ echo '<input type="hidden" name="id_plan" id="id_plan" value="' . $id_plan . '">
                         <span class="bar"></span>
                         <label for="txtApellido2">Segundo Apellido</label>
                     </div>
+
+                    <!--  -->
+
                     </div>
                     <br>
                     <button id="btnEnviarDatosEmpresa" class="nvt-btn nvt-btn-primary" >Enviar Datos</button>

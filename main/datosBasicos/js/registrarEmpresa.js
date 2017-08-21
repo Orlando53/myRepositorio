@@ -36,6 +36,7 @@ $(document).ready(function() {
         }
     });
     $("#tipoIdentificacion").jCombo("../../util/definiciones.php?id=1");
+    $("#tipoIdentificacionRl").jCombo("../../util/definiciones.php?id=1");
 
     function guardar() {
         var url = "datosInicialesEmpresa.php";

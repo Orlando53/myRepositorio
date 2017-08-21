@@ -35,12 +35,12 @@ if (!session::existsAttribute("LOGEADO")) {
 </head>
 <body>
 <div class="row">
-            <div class="col-md-1 goback"><a href="../index.php"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
-            <div class="col-md-10 floater">
-                                        <h2>
-                                            Envio de correo electrónico
-                                        </h2>
-                                        <div class="nvt-input-group third">
+<div class="col-md-1 goback"><a href="../index.php"><img src="../../media/icon/back.png"  data-toggle="tooltip" data-placement="bottom" title="Volver"></a></div>
+<div class="col-md-10 floater">
+<h2>
+Envio de correo electrónico
+</h2>
+<div class="nvt-input-group third">
                                             <input id="search" name="Nombre" type="search">
                                                 <span class="bar">
                                                 </span>

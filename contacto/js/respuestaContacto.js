@@ -334,6 +334,7 @@ function traerMensajes(textoBuscar, estado, inicio) {
             }
             $("#trHead").html(trHead);
             $("#trBody").html(trBody);
+            $("#tblLisMens").dataTable();
         }
     });
 }

@@ -148,9 +148,9 @@ if (!session::existsAttribute("LOGEADO")) {
 		        <h4 class="modal-title" id="myModalLabel">Ayuda</h4>
 		      </div>
 		      <div class="modal-body">
-		      	<!-- <video autoplay controls>
+		      	<video controls>
 					<source src="../../gen/paso2.mp4" type="video/mp4"/>
-				</video> -->
+				</video>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Cerrar</button>

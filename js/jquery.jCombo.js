@@ -9,7 +9,10 @@
             selected_value: "0",
             initial_text: "Seleccione...",
             method: "GET",
-            dataType: "jsonp"
+            dataType: "jsonp",
+	    success: function(){},
+	    beforeSend: function(obj){},
+	    error: function(objeto, quepaso, otroobj){}
         };
         var opt = $.extend(defaults, opt);
         var obj = $(this);
@@ -26,7 +29,10 @@
                     initext: opt.initial_text,
                     inival: opt.selected_value,
                     method: opt.method,
-                    dataType: opt.dataType
+                    dataType: opt.dataType,
+	            success: opt.success,
+		    beforeSend: opt.beforeSend,
+		    error: opt.error
                 });
             });
         } else __render(obj, {
@@ -36,7 +42,10 @@
             initext: opt.initial_text,
             inival: opt.selected_value,
             method: opt.method,
-            dataType: opt.dataType
+            dataType: opt.dataType,
+	    success: opt.success,
+	    beforeSend: opt.beforeSend,
+	    error: opt.error
         });
 
         function __render($obj, $options) {
@@ -45,6 +54,9 @@
                 type: $options.method,
                 dataType: $options.dataType,
                 url: $options.url + $options.id,
+	        beforeSend: function(obj){
+			$options.beforeSend();
+                },
                 success: function(data) {
                     var response = '<option value="' + $options.first_optval + '">' + $options.initext + '</option>';
                     var selected;
@@ -54,7 +66,11 @@
                     }
                     $obj.html(response);
                     $obj.trigger("change");
-                }
+		    $options.success();
+                },
+		error: function (objeto, quepaso, otroobj) {
+			$options.error(objeto, quepaso, otroobj);
+		},
             });
         }
     }

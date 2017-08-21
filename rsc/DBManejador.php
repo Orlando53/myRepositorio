@@ -117,18 +117,9 @@ class DBManejador extends PDO
         try
         {
             $query = $this->conexion->prepare("SELECT " . $columnas . " FROM " . $tabla . " WHERE " . $condicion);
-
-            /*foreach ($valores as $key => $value)
-            {
-            if( !empty( $value ) ){
-            $query->bindParam($key, $value, $this->getPDOConstantType( $value ) );
-            }
-            }*/
-
             $query->execute($valores);
             $cont = $this->setNumRows($query->rowCount());
             $rt   = $query->fetchAll(PDO::FETCH_ASSOC);
-            //$this->setConexion(null);
         } catch (PDOException $e) {
             error_log($e->getMessage());
             $this->error = $e->getMessage();

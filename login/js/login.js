@@ -67,9 +67,7 @@ function logear(parametros) {
                     alertify.alert("Información! Usuario Inactivo, debe ingresar a su correo electrónico para activar la cuenta");
                     break;
                     //gerente---------
-                case 4:
-                    abrirMenu('temporal/index.php'); //menu principal del gerente
-                    break;
+                case 4: abrirIframe('index.php'); break; // ya termino
                 case -4:
                     abrirIframe('index.php'); // pasos con los datso basicos de la empresa
                     break;
