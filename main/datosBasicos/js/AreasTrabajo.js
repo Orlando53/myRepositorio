@@ -33,7 +33,6 @@ function eliminarRegistros() {
                             window.location = "../datosBasicos/registrarAreasTrabajo.php";
                         });
                     }
-                    
                 }
             });
         } else {

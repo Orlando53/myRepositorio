@@ -8,7 +8,7 @@ URL = URLactual();
 $(document).ready(function() {
     //alertify.alert(window.location.hostname + '/portalweb/index.php');
     $('#direccion').on('focus', function() {
-        $("#div-direccion").load('../../util/direccion.php');
+        $("#div-direccion").load('../../../util/direccion.php');
         var arr = [];
         $('#div-direccion select,#div-direccion input:text').bind("blur", function() {
             var indice = parseInt($(this).attr('tabindex')) - 1;
@@ -55,7 +55,7 @@ $(document).ready(function() {
                     alertify.alert(data);
                 } else {
                     alertify.alert("En un nomento nos pondremos en contacto!", function() {
-                        window.open('http://192.168.1.10/portalweb/', "_top");
+                        window.open('http://sstplus.com', "_top");
                     });
                 }
             }

@@ -65,10 +65,11 @@
         <!-- Fin del Contenedor Principal-->
         <script src="../js/jquery-3.2.1.min.js" type="text/javascript"></script>
         <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../js/jquery.blockUI.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui.js"></script>
         <script src="../js/languages/jquery.validationEngine-es.js" type="text/javascript"></script>
         <script src="../js/jquery.validationEngine.js" type="text/javascript"></script>
         <script src = "../js/alertify.js"></script>
+        <script type="text/javascript" src="../js/jquery.funciones.js"></script>
         <script type="text/javascript" src="../seguridad/js/cambiarContrasena.js"></script>
     </body>
 </html>

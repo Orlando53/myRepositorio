@@ -42,128 +42,134 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">Datos Principales</h4>
+		        <h4 class="modal-title">
+		        	<ul class="nav nav-tabs" role="tablist">
+					    <li role="presentation" class="active"><a href="#datosPrincipales" aria-controls="datosPrincipales" role="tab" data-toggle="tab">Datos Principales</a></li>
+					    <li role="presentation"><a href="#datosAdicionales" aria-controls="datosAdicionales" role="tab" data-toggle="tab">Datos Adicionales</a></li>
+					</ul>
+		        </h4>
 		      </div>
 		      <div class="modal-body">
+		      <form>
 		      <!--Modal Body-->
-		        <form class="datosDocumento">
-					<div class="nvt-input-group half">						
-						<input type="text" name="Nombre" id="txtNombre">
-						<span class="bar"></span>
-						<label for="txtNombre">Nombre</label>
-					</div>
-					<div class="nvt-input-group half">						
-						<select id="selProceso" class="selectpicker" title="Seleccione">
-							<option>Proceso 1</option>
-							<option>Proceso 2</option>
-							<option>Proceso 3</option>
-						</select>
-						<label for="selProceso">Proceso</label>
-					</div>
-					<div class="nvt-input-group half">						
-						<select id="selSucursal" class="selectpicker" title="Seleccione" data-live-search="true">
-							<option>Sede 1</option>
-							<option>Sede 2</option>
-							<option>Sede 3</option>
-						</select>
-						<label for="selSucursal">Sucursal</label>
-					</div>	  					
-					<div class="nvt-input-group half">						
-						<select id="selAlcance" class="selectpicker" title="Seleccione">
-							<option>Alcance 1</option>
-							<option>Alcance 2</option>
-							<option>Alcance 3</option>
-						</select>
-						<label for="selAlcance">Alcance</label>
-					</div>	
-					<div class="nvt-input-group half">						
-						<select id="selTipo" class="selectpicker" title="Seleccione">
-							<option>Tipo 1</option>
-							<option>Tipo 2</option>
-							<option>Tipo 3</option>
-						</select>
-						<label for="selTipo">Tipo</label>
-					</div>
-					<div class="nvt-input-group fourth">						
-						<input type="number" name="revisar" id="numRevisar">
-						<span class="bar"></span>
-						<label for="numRevisar">Revisar En (Meses)</label>
-					</div>
-					<div class="nvt-input-group half">						
-						<select id="selGrado" class="selectpicker" title="Seleccione">
-							<option>Grado 1</option>
-							<option>Grado 2</option>
-							<option>Grado 3</option>
-						</select>
-						<label for="selGrado">Grado de Confidencialidad</label>
-					</div>
-					<div class="nvt-input-group half">						
-						<input type="text" name="ubicacion" id="txtUbicacion">
-						<span class="bar"></span>
-						<label for="txtUbicacion">Ubicación del Formato</label>
-					</div>	
-					<table class="table" id="tablaPermisos">
-						<tr><td></td><td>Por Usuarios</td><td>Por Cargos</td><td>Por Grupos</td></tr>
-						<tr><td>Responsable del Documento</td><td><input type="radio" name="responsable"></td><td><input type="radio" name="responsable"></td><td></td></tr>
-						<tr><td>Quien puede Visualizar</td><td><input type="radio" name="visualizar"></td><td><input type="radio" name="visualizar"></td><td><input type="radio" name="visualizar"></td></tr>
-						<tr><td>Quien puede Imprimir</td><td><input type="radio" name="imprimir"></td><td><input type="radio" name="imprimir"></td><td><input type="radio" name="imprimir"></td></tr>
-					</table>					
-									
-					<div class="modal-header">
-						<h4 class="modal-title">Datos Laborales</h4>
-		     		</div>
-		     		<div class="modal-body">
-			     		 <div class="nvt-input-group third">						
-							<select id="selNormas" class="selectpicker" title="Seleccione" Multiple data-live-search="true">
-									<option>Norma 1</option>
-									<option>Norma 2</option>
-									<option>Norma 3</option>
-							</select>
-							<label for="selNormas">Normas</label>
+			     	<div class="tab-content">
+	    				<div role="tabpanel" class="tab-pane fade in active" id="datosPrincipales">
+							<div class="nvt-input-group half">						
+							<input type="text" name="Nombre" id="txtNombre">
+							<span class="bar"></span>
+							<label for="txtNombre">Nombre</label>
 						</div>
-						<div class="nvt-input-group third">						
-							<select id="selPuedenVer" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
-								<option>Usuario 1</option>
-								<option>Usuario 2</option>
-								<option>Usuario 3</option>
+						<div class="nvt-input-group half">						
+							<select id="selProceso" class="selectpicker" title="Seleccione">
+								<option>Proceso 1</option>
+								<option>Proceso 2</option>
+								<option>Proceso 3</option>
 							</select>
-							<label for="selPuedenVer">Pueden Ver</label>
+							<label for="selProceso">Proceso</label>
 						</div>
-						<div class="nvt-input-group third">						
-							<select id="selRedactar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
-								<option>Usuario 1</option>
-								<option>Usuario 2</option>
-								<option>Usuario 3</option>
+						<div class="nvt-input-group half">						
+							<select id="selSucursal" class="selectpicker" title="Seleccione" data-live-search="true">
+								<option>Sede 1</option>
+								<option>Sede 2</option>
+								<option>Sede 3</option>
 							</select>
-							<label for="selRedactar">Encargados de Redactar</label>
-						</div>  
-						<div class="nvt-input-group third">						
-							<select id="selRevisar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
-								<option>Usuario 1</option>
-								<option>Usuario 2</option>
-								<option>Usuario 3</option>
+							<label for="selSucursal">Sucursal</label>
+						</div>	  					
+						<div class="nvt-input-group half">						
+							<select id="selAlcance" class="selectpicker" title="Seleccione">
+								<option>Alcance 1</option>
+								<option>Alcance 2</option>
+								<option>Alcance 3</option>
 							</select>
-							<label for="selRevisar">Encargados de Revisar</label>
+							<label for="selAlcance">Alcance</label>
+						</div>	
+						<div class="nvt-input-group half">						
+							<select id="selTipo" class="selectpicker" title="Seleccione">
+								<option>Tipo 1</option>
+								<option>Tipo 2</option>
+								<option>Tipo 3</option>
+							</select>
+							<label for="selTipo">Tipo</label>
 						</div>
-						<div class="nvt-input-group third">						
-							<select id="selImprimir" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
-								<option>Usuario 1</option>
-								<option>Usuario 2</option>
-								<option>Usuario 3</option>
-							</select>
-							<label for="selImprimir">Encargados de Imprimir</label>
+						<div class="nvt-input-group fourth">						
+							<input type="number" name="revisar" id="numRevisar">
+							<span class="bar"></span>
+							<label for="numRevisar">Revisar En (Meses)</label>
 						</div>
-						<div class="nvt-input-group third">						
-							<select id="selAprobar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
-								<option>Usuario 1</option>
-								<option>Usuario 2</option>
-								<option>Usuario 3</option>
+						<div class="nvt-input-group half">						
+							<select id="selGrado" class="selectpicker" title="Seleccione">
+								<option>Grado 1</option>
+								<option>Grado 2</option>
+								<option>Grado 3</option>
 							</select>
-							<label for="selAprobar">Encargados de Aprobar</label>
-						</div>																				 						
-					</div>
+							<label for="selGrado">Grado de Confidencialidad</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<input type="text" name="ubicacion" id="txtUbicacion">
+							<span class="bar"></span>
+							<label for="txtUbicacion">Ubicación del Formato</label>
+						</div>	
+						<table class="table" id="tablaPermisos">
+							<tr><td></td><td>Por Usuarios</td><td>Por Cargos</td><td>Por Grupos</td></tr>
+							<tr><td>Responsable del Documento</td><td><input type="radio" name="responsable"></td><td><input type="radio" name="responsable"></td><td></td></tr>
+							<tr><td>Quien puede Visualizar</td><td><input type="radio" name="visualizar"></td><td><input type="radio" name="visualizar"></td><td><input type="radio" name="visualizar"></td></tr>
+							<tr><td>Quien puede Imprimir</td><td><input type="radio" name="imprimir"></td><td><input type="radio" name="imprimir"></td><td><input type="radio" name="imprimir"></td></tr>
+						</table>
+		    			</div>
+	    				<div role="tabpanel" class="tab-pane fade" id="datosAdicionales">
+	    					<div class="nvt-input-group third">						
+								<select id="selNormas" class="selectpicker" title="Seleccione" Multiple data-live-search="true">
+										<option>Norma 1</option>
+										<option>Norma 2</option>
+										<option>Norma 3</option>
+								</select>
+								<label for="selNormas">Normas</label>
+							</div>
+							<div class="nvt-input-group third">						
+								<select id="selPuedenVer" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+									<option>Usuario 1</option>
+									<option>Usuario 2</option>
+									<option>Usuario 3</option>
+								</select>
+								<label for="selPuedenVer">Pueden Ver</label>
+							</div>
+							<div class="nvt-input-group third">						
+								<select id="selRedactar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+									<option>Usuario 1</option>
+									<option>Usuario 2</option>
+									<option>Usuario 3</option>
+								</select>
+								<label for="selRedactar">Encargados de Redactar</label>
+							</div>  
+							<div class="nvt-input-group third">						
+								<select id="selRevisar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+									<option>Usuario 1</option>
+									<option>Usuario 2</option>
+									<option>Usuario 3</option>
+								</select>
+								<label for="selRevisar">Encargados de Revisar</label>
+							</div>
+							<div class="nvt-input-group third">						
+								<select id="selImprimir" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+									<option>Usuario 1</option>
+									<option>Usuario 2</option>
+									<option>Usuario 3</option>
+								</select>
+								<label for="selImprimir">Encargados de Imprimir</label>
+							</div>
+							<div class="nvt-input-group third">						
+								<select id="selAprobar" class="selectpicker" Multiple title="Seleccione" data-live-search="true">
+									<option>Usuario 1</option>
+									<option>Usuario 2</option>
+									<option>Usuario 3</option>
+								</select>
+								<label for="selAprobar">Encargados de Aprobar</label>
+							</div>	
+	    				</div>
+	    			</div>
+					</form>
+			      </div>
 				</form>
-		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="nvt-btn nvt-btn-default" data-dismiss="modal">Close</button>
 		        <button type="button" class="nvt-btn nvt-btn-primary" data-dismiss="modal">Guardar Datos</button>

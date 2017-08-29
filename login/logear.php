@@ -83,6 +83,8 @@ $id_rol       = $rs[0]["id_rol"];
 $ide          = $rs[0]["id_empresa"];
 $raiz         = dirname(__FILE__);
 $raiz         = substr($raiz, 0, -5);
+$url          = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+$url          = substr($url, 0, -16);
 $rol          = $rs[0]["rol"];
 $fecha_inicio = $rs[0]["fecha_inicio"];
 $fecha_fin    = $rs[0]["fecha_fin"];
@@ -102,5 +104,6 @@ session::setAttribute("fecha_inicio", $fecha_inicio);
 session::setAttribute("fecha_fin", $fecha_fin);
 $ahora = date("Y-n-j H:i:s");
 session::setAttribute("ULTIMA", $ahora);
-
+session::setAttribute("URL", $url);
+$_SESSION["DOMINIO"]=$url;
 

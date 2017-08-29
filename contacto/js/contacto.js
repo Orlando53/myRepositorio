@@ -1,9 +1,8 @@
 var ruta = "";
 //ruta = URLactual();
-
-$(document).ready(function () {
+$(document).ready(function() {
     //$('#mail').popover('show');
-    $('.container form').submit(function () {
+    $('.container form').submit(function() {
         var parametros = {
             empresa: $("#empresa").val(),
             nombre: $("#nombre").val(),
@@ -17,44 +16,38 @@ $(document).ready(function () {
             url: "contacto.php",
             async: false,
             data: parametros,
-            beforeSend: function (objeto) {
-                $.blockUI({
-                    message: '<h1><img src="../media/image/ajaxload.gif"></h1>'
-                });
+            beforeSend: function(objeto) {
+                dialogLoading('show');
             },
-            complete: function (objeto, exito) {
-                $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+            complete: function(objeto, exito) {
+                dialogLoading('close');
             },
             contentType: "application/x-www-form-urlencoded",
             dataType: "text",
-            error: function (objeto, quepaso, otroobj) {
+            error: function(objeto, quepaso, otroobj) {
                 alert("En Contacto hay un error: " + otroobj);
             },
             global: true,
             ifModified: false,
             processData: true,
-            success: function (datos) {
+            success: function(datos) {
                 if (datos == 1) {
                     alert("Su mensaje fué enviado. En unos momentos le estaremos dando respuesta!");
-                    enviarCorreo(parametros.email, parametros.nombre, parametros.mensaje,"Acaba de llegar un correo de un contacto");
+                    enviarCorreo(parametros.email, parametros.nombre, parametros.mensaje, "Acaba de llegar un correo de un contacto");
                 } else {
                     alert("Ocurrió un error al intentar enviar este mensaje, por favor intente mas tarde!");
                 }
-
-
             },
             timeout: 3000,
             type: "GET"
         });
     });
-
-
-    $("#mail").focusout(function () {
+    $("#mail").focusout(function() {
         if (validarEmail(this)) {
-//            alert("ok");
+            //            alert("ok");
         } else {
             $(this).focus();
-//            alert("mal");
+            //            alert("mal");
         }
     });
 });
@@ -68,7 +61,7 @@ function validarEmail(campo) {
     }
 }
 
-function enviarCorreo(correo, nombre, mensaje,asunto) {
+function enviarCorreo(correo, nombre, mensaje, asunto) {
     var parametros = {
         email: correo,
         nombre: nombre,
@@ -79,25 +72,21 @@ function enviarCorreo(correo, nombre, mensaje,asunto) {
         url: "../util/email/envio.php",
         async: false,
         data: parametros,
-        beforeSend: function (objeto) {
-            $.blockUI({
-                    message: '<h1><img src="../media/image/ajaxload.gif"></h1>'
-                });
+        beforeSend: function(objeto) {
+            dialogLoading('show');
         },
-        complete: function (objeto, exito) {
-            $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+        complete: function(objeto, exito) {
+            dialogLoading('close');
         },
         contentType: "application/x-www-form-urlencoded",
         dataType: "text",
-        error: function (objeto, quepaso, otroobj) {
+        error: function(objeto, quepaso, otroobj) {
             alert("En Contacto hay un error: " + otroobj);
         },
         global: true,
         ifModified: false,
         processData: true,
-        success: function (datos) {
-            
-        },
+        success: function(datos) {},
         timeout: 3000,
         type: "GET"
     });

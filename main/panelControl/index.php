@@ -1,11 +1,11 @@
-<?php 
+<?php
 /*
  * @autor:
  * @fecha:
  * @objetivo:
  * @Modifico:       Orlando Puentes
  * @Fecha:          julio 28 de 2018
- * @Modificacion:   cambio de extensi髇, inplementat iFrame
+ * @Modificacion:   cambio de extensi锟絥, inplementat iFrame
  */
 @session_start();
 date_default_timezone_set('America/Bogota');
@@ -65,24 +65,17 @@ if (!session::existsAttribute("LOGEADO")) {
 		 			</div>
 		 			<div class="jumboson">
 		 				<li>
-		 					<a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button"><span>Diagn贸stico</span></a>
+		 					<a href="diagnostico/listaDiagnostico.php" target="iframe_a" class="panel-button"><span>Diagn贸stico</span></a>
 		 				</li>
-		 				<div class="dropdown-content">
-		 					<ul>
-					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Datos Empresa</a></li>
-					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Areas de Trabajo</a></li>
-					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Cargos</a></li>
-					 			<li class="item"><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button">Encuesta Sociodemogr&aacutefica</a></li>
-					 		</ul>
-		 				</div>	 				
+
 		 			</div>
-	 				
+
 	 				<div class="jumboson">
 		 				<li><a href class="panel-button"><span>Documentaci贸n</span></a></li>
 		 				<div class="dropdown-content">
 		 					<ul>
 					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Configuraci贸n</a></li>
-					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Admin Documento</a></li>
+                                                                <li class="item"><a href="documentacion/administrarDocumentos.php" target="iframe_a" class="panel-button">Admin Documento</a></li>
 					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Admin Formato</a></li>
 					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Diligenciar Formato</a></li>
 					 			<li class="item"><a href="documentacion/noTiene.html" target="iframe_a" class="panel-button">Documentos Externos</a></li>
@@ -94,30 +87,22 @@ if (!session::existsAttribute("LOGEADO")) {
 					 		</ul>
 		 				</div>
 		 			</div>
-		 			
+
 	 				<div class="jumboson">
 		 				<li>
 		 					<a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button"><span>Pol&iacutetica</span></a>
 		 				</li>
-		 				<div class="dropdown-content">
-    		 				<ul>
-    					 		<li class="item"><a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button">Datos Empresa</a></li>
-    					 		<li class="item"><a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button">Areas de Trabajo</a></li>
-    					 		<li class="item"><a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button">Cargos</a></li>
-    					 		<li class="item"><a href="diagnostico/noTiene.html" target="iframe_a" class="panel-button">Encuesta Sociodemogr&aacutefica</a></li>
-    					 	</ul>
-    					 </div>
 		 			</div>
-		 			
-	 			</ul>	 				
+
+	 			</ul>
  			</div>
  			<div class="col-xs-4" style="height:100%">
  				<ul class="panel-list jumbo">
  					<div class="jumboson">
 		 				<li>
-		 					<a href="objetivos/noTiene.html" target="iframe_a" class="panel-button"><span>Objetivos/Indicadores</span></a>	 					
+		 					<a href="objetivos/noTiene.html" target="iframe_a" class="panel-button"><span>Objetivos/Indicadores</span></a>
 		 				</li>
-		 					 				
+
 		 			</div>
 		 			<div class="jumboson">
     	 				<li><a href="#" class="panel-button"><span>Plan Trabajo</span></a></li>
@@ -130,9 +115,9 @@ if (!session::existsAttribute("LOGEADO")) {
     					 		</ul>
     		 				</div>
     		 		</div>
-    		 		<div class="jumboson">	 				
+    		 		<div class="jumboson">
     	 				<li><a href="organizacion/noTiene.html" target="iframe_a" class="panel-button"><span>Matriz de Req. Legales</span></a></li>
-    		 		</div>	
+    		 		</div>
 	 			</ul>
  			</div>
  		</div>
@@ -142,21 +127,29 @@ if (!session::existsAttribute("LOGEADO")) {
  				<ul class="panel-list jumbo">
 	 				<div class="jumboson">
     	 				<li><a href="#" class="panel-button"><span>Gesti&oacuten de Salud</span></a></li>
-    	 				
+
     		 		</div>
 	 				<div class="jumboson">
     	 				<li><a href="#" class="panel-button"><span>Gesti&oacuten de Riesgos</span></a></li>
     	 				<div class="dropdown-content">
     		 					<ul>
-    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de SST</a></li>
-    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de Salud</a></li>
-    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Programa de Capacitaci&oacuten</a></li>
-    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Plan de Emergencias</a></li>
-    					 		</ul>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Matriz  de peligros</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Matriz de EPP y dotaci&oacuten</a></li>
+       					 		</ul>
     		 				</div>
     		 		</div>
+
 	 				<li><a href="#" class="panel-button"><span>Emergencias</span></a></li>
-	 				<li><a href="#" class="panel-button"><span>Contrataci贸n</span></a></li>
+	 				<div class="jumboson">
+    	 				<li><a href="#" class="panel-button"><span>Contrataci&oacuten</span></a></li>
+
+    	 				<div class="dropdown-content">
+    		 					<ul>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Evaluaci&oacuten de proveedores</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Gastos de proveedores</a></li>
+       					 		</ul>
+    		 				</div>
+    		 		</div>
 	 				<li><a href="#" class="panel-button"><span>Actas</span></a></li>
 	 			</ul>
  			</div>
@@ -168,8 +161,10 @@ if (!session::existsAttribute("LOGEADO")) {
  			<div class="col-xs-4" style="height:100%"><img src="../../media/image/actuar.png" class="img-responsive indicador"></div>
  			<div class="col-xs-6 col-xs-offset-1" style="border:0;height:100%;">
  				<ul class="panel-list jumbo">
-	 				<li><a href="#" class="panel-button"><span>Reportar ACPM</span></a></li>
-	 				<li><a href="#" class="panel-button"><span>Seg. Hallazgos</span></a></li>
+	 				<li><a href="#" class="panel-button"><span>Condiciones inseguras</span></a></li>
+	 				<li><a href="#" class="panel-button"><span>Accidentes o incidentes</span></a></li>
+	 				<li><a href="#" class="panel-button"><span>Plan de mejoramiento</span></a></li>
+	 				<li><a href="#" class="panel-button"><span>Tareas</span></a></li>
 	 			</ul>
  			</div>
  		</div>
@@ -177,8 +172,18 @@ if (!session::existsAttribute("LOGEADO")) {
  			<img src="../../media/image/V.png" style="position:absolute;top:0;left:0;">
  			<div class="col-xs-6 col-xs-offset-1" style="border:0;height:100%;">
  				<ul class="panel-list jumbo">
-	 				<li><a href="#" class="panel-button"><span>Auditorias</span></a></li>
-	 				<li><a href="#" class="panel-button"><span>Revisi贸n General</span></a></li>
+	 				<li><a href="#" class="panel-button"><span>Seguimiento de hallazgos</span></a></li>
+	 				<div class="jumboson">
+    	 				<li><a href="#" class="panel-button"><span>Auditor&iacuteas</span></a></li>
+
+    	 				<div class="dropdown-content">
+    		 					<ul>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Plan de auditor&iacutea</a></li>
+    					 			<li class="item"><a href="planes/noTiene.html" target="iframe_a" class="panel-button">Informe de auditor&iacutea</a></li>
+       					 		</ul>
+    		 				</div>
+    		 		</div>
+	 				<li><a href="#" class="panel-button"><span>Revisi&oacuten gerencial</span></a></li>
 	 			</ul>
 	 		</div>
 	 			<div class="col-xs-1"></div>

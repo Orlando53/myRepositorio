@@ -11,7 +11,7 @@ date_default_timezone_set('America/Bogota');
 ini_set("display_errors", '1');
 include_once '../rsc/DBManejador.php';
 
-$db = new DBManejador();
+//$db = new DBManejador();
 
 $db         = new DBManejador();
 $estado     = $_REQUEST['estado'];

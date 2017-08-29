@@ -44,99 +44,103 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">Datos Personales</h4>
+		        <h4 class="modal-title">
+		        	<ul class="nav nav-tabs" role="tablist">
+					    <li role="presentation" class="active"><a href="#datosPersonales" aria-controls="datosPersonales" role="tab" data-toggle="tab">Datos Personales</a></li>
+					    <li role="presentation"><a href="#datosLaborales" aria-controls="datosLaborales" role="tab" data-toggle="tab">Datos Laborales</a></li>
+					</ul>
+		        </h4>
 		      </div>
 		      <div class="modal-body">
+		      <form class="datosEmpresa">
 		      <!--Modal Body-->
-		        <form class="datosEmpresa">
-					<div class="nvt-input-group half">						
-						<input type="text" name="Nombres" id="txtNombres">
-						<span class="bar"></span>
-						<label for="txtNombres">Nombres</label>
-					</div>
-					<div class="nvt-input-group half">						
-						<input type="text" name="Apellidos" id="txtApellidos">
-						<span class="bar"></span>
-						<label for="txtApellidos">Apellidos</label>
-					</div>
-					<div class="nvt-input-group half">						
-						<select id="selTipoDoc" class="selectpicker" title="Seleccione">
-							<option>Cedula de Ciudadanía</option>
-							<option>Cedula de Extranjería</option>
-							<option>NIT</option>
-						</select>
-						<label for="selTipoDoc">Tipo de Documento</label>
-					</div>					
-					<div class="nvt-input-group half">						
-						<input type="number" name="numDoc" id="numDoc">
-						<span class="bar"></span>
-						<label for="numDoc">Número de Documento</label>
-					</div>
-					<div class="nvt-input-group half">						
-						<select id="selGenero" class="selectpicker" title="Seleccione">
-							<option>Masculino</option>
-							<option>Femenino</option>
-							<option>Otro</option>
-						</select>
-						<label for="selGenero">Género</label>
-					</div>
-					<div class="nvt-input-group half">						
-						<input type="text" name="direccion" id="direccion" readonly/>
-						<span class="bar"></span>
-						<label for="direccion">Dirección</label>
-					</div>
-					<div class="nvt-input-group fourth">						
-						<select id="selDPTO"  class="selectpicker"  title="Seleccione">
-							<option>Huila</option>
-						</select>
-						<label for="selDPTO">Departamento</label>
-					</div>
-					<div class="nvt-input-group fourth">						
-						<select id="selMPIO"  class="selectpicker"  title="Seleccione">
-							<option>Neiva</option>
-						</select>
-						<label for="selMPIO">Municipio</label>
-					</div>
-					<div class="nvt-input-group fourth">						
-						<input type="number" id="numTelefono">
-						<span class="bar"></span>
-						<label for="numTelefono">Telefono</label>
-					</div>	
-					<div class="nvt-input-group fourth">						
-						<input type="email" name="email" id="txtEmail">
-						<span class="bar"></span>
-						<label for="txtEmail">Correo Electrónico</label>
-					</div>					
-					
-					<div class="nvt-input-group third" style="text-align: center;">
-						<h5>Imagen</h5>						
-						<div class="file-input">
-							<img src="../../media/image/placeholderPhoto.png">			
-							<label for="fileImagen">Cambiar</label>
-							<input type="file" name="" class="imgFile" id="fileImagen">
-						</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
-					</div>
-					<div class="nvt-input-group third" style="text-align: center;">
-						<h5>Firma</h5>						
-						<div class="file-input">
-							<img src="../../media/image/placeholderPhoto.png">			
-							<label for="logo">Cambiar</label>
-							<input type="file" name="" class="imgFile" id="logo">
-						</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
-					</div>
-					<div class="nvt-input-group third" style="text-align: center;">
-						<h5>Hoja de Vida</h5>						
-						<div class="file-input">								
-							<label for="hv">Cambiar</label>
-							<input type="file" name="" class="imgFile" id="hv">
-						</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
-					</div>					
-					<div class="modal-header">
-						<h4 class="modal-title" style="margin-top:25px;">&nbsp</h4>
-						<h4 class="modal-title">Datos Laborales</h4>
-		     		</div>
-		     		<div class="modal-body">
-			     		 <div class="nvt-input-group half">						
+		     	<div class="tab-content">
+    				<div role="tabpanel" class="tab-pane fade in active" id="datosPersonales">
+						<div class="nvt-input-group half">						
+							<input type="text" name="Nombres" id="txtNombres">
+							<span class="bar"></span>
+							<label for="txtNombres">Nombres</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<input type="text" name="Apellidos" id="txtApellidos">
+							<span class="bar"></span>
+							<label for="txtApellidos">Apellidos</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<select id="selTipoDoc" class="selectpicker" title="Seleccione">
+								<option>Cedula de Ciudadanía</option>
+								<option>Cedula de Extranjería</option>
+								<option>NIT</option>
+							</select>
+							<label for="selTipoDoc">Tipo de Documento</label>
+						</div>					
+						<div class="nvt-input-group half">						
+							<input type="number" name="numDoc" id="numDoc">
+							<span class="bar"></span>
+							<label for="numDoc">Número de Documento</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<select id="selGenero" class="selectpicker" title="Seleccione">
+								<option>Masculino</option>
+								<option>Femenino</option>
+								<option>Otro</option>
+							</select>
+							<label for="selGenero">Género</label>
+						</div>
+						<div class="nvt-input-group half">						
+							<input type="text" name="direccion" id="direccion" readonly/>
+							<span class="bar"></span>
+							<label for="direccion">Dirección</label>
+						</div>
+						<div class="nvt-input-group fourth">						
+							<select id="selDPTO"  class="selectpicker"  title="Seleccione">
+								<option>Huila</option>
+							</select>
+							<label for="selDPTO">Departamento</label>
+						</div>
+						<div class="nvt-input-group fourth">						
+							<select id="selMPIO"  class="selectpicker"  title="Seleccione">
+								<option>Neiva</option>
+							</select>
+							<label for="selMPIO">Municipio</label>
+						</div>
+						<div class="nvt-input-group fourth">						
+							<input type="number" id="numTelefono">
+							<span class="bar"></span>
+							<label for="numTelefono">Telefono</label>
+						</div>	
+						<div class="nvt-input-group fourth">						
+							<input type="email" name="email" id="txtEmail">
+							<span class="bar"></span>
+							<label for="txtEmail">Correo Electrónico</label>
+						</div>					
+						
+						<div class="nvt-input-group third" style="text-align: center;">
+							<h5>Imagen</h5>						
+							<div class="file-input">
+								<img src="../../media/image/placeholderPhoto.png">			
+								<label for="fileImagen">Cambiar</label>
+								<input type="file" name="" class="imgFile" id="fileImagen">
+							</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
+						</div>
+						<div class="nvt-input-group third" style="text-align: center;">
+							<h5>Firma</h5>						
+							<div class="file-input">
+								<img src="../../media/image/placeholderPhoto.png">			
+								<label for="logo">Cambiar</label>
+								<input type="file" name="" class="imgFile" id="logo">
+							</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
+						</div>
+						<div class="nvt-input-group third" style="text-align: center;">
+							<h5>Hoja de Vida</h5>						
+							<div class="file-input">								
+								<label for="hv">Cambiar</label>
+								<input type="file" name="" class="imgFile" id="hv">
+							</div><input type="button" class="nvt-btn nvt-btn-danger logoClear" value="X">
+						</div>
+	    			</div>
+    				<div role="tabpanel" class="tab-pane fade" id="datosLaborales">
+    					<div class="nvt-input-group half">						
 							<select id="selJefe" class="selectpicker" title="Seleccione" data-live-search="true">
 									<option>Jose</option>
 									<option>Luis</option>
@@ -222,7 +226,8 @@
 							<span class="bar"></span>
 							<label for="datFechaSalida">Fecha de salida</label>
 						</div>
-					</div>
+    				</div>
+    			</div>
 				</form>
 		      </div>
 		      <div class="modal-footer">

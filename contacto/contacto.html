@@ -1,71 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="UTF-8">
-        <title>{TITULO DE LA PAGINA}</title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/font-awesome.min.css">		
-        <link rel="stylesheet" href="../css/nvst.css">	
-        <link rel="stylesheet" href="../css/style.css">	
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
-        <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+        <meta charset="utf-8">
+            <title>
+                {TITULO DE LA PAGINA}
+            </title>
+            <link href="../css/bootstrap.min.css" rel="stylesheet">
+                <link href="../css/font-awesome.min.css" rel="stylesheet">
+                    <link href="../css/nvst.css" rel="stylesheet">
+                        <link href="../css/style.css" rel="stylesheet">
+                            <meta content="minimum-scale=0.75, maximum-scale=1.0" name="viewport">
+                                <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+                                    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+                                    </link>
+                                </link>
+                            </meta>
+                        </link>
+                    </link>
+                </link>
+            </link>
+        </meta>
     </head>
     <body>
-        <div class="container">	
+        <div class="container">
             <div class="row">
-                <center><h1>Contáctenos</h1></center>
-                <div class="alert alert-danger" style="display: none;" id="msgError"></div>
+                <center>
+                    <h1>
+                        Contáctenos
+                    </h1>
+                </center>
+                <div class="alert alert-danger" id="msgError" style="display: none;">
+                </div>
                 <div class="col-md-4">
-                    <h3>Informacion del Proveedor</h3>
-                    <i class="fa fa-map-marker"></i>Calle 34 #1A - 14 Local 101<br>
-                    <i class="fa"></i>Neiva - Huila<br>
-                    <i class="fa fa-globe"></i><a href="http://nuevastic.com/" target="_blank">www.nuevastic.com</a>
-                    <br><br>
-                    <i class="fa fa-envelope"></i><a href="mailto:gerencia@nuevastic.com">gerencia@nuevastic.com</a><br>
-                    <i class="fa fa-phone "></i>+57 315 390 7092 - 3202018797
+                    <h3>
+                        Informacion del Proveedor
+                    </h3>
+                    <i class="fa fa-map-marker">
+                    </i>
+                    Calle 34 #1A - 14 Local 101
+                    <br>
+                        <i class="fa">
+                        </i>
+                        Neiva - Huila
+                        <br>
+                            <i class="fa fa-globe">
+                            </i>
+                            <a href="http://nuevastic.com/" target="_blank">
+                                www.nuevastic.com
+                            </a>
+                            <br>
+                                <br>
+                                    <i class="fa fa-envelope">
+                                    </i>
+                                    <a href="mailto:gerencia@nuevastic.com">
+                                        gerencia@nuevastic.com
+                                    </a>
+                                    <br>
+                                        <i class="fa fa-phone ">
+                                        </i>
+                                        +57 315 390 7092 - 3202018797
+                                    </br>
+                                </br>
+                            </br>
+                        </br>
+                    </br>
                 </div>
                 <div class="col-md-8">
-                    <form id="defaultForm">				
+                    <form id="defaultForm">
                         <div class="form-group half">
-                            <label for="empresa">Empresa</label>
-                            <input type="text" class="form-control" id="empresa" required>
+                            <label for="empresa">
+                                Empresa
+                            </label>
+                            <input class="form-control" id="empresa" required="" type="text">
+                            </input>
                         </div>
                         <div class="form-group half">
-                            <label for="nombre">Nombre y Apellido</label>
-                            <input type="text" class="form-control" id="nombre" required>
+                            <label for="nombre">
+                                Nombre y Apellido
+                            </label>
+                            <input class="form-control" id="nombre" required="" type="text">
+                            </input>
                         </div>
                         <div class="form-group half">
-                            <label for="cargo">Cargo</label>
-                            <input type="text" class="form-control" id="cargo"required>
+                            <label for="cargo">
+                                Cargo
+                            </label>
+                            <input class="form-control" id="cargo" required="" type="text">
+                            </input>
                         </div>
                         <div class="form-group half">
-                            <label for="mail">Correo Electrónico</label><!-- /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/ -->
-                            <input type="email" id="mail" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="El formato de correo no es valido, un ejemplo (ejemplo@gmail.com)" class="form-control" data-content="Some content inside the popover" required>
+                            <label for="mail">
+                                Correo Electrónico
+                            </label>
+                            <!-- /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/ -->
+                            <input class="form-control" data-content="Some content inside the popover" id="mail" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required="" title="El formato de correo no es valido, un ejemplo (ejemplo@gmail.com)" type="email">
+                            </input>
                         </div>
                         <div class="form-group half">
-                            <label for="telefono">Teléfono</label>
-                            <input type="text" class="form-control" id="telefono" required>
+                            <label for="telefono">
+                                Teléfono
+                            </label>
+                            <input class="form-control" id="telefono" required="" type="text">
+                            </input>
                         </div>
                         <div class="form-group half">
-                            <label for="ciudad">Ciudad</label>
-                            <input type="text" class="form-control" id="ciudad" required>
+                            <label for="ciudad">
+                                Ciudad
+                            </label>
+                            <input class="form-control" id="ciudad" required="" type="text">
+                            </input>
                         </div>
                         <div class="form-group full">
-                            <label for="name">Mensaje</label>
-                            <textarea class="form-control" id="mensaje" required></textarea>
-                            <p class="charcount"></p>						
+                            <label for="name">
+                                Mensaje
+                            </label>
+                            <textarea class="form-control" id="mensaje" required="">
+                            </textarea>
+                            <p class="charcount">
+                            </p>
                         </div>
-                        <div class="g-recaptcha" data-sitekey="6LecXycUAAAAADALvZXGC4IrIHHCGPGuvtuCovNc"></div><br/>
+                        <div class="g-recaptcha" data-sitekey="6LecXycUAAAAADALvZXGC4IrIHHCGPGuvtuCovNc">
+                        </div>
+                        <br/>
                         <!-- la Clave Secreta para el reCaptcha es 6LecXycUAAAAAEWRY3Sao7XGAIGjErLmJEhfmG17 -->
-                        <input type="submit" class="btn btn-success" id="btnEnviar" value="Enviar">
+                        <input class="btn btn-success" id="btnEnviar" type="submit" value="Enviar">
+                        </input>
                     </form>
                 </div>
             </div>
-        </div><!-- Fin del Contenedor Principal-->
-        <script src="../js/jquery-3.2.1.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/nvt.js"></script>
-        <script src="js/contacto.js"></script>
+        </div>
+        <!-- Fin del Contenedor Principal-->
+        <script src="../js/jquery-3.2.1.min.js">
+        </script>
+        <script src="../js/jquery-ui.js">
+        </script>
+        <script src="../js/jquery.funciones.js">
+        </script>
+        <script src="../js/bootstrap.min.js">
+        </script>
+        <script src="../js/nvt.js">
+        </script>
+        <script src="js/contacto.js">
+        </script>
     </body>
 </html>

@@ -31,9 +31,9 @@ $rs_consultar = $conn->consultarCondicion($columnase, $tablae, $condicione, $val
 
 //Si las hay, entonces graba en gen_personas y usuarios
 if ($rs_consultar) {
-    $conn->begin();
+    
     foreach ($rs_consultar as $num) {
-
+        $conn->begin();
         $n1        = $num['nom_repre1'];
         $n2        = $num['nom_repre2'];
         $a1        = $num['ape_repre1'];

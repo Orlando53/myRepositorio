@@ -1,72 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="UTF-8">
-        <title>Respuesta</title>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/font-awesome.min.css">		
-        <link rel="stylesheet" href="../css/nvst.css">	
-        <link rel="stylesheet" href="../css/style.css">	
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" content="minimum-scale=0.75, maximum-scale=1.0">
-        <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+        <meta charset="utf-8">
+            <title>
+                Respuesta
+            </title>
+            <link href="../css/bootstrap.min.css" rel="stylesheet">
+                <link href="../css/font-awesome.min.css" rel="stylesheet">
+                    <link href="../css/nvst.css" rel="stylesheet">
+                        <link href="../css/style.css" rel="stylesheet">
+                            <meta content="minimum-scale=0.75, maximum-scale=1.0" name="viewport">
+                                <link href="https://fonts.googleapis.com/css?family=Inconsolata|Oswald:300,400,700|Roboto:300,400,400i,900" rel="stylesheet">
+                                    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900|Roboto+Condensed:300,400,700" rel="stylesheet">
+                                    </link>
+                                </link>
+                            </meta>
+                        </link>
+                    </link>
+                </link>
+            </link>
+        </meta>
+        <link href="../css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+        </link>
     </head>
     <body>
         <div class="container">
-            <center><h1>Estado Mensajes Contactos</h1></center>
+            <center>
+                <h1>
+                    Estado Mensajes Contactos
+                </h1>
+            </center>
             <br>
-            <div class="row">
-                <div class="col-sm-offset-1 col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label" for="txtBuscar">Buscar por empresa o correo</label>
-                        <input type="text" id="txtBuscar" class="form-control" placeholder="Buscar"/>
-                    </div>
-                </div>
-                <div class="col-sm-offset-2 col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">Filtrar por estado</label>
-                        <select class="form-control" id="slEstado">
-                            <option value="">Selecionar</option>
-                            <option value="R">Por Responder</option>
-                            <option value="C">Contestados</option>
-                        </select>
-                    </div>
-                </div>
-                <br class="col-sm-12">
-                <hr class="col-sm-12">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <table class="table table-condensed table-hover" id="tblLisMens">
-                                <thead id="trHead">
-                                </thead>
-                                <tbody id="trBody">
-                                </tbody>
-                            </table>
+                <div class="row">
+                    <div class="col-sm-offset-1 col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="txtBuscar">
+                                Buscar por empresa o correo
+                            </label>
+                            <input class="form-control" id="txtBuscar" placeholder="Buscar" type="text"/>
                         </div>
                     </div>
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">
+                                Filtrar por estado
+                            </label>
+                            <select class="form-control" id="slEstado">
+                                <option value="">
+                                    Selecionar
+                                </option>
+                                <option value="R">
+                                    Por Responder
+                                </option>
+                                <option value="C">
+                                    Contestados
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <br class="col-sm-12">
+                        <hr class="col-sm-12">
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <table class="table table-condensed table-hover" id="tabla">
+                                            <thead id="trHead">
+                                            </thead>
+                                            <tbody id="trBody">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </hr>
+                    </br>
                 </div>
-            </div>
-        </div><!-- Fin del Contenedor Principal-->	
-        <div class="modal fade myModal" id="myModalAcciones" tabindex="-1" role="dialog">
+            </br>
+        </div>
+        <!-- Fin del Contenedor Principal-->
+        <div class="modal fade myModal" id="myModalAcciones" role="dialog" tabindex="-1">
             <div class="modal-dialog modal-lg" role="document" style="min-width: 90% !important;">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Acciones</h4>
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                            <span aria-hidden="true">
+                                ×
+                            </span>
+                        </button>
+                        <h4 class="modal-title">
+                            Acciones
+                        </h4>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" class="hdnIdContacto" name="hdnIdContacto"/>
-                        <input type="hidden" class="hdnEmail" name="hdnEmail"/>
+                        <input class="hdnIdContacto" name="hdnIdContacto" type="hidden"/>
+                        <input class="hdnEmail" name="hdnEmail" type="hidden"/>
                         <table style="width: 100%">
                             <tr>
-                                <th style="width: 70px !important;">Nombre: </th><td class="tdNombre"></td>
-                                <th style="width: 70px !important;">Email: </th><td class="tdEmail"></td>
-                                <th style="width: 70px !important;">Telefono: </th><td class="tdTelefono"></td>
+                                <th style="width: 70px !important;">
+                                    Nombre:
+                                </th>
+                                <td class="tdNombre">
+                                </td>
+                                <th style="width: 70px !important;">
+                                    Email:
+                                </th>
+                                <td class="tdEmail">
+                                </td>
+                                <th style="width: 70px !important;">
+                                    Telefono:
+                                </th>
+                                <td class="tdTelefono">
+                                </td>
                             </tr>
                             <tr>
-                                <th style="width: 70px !important;">Empresa: </th><td class="tdEmpresa"></td>
-                                <th style="width: 70px !important;">Cargo: </th><td class="tdCargo"></td>
+                                <th style="width: 70px !important;">
+                                    Empresa:
+                                </th>
+                                <td class="tdEmpresa">
+                                </td>
+                                <th style="width: 70px !important;">
+                                    Cargo:
+                                </th>
+                                <td class="tdCargo">
+                                </td>
                             </tr>
                         </table>
                         <hr/>
@@ -78,85 +134,157 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <label>Nueva Acción</label>
+                                <label>
+                                    Nueva Acción
+                                </label>
                                 <div class="form-group full">
                                     <select class="form-control sltAccionAdd">
-                                        <option value="">Seleccionar....</option>
-                                        <option value="email">Enviar email</option>
-                                        <option value="llamada">Llamada telefónica</option>
+                                        <option value="">
+                                            Seleccionar....
+                                        </option>
+                                        <option value="email">
+                                            Enviar email
+                                        </option>
+                                        <option value="llamada">
+                                            Llamada telefónica
+                                        </option>
                                     </select>
-                                    <label class="sltAccionAddError" style="display: none; color: red;"></label>
+                                    <label class="sltAccionAddError" style="display: none; color: red;">
+                                    </label>
                                 </div>
                                 <div class="form-group full">
-                                    <textarea class="form-control txtaDescAdd" name="mensaje" placeholder="Descripción" rows="2" required></textarea>						
-                                    <label class="txtaDescAddError" style="display: none; color: red;"></label>
+                                    <textarea class="form-control txtaDescAdd" name="mensaje" placeholder="Descripción" required="" rows="2">
+                                    </textarea>
+                                    <label class="txtaDescAddError" style="display: none; color: red;">
+                                    </label>
                                 </div>
-                                <span class="btn btn-success btn-xs btnAddAccion">Agregar</span>
+                                <span class="btn btn-success btn-xs btnAddAccion">
+                                    Agregar
+                                </span>
                                 <hr/>
-                                <label>Modificar Acción</label>
-                                <input type="hidden" class="hdnIdAccion"/>
+                                <label>
+                                    Modificar Acción
+                                </label>
+                                <input class="hdnIdAccion" type="hidden"/>
                                 <div class="form-group full">
-<!--                                    <select class="form-control sltAccionEdit">
+                                    <!--                                    <select class="form-control sltAccionEdit">
                                         <option value="">Seleccionar....</option>
                                         <option value="Mensaje - email">Mensaje - email</option>
                                         <option value="Llamada telefonica">Llamada telefónica</option>
                                     </select>-->
-                                    <label class="sltAccionEditError" style="display: none; color: red;"></label>
+                                    <label class="sltAccionEditError" style="display: none; color: red;">
+                                    </label>
                                 </div>
                                 <div class="form-group full">
-                                    <textarea class="form-control txtaDescEdit" name="mensaje" placeholder="Descripción" rows="2" required></textarea>						
-                                    <label class="txtaDescEditError" style="display: none; color: red;"></label>
+                                    <textarea class="form-control txtaDescEdit" name="mensaje" placeholder="Descripción" required="" rows="2">
+                                    </textarea>
+                                    <label class="txtaDescEditError" style="display: none; color: red;">
+                                    </label>
                                 </div>
-                                <span class="btn btn-info btn-xs btnEditAccion">Actualizar</span><span class="btn btn-danger btn-xs btnRmAccion">Eliminar</span>
+                                <span class="btn btn-info btn-xs btnEditAccion">
+                                    Actualizar
+                                </span>
+                                <span class="btn btn-danger btn-xs btnRmAccion">
+                                    Eliminar
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                        <button class="btn btn-default" data-dismiss="modal" type="button">
+                            Salir
+                        </button>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
         </div>
-        <div class="modal fade myModal" id="myModalVer" tabindex="-1" role="dialog">
+        <div class="modal fade myModal" id="myModalVer" role="dialog" tabindex="-1">
             <div class="modal-dialog modal-lg" role="document" style="min-width: 90% !important;">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Ver mensaje</h4>
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                            <span aria-hidden="true">
+                                ×
+                            </span>
+                        </button>
+                        <h4 class="modal-title">
+                            Ver mensaje
+                        </h4>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" class="hdnIdContacto" name="hdnIdContacto"/>
-                        <input type="hidden" class="hdnEmail" name="hdnEmail"/>
+                        <input class="hdnIdContacto" name="hdnIdContacto" type="hidden"/>
+                        <input class="hdnEmail" name="hdnEmail" type="hidden"/>
                         <table style="width: 100%">
                             <tr>
-                                <th style="width: 70px !important;">Nombre: </th><td class="tdNombre"></td>
-                                <th style="width: 70px !important;">Email: </th><td class="tdEmail"></td>
-                                <th style="width: 70px !important;">Telefono: </th><td class="tdTelefono"></td>
+                                <th style="width: 70px !important;">
+                                    Nombre:
+                                </th>
+                                <td class="tdNombre">
+                                </td>
+                                <th style="width: 70px !important;">
+                                    Email:
+                                </th>
+                                <td class="tdEmail">
+                                </td>
+                                <th style="width: 70px !important;">
+                                    Telefono:
+                                </th>
+                                <td class="tdTelefono">
+                                </td>
                             </tr>
                             <tr>
-                                <th style="width: 70px !important;">Empresa: </th><td class="tdEmpresa"></td>
-                                <th style="width: 70px !important;">Cargo: </th><td class="tdCargo"></td>
+                                <th style="width: 70px !important;">
+                                    Empresa:
+                                </th>
+                                <td class="tdEmpresa">
+                                </td>
+                                <th style="width: 70px !important;">
+                                    Cargo:
+                                </th>
+                                <td class="tdCargo">
+                                </td>
                             </tr>
                         </table>
                         <hr/>
                         <div class="form-group full">
-                            <label for="mensaje" class="control-label">Mensaje</label>
-                            <textarea class="form-control txtaMensajeVer" name="mensaje"  rows="8" style="background: white;" disabled readonly></textarea>						
+                            <label class="control-label" for="mensaje">
+                                Mensaje
+                            </label>
+                            <textarea class="form-control txtaMensajeVer" disabled="" name="mensaje" readonly="" rows="8" style="background: white;">
+                            </textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                        <button class="btn btn-default" data-dismiss="modal" type="button">
+                            Salir
+                        </button>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        <script src="../js/jquery-3.2.1.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/nvt.js"></script>
-        <script src="../js/jquery.funciones.js"></script>
-        <script src="../js/bootstrap-select.js"></script>
-        <script src = "../js/jquery.blockUI.js"></script>
-        <script src = "../js/jquery.dataTables.js"></script>
-        <script src="js/respuestaContacto.js"></script>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <script src="../js/jquery-3.2.1.min.js">
+        </script>
+        <script src="../js/jquery-ui.js">
+        </script>
+        <script src="../js/bootstrap.min.js">
+        </script>
+        <script src="../js/jquery.dataTables.js">
+        </script>
+        <script src="../js/tables.js">
+        </script>
+        <script src="../js/nvt.js">
+        </script>
+        <script src="../js/jquery.funciones.js">
+        </script>
+        <script src="../js/bootstrap-select.js">
+        </script>
+        <script src="js/respuestaContacto.js">
+        </script>
     </body>
 </html>

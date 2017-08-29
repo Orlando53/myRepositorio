@@ -3,6 +3,7 @@
  * @fecha:      julio 25 de 2017
  * @objetivo: Gestionar Encuesta Sociodemográfica
  */
+
 var ruta = "";
 ruta = URLactual();
 var preguntas;
@@ -210,8 +211,9 @@ $(document).ready(function() {
             data: parametros,
             success: function(datos) {
                 if (datos == 1) {
-                    alert('Se guardado correctamente');
-                    window.location = '../../index.php?ruta=main/menuPrincipal.php';
+                    alert('Se guardo correctamente');
+                    url = ruta + "/main/index.php";
+                    window.open(url,"_top");
                 } else {
                     alert('No se pudo guardar');
                 }

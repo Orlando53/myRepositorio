@@ -1,4 +1,8 @@
 <?php
+@session_start();
+date_default_timezone_set('America/Bogota');
+error_reporting(E_ERROR | E_PARSE);
+$URLactual = $_SESSION["DOMINIO"];
 
 class envio
 {
@@ -6,7 +10,7 @@ class envio
     {
         date_default_timezone_set('America/Bogota');
         require_once 'PHPMailerAutoload.php';
-        include_once '../../rsc/constantes.php';
+        include_once $URLactual . 'rsc/constantes.php';
         // $destinatario = $_REQUEST["email"];
         // $nombre       = $_REQUEST["nombre"];
         // $mensaje      = $_REQUEST["mensaje"];

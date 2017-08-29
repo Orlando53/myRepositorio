@@ -484,6 +484,11 @@
 #tablaPermisos tr td:first-child{
 	text-align: left;
 }
+.tab-pane .title{
+	text-align: center;
+	margin-bottom:20px;
+	margin-top:10px;
+}
 /*********************+Media queries!!!!!!!!********************/
 @media (max-width: 1360px){
 	.userholder{

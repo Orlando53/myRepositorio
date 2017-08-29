@@ -108,6 +108,9 @@ input[type='number']::-webkit-inner-spin-button {
 	display:block;
 	text-align: left;
 }
+.nvt-input-group:not(.add) textarea{
+	line-height: 1;
+}
 .nvt-input-group:not(.add) label{
 	width:auto;
 	display: inline-block;
@@ -270,7 +273,7 @@ input:focus ~ .bar:after {
 	display:none!important;
 }
 .file-input label{
-	padding:5px 5px;
+	padding:5px 10px;
 	border:0;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 	font-size: 12px;

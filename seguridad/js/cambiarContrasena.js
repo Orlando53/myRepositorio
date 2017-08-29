@@ -19,12 +19,10 @@ $('#btnConfirmar').click(function() {
                 async: false,
                 data: parametros,
                 beforeSend: function(objeto) {
-                    $.blockUI({
-                        message: '<h1><img src="../media/image/ajaxload.gif"></h1>'
-                    });
+                    dialogLoading('show');
                 },
                 complete: function() {
-                    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+                    dialogLoading('close');
                 },
                 contentType: false,
                 dataType: "json",
